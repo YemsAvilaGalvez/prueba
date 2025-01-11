@@ -1,7 +1,7 @@
-var tbl_consolidado;
-function Listar_Consolidado() {
-  //enviarlo al scrip en MANTENIMIENTO ROL
-  tbl_consolidado = $("#tabla_consolidado").DataTable({
+var tbl_cliente;
+function Listar_Cliente() {
+
+  tbl_cliente = $("#tabla_cliente").DataTable({
     responsive: true,
     ordering: true,
     bLengthChange: true,
@@ -15,16 +15,23 @@ function Listar_Consolidado() {
     async: false,
     processing: true,
     ajax: {
-      url: "../controller/consolidado/controlador_consolidado_listar.php",
+      url: "../controller/cliente/controlador_listar_cliente.php",
       type: "POST",
     },
     dom: "Blfrtip",
     columns: [
-      //todos los datos del procedimiento almacenado
-      { defaultContent: "" }, //cintador
-      { data: "Id_Cita" },
-     
-      
+
+      { defaultContent: "" }, 
+
+      { data: "nombre_completo" },
+      { data: "documento_identidad" },
+      { data: "celular" },
+      { data: "departamento" },
+      { data: "distrito" },
+      { data: "provincia" },
+      { data: "fecha_registro" },
+      { data: "fecha_fin" },
+
       {
         defaultContent:
           "<center>" +
@@ -35,9 +42,9 @@ function Listar_Consolidado() {
     language: idioma_espanol,
     select: true,
   });
-  tbl_consolidado.on("draw.td", function () {
-    var PageInfo = $("#tabla_consolidado").DataTable().page.info();
-    tbl_consolidado
+  tbl_cliente.on("draw.td", function () {
+    var PageInfo = $("#tabla_cliente").DataTable().page.info();
+    tbl_cliente
       .column(0, { page: "current" })
       .nodes()
       .each(function (cell, i) {
@@ -45,3 +52,5 @@ function Listar_Consolidado() {
       });
   });
 }
+
+
