@@ -63,12 +63,6 @@
 .face-4 { transform: rotateY(144deg) translateZ(150px); }
 .face-5 { transform: rotateY(216deg) translateZ(150px); }
 .face-6 { transform: rotateY(288deg) translateZ(150px); }
-.face-7 { transform: rotateX(63.435deg) translateZ(150px); }
-.face-8 { transform: rotateX(-63.435deg) translateZ(150px); }
-.face-9 { transform: rotateY(36deg) rotateX(63.435deg) translateZ(150px); }
-.face-10 { transform: rotateY(108deg) rotateX(63.435deg) translateZ(150px); }
-.face-11 { transform: rotateY(-36deg) rotateX(-63.435deg) translateZ(150px); }
-.face-12 { transform: rotateY(-108deg) rotateX(-63.435deg) translateZ(150px); }
 
 .modal-body {
     padding: 0;
