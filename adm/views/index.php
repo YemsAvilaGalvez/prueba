@@ -25,9 +25,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- DataTables -->
-  <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
 </head>
@@ -93,67 +96,67 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <!-- Sidebar -->
                 <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Dashboard -->
-        <li class="nav-item">
-            <a href="#" class="nav-link" onclick="window.location.href='index.php'">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p class="font-weight-bold">DASHBOARD</p>
-            </a>
-        </li>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="window.location.href='index.php'">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p class="font-weight-bold">DASHBOARD</p>
+                            </a>
+                        </li>
 
-        <!-- Agencias -->
-        <li class="nav-item">
-            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">
-                <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' -->
-                <p class="font-weight-bold">CLIENTES</p>
-            </a>
-        </li>
+                        <!-- Agencias -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">
+                                <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' -->
+                                <p class="font-weight-bold">CLIENTES</p>
+                            </a>
+                        </li>
 
-        <!-- Cargos -->
-        <li class="nav-item">
-            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','cargos/view_cargos.php')">
-                <i class="nav-icon fas fa-bed"></i> <!-- Cambié el icono a 'fa-bed' para diferenciar 'Difuntos' -->
-                <p class="font-weight-bold">DIFUNTOS</p>
-            </a>
-        </li>
+                        <!-- Cargos -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','difuntos/view_difuntos.php')">
+                                <i class="nav-icon fas fa-bed"></i> <!-- Cambié el icono a 'fa-bed' para diferenciar 'Difuntos' -->
+                                <p class="font-weight-bold">DIFUNTOS</p>
+                            </a>
+                        </li>
 
-        <!-- Trabajadores -->
-        <li class="nav-item">
-            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">
-                <i class="nav-icon fas fa-image"></i> <!-- Cambié el icono a 'fa-image' -->
-                <p class="font-weight-bold">IMAGENES</p>
-            </a>
-        </li>
+                        <!-- Trabajadores -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">
+                                <i class="nav-icon fas fa-image"></i> <!-- Cambié el icono a 'fa-image' -->
+                                <p class="font-weight-bold">IMAGENES</p>
+                            </a>
+                        </li>
 
-        <!-- Asistencias del día -->
-        <li class="nav-item">
-            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','asistencias/view_asistencias.php')">
-                <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' para representar mejor 'Usuarios' -->
-                <p class="font-weight-bold">USUARIOS</p>
-            </a>
-        </li>
+                        <!-- Asistencias del día -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','asistencias/view_asistencias.php')">
+                                <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' para representar mejor 'Usuarios' -->
+                                <p class="font-weight-bold">USUARIOS</p>
+                            </a>
+                        </li>
 
-        <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-bar"></i> <!-- Cambié el icono a 'fa-chart-bar' para 'REPORTES' -->
-                <p class="font-weight-bold">
-                    REPORTES
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview pl-3">
-                <li class="nav-item">
-                    <a href="#" onclick="cargar_contenido('contenido_principal','reportes/view_reporte_asistencia.php')" class="nav-link">
-                        <span class="nav-icon" style="display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 50%; margin-right: 10px;"></span>
-                        <p class="font-weight-bold" style="font-size: 0.9rem;">CLIENTES POR VENCER</p>
-                    </a>
-                </li>
-                
-            </ul>
-        </li>
-    </ul>
-</nav>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-bar"></i> <!-- Cambié el icono a 'fa-chart-bar' para 'REPORTES' -->
+                                <p class="font-weight-bold">
+                                    REPORTES
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview pl-3">
+                                <li class="nav-item">
+                                    <a href="#" onclick="cargar_contenido('contenido_principal','reportes/view_reporte_asistencia.php')" class="nav-link">
+                                        <span class="nav-icon" style="display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 50%; margin-right: 10px;"></span>
+                                        <p class="font-weight-bold" style="font-size: 0.9rem;">CLIENTES POR VENCER</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
 
                 <!-- /.sidebar -->
             </div>
@@ -181,82 +184,82 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content">
-    <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <!-- Total de Clientes -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box" style="background-color: #28a745; color: white; font-weight: bold;"> <!-- Verde oscuro -->
-                    <div class="inner">
-                        <h3 id="lbl_clientes">0</h3> <!-- Total de clientes -->
-                        <p>Total de Clientes</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users"></i> <!-- Icono de clientes -->
-                    </div>
-                    <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <!-- Total de Clientes -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box" style="background-color: #28a745; color: white; font-weight: bold;"> <!-- Verde oscuro -->
+                                <div class="inner">
+                                    <h3 id="lbl_clientes">0</h3> <!-- Total de clientes -->
+                                    <p>Total de Clientes</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users"></i> <!-- Icono de clientes -->
+                                </div>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
 
-            <!-- Total de Difuntos -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box" style="background-color: #ffc107; color: white; font-weight: bold;"> <!-- Amarillo -->
-                    <div class="inner">
-                        <h3 id="lbl_difuntos">0</h3> <!-- Total de difuntos -->
-                        <p>Total de Difuntos</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-bed"></i> <!-- Icono de difuntos -->
-                    </div>
-                    <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','difuntos/view_difuntos.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
+                        <!-- Total de Difuntos -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box" style="background-color: #ffc107; color: white; font-weight: bold;"> <!-- Amarillo -->
+                                <div class="inner">
+                                    <h3 id="lbl_difuntos">0</h3> <!-- Total de difuntos -->
+                                    <p>Total de Difuntos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-bed"></i> <!-- Icono de difuntos -->
+                                </div>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','difuntos/view_difuntos.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
 
-            <!-- Total de Usuarios -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box" style="background-color: #007bff; color: white; font-weight: bold;"> <!-- Azul -->
-                    <div class="inner">
-                        <h3 id="lbl_usuarios">0</h3> <!-- Total de usuarios -->
-                        <p>Total de Usuarios</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users-cog"></i> <!-- Icono de usuarios -->
-                    </div>
-                    <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','usuarios/view_usuarios.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
+                        <!-- Total de Usuarios -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box" style="background-color: #007bff; color: white; font-weight: bold;"> <!-- Azul -->
+                                <div class="inner">
+                                    <h3 id="lbl_usuarios">0</h3> <!-- Total de usuarios -->
+                                    <p>Total de Usuarios</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users-cog"></i> <!-- Icono de usuarios -->
+                                </div>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','usuarios/view_usuarios.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
 
-            <!-- Clientes a Vencer -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box" style="background-color: #dc3545; color: white; font-weight: bold;"> <!-- Rojo oscuro -->
-                    <div class="inner">
-                        <h3 id="lbl_clientes_vencer">0</h3> <!-- Clientes a vencer -->
-                        <p>Clientes a Vencer</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-exclamation-triangle"></i> <!-- Icono de alerta -->
-                    </div>
-                    <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','clientes_vencer/view_clientes_vencer.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
+                        <!-- Clientes a Vencer -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box" style="background-color: #dc3545; color: white; font-weight: bold;"> <!-- Rojo oscuro -->
+                                <div class="inner">
+                                    <h3 id="lbl_clientes_vencer">0</h3> <!-- Clientes a vencer -->
+                                    <p>Clientes a Vencer</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-exclamation-triangle"></i> <!-- Icono de alerta -->
+                                </div>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','clientes_vencer/view_clientes_vencer.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
 
-            <!-- Ganancias -->
-            <div class="col-lg-3 col-6">
-                <div class="small-box" style="background-color: #17a2b8; color: white; font-weight: bold;"> <!-- Azul claro -->
-                    <div class="inner">
-                        <h3 id="lbl_ganancias">0</h3> <!-- Total de ganancias -->
-                        <p>Ganancias</p>
+                        <!-- Ganancias -->
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box" style="background-color: #17a2b8; color: white; font-weight: bold;"> <!-- Azul claro -->
+                                <div class="inner">
+                                    <h3 id="lbl_ganancias">0</h3> <!-- Total de ganancias -->
+                                    <p>Ganancias</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-dollar-sign"></i> <!-- Icono de ganancias -->
+                                </div>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','ganancias/view_ganancias.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-dollar-sign"></i> <!-- Icono de ganancias -->
-                    </div>
-                    <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','ganancias/view_ganancias.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.container-fluid -->
-</section>
+                <!-- /.container-fluid -->
+            </section>
 
             <!-- /.content -->
         </div>
@@ -301,6 +304,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- jQuery -->
     <!-- Bootstrap 4 -->
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="assets/plugins/select2/js/select2.full.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/dist/js/adminlte.min.js"></script>
 
@@ -328,7 +333,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     </script>
 
-<script>
+    <script>
         function cargar_contenido(id, vista) {
             $("#" + id).load(vista);
         }
