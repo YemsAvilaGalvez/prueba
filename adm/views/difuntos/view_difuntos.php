@@ -81,8 +81,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Nombre Completo</label>
-                                <input type="text" class="form-control" id="name" placeholder="Nombre Completo">
+                                <label for="txt_nombre">Nombre Completo</label>
+                                <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre Completo">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -90,8 +90,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Fecha Nacimiento</label>
-                                <input type="date" class="form-control" id="name" placeholder="Fecha Nacimiento">
+                                <label for="date_nacimiento">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" id="date_nacimiento" placeholder="Fecha Nacimiento">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -99,8 +99,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Fecha Fallecimiento</label>
-                                <input type="date" class="form-control" id="name" placeholder="Fecha Fallecimiento">
+                                <label for="date_fallecimiento">Fecha Fallecimiento</label>
+                                <input type="date" class="form-control" id="date_fallecimiento" placeholder="Fecha Fallecimiento">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -110,15 +110,15 @@
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Biografia</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea class="form-control" rows="3" id="txt_biografia" placeholder="Enter ..."></textarea>
                             </div>
                         </div>
                         <!-- /.col -->
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Imagen</label>
-                                <input type="file" class="form-control" id="name" placeholder="Imagen">
+                                <label for="file_foto">Imagen</label>
+                                <input type="file" class="form-control" id="file_foto" placeholder="Imagen">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -126,8 +126,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Video</label>
-                                <input type="text" class="form-control" id="name" placeholder="Link del Video">
+                                <label for="txt_video">Video</label>
+                                <input type="text" class="form-control" id="txt_video" placeholder="Link del Video">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -135,8 +135,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Ubicacion</label>
-                                <input type="text" class="form-control" id="name" placeholder="Link de Ubicacion">
+                                <label for="txt_ubicacion">Ubicacion</label>
+                                <input type="text" class="form-control" id="txt_ubicacion" placeholder="Link de Ubicacion">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -144,19 +144,17 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Cancion</label>
-                                <input type="text" class="form-control" id="name" placeholder="Link de Cancion">
+                                <label for="txt_cancion">Cancion</label>
+                                <input type="text" class="form-control" id="txt_cancion" placeholder="Link de Cancion">
                             </div>
                             <!-- /.form-group -->
                         </div>
                         <!-- /.col -->
-
-
 
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success">Registrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="LimpiarModalDifunto();">Cancelar</button>
+                        <button type="button" class="btn btn-success" id="btnRegistrarDifunto">Registrar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -178,5 +176,9 @@
 
     Listar_Difunto();
     Cargar_Select_Cliente();
+
+    $('#btnRegistrarDifunto').on('click', function() {
+        Registrar_Difunto();
+    });
     
 </script>
