@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label>Documento del Cliente</label>
                                 <select class="form-control select2" id="select_documento_cliente" style="width: 100%;">
-                                
+
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -163,7 +163,7 @@
         </div>
         <!-- /.modal end-->
 
-        
+
         <!-- model editar -->
         <div class="modal fade" id="modal_editar_difunto">
             <div class="modal-dialog">
@@ -175,12 +175,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Documento del Cliente</label>
                                 <select class="form-control select2" id="select_documento_cliente_editar" style="width: 100%;">
-                                
+
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -188,7 +188,7 @@
                         <!-- /.col -->
                         <input type="text" id="idDifunto" hidden>
                         <div class="col-md-12">
-                        <input type="text" id="idDifunto" hidden>
+                            <input type="text" id="idDifunto" hidden>
                             <div class="form-group">
                                 <label for="txt_nombre_editar">Nombre Completo</label>
                                 <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Nombre Completo">
@@ -198,7 +198,7 @@
                         <!-- /.col -->
 
                         <div class="col-md-12">
-                        <input type="text" id="idDifunto" hidden>
+                            <input type="text" id="idDifunto" hidden>
                             <div class="form-group">
                                 <label for="date_nacimiento_editar">Fecha Nacimiento</label>
                                 <input type="date" class="form-control" id="date_nacimiento_editar" placeholder="Fecha Nacimiento">
@@ -208,7 +208,7 @@
                         <!-- /.col -->
 
                         <div class="col-md-12">
-                        <input type="text" id="idDifunto" hidden>
+                            <input type="text" id="idDifunto" hidden>
                             <div class="form-group">
                                 <label for="date_fallecimiento_editar">Fecha Fallecimiento</label>
                                 <input type="date" class="form-control" id="date_fallecimiento_editar" placeholder="Fecha Fallecimiento">
@@ -266,6 +266,51 @@
         </div>
         <!-- /.modal end-->
 
+        <!-- model editar foto -->
+        <div class="modal fade" id="modal_editar_foto">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Foto</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="idDifuntoFoto" hidden>
+                        <input type="text" id="idDifuntoFotoActual" hidden>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="file_foto">Imagen</label>
+                                <input type="file" class="form-control" id="file_foto_editar" placeholder="Imagen">
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Foto Actual</label>
+                                    <div class="card">
+                                        <img class="" id="img-preview">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" onclick="EditarFoto();">Editar Foto</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal end-->
+
     </div>
     <!-- /.container-fluid -->
 </section>
@@ -283,5 +328,4 @@
     $('#btnRegistrarDifunto').on('click', function() {
         Registrar_Difunto();
     });
-    
 </script>

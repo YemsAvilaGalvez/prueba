@@ -64,6 +64,21 @@ function AbrirRegistroDifunto() {
   $(".form-control").removeClass("is-invalid").removeClass("is-valid");
 }
 
+/** ABRIR MODAL EDITAR FOTO */
+$('#tabla_difunto').on('click', '.foto', function () {
+  var data = tbl_difunto.row($(this).parents('tr')).data();
+  if (tbl_difunto.row(this).child.isShown()) {
+    var data = tbl_difunto.row(this).data();
+  }
+
+  $("#modal_editar_foto").modal({ backdrop: "static", keyboard: false });
+  $("#modal_editar_foto").modal("show");
+
+  document.getElementById("idDifuntoFoto").value = data.id_difunto;
+  document.getElementById("idDifuntoFotoActual").value = data.imagen_perfil;
+  document.getElementById("img-preview").src = "../" + data.imagen_perfil;
+});
+
 /** ABRIR MODAL EDITAR */
 $('#tabla_difunto').on('click', '.editar', function () {
   var data = tbl_difunto.row($(this).parents('tr')).data();
@@ -209,6 +224,62 @@ function Registrar_Difunto() {
   });
 }
 
+/** EDITAR FOTO */
+function EditarFoto(){
+  let idDifunto = document.getElementById("idDifuntoFoto").value;
+  let foto = document.getElementById("file_foto_editar").value;
+  let fotoActual = document.getElementById("idDifuntoFotoActual").value;
+
+  if (foto.length == 0) {
+    return Swal.fire("Mensaje de Advertencia", "Seleccione una foto", "warning");
+  }
+
+  let extension = foto.split(".").pop();
+  let nombreFoto = "";
+  let f = new Date();
+  if (foto.length > 0) {
+    nombreFoto =
+      "DIF" +
+      f.getDate() +
+      "" +
+      (f.getMonth() + 1) +
+      "" +
+      f.getFullYear() +
+      "" +
+      f.getHours() +
+      "" +
+      f.getMilliseconds() +
+      "." +
+      extension;
+  }
+
+  let formData = new FormData();
+  let fotoObject = $("#file_foto_editar")[0].files[0];
+
+  formData.append("idDifunto", idDifunto);
+  formData.append("fotoActual", fotoActual);
+  formData.append("nombreFoto", nombreFoto);
+  formData.append("foto", fotoObject);
+
+  $.ajax({
+    url: "../controller/difunto/controlador_editar_foto.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+      if (resp > 0) {
+        Swal.fire("Mensaje de Confirmacion", "Foto editada correctamente", "success").then((value) => {
+          $("#modal_editar_foto").modal("hide");
+          tbl_difunto.ajax.reload();
+        });
+      } else {
+        Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+      }
+    },
+  });
+} 
+
 /** VALIDAR CAMPOS */
 function ValidarCamposDifunto(
   nombre,
@@ -347,4 +418,46 @@ function EditarDifunto(){
       Swal.fire("Mensaje de Advertencia", "Error al editar Difunto", "error");
     }
   })
+}
+
+/** MENSAJE DE ELIMINAR */
+$('#tabla_difunto').on('click', '.eliminar', function () {
+  var data = tbl_difunto.row($(this).parents('tr')).data();
+  if (tbl_difunto.row(this).child.isShown()) {
+    var data = tbl_difunto.row(this).data();
+  }
+
+  Swal.fire({
+    title: "¿Está seguro de eliminar?",
+    text: "Eliminará el difunto seleccionado",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      EliminarDifunto(data.id_difunto);
+    }
+  });
+});
+
+/** ELIMINAR DIFUNTO */
+function EliminarDifunto(idDifunto) {
+  $.ajax({
+    url: "../controller/difunto/controlador_eliminar_difunto.php",
+    type: "POST",
+    data: {
+      idDifunto: idDifunto,
+    },
+  }).done(function (resp) {
+    if (resp > 0) {
+      Swal.fire("Mensaje de Confirmacion", "Difunto eliminado correctamente", "success").then((value) => {
+        tbl_difunto.ajax.reload();
+      });
+    } else {
+      Swal.fire("Mensaje de Advertencia", "Error al eliminar Difunto", "error");
+    }
+  });
 }

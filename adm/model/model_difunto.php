@@ -56,4 +56,58 @@ class Modelo_Difunto extends conexionBD
         }
         conexionBD::cerrar_conexion();
     }
+
+    public function Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $video, $ubicacion, $cancion)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_EDITAR_DIFUNTO(?,?,?,?,?,?,?,?,?)";
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $idDifunto, PDO::PARAM_INT);
+        $query->bindParam(2, $documentoCliente, PDO::PARAM_STR);
+        $query->bindParam(3, $nombre, PDO::PARAM_STR);
+        $query->bindParam(4, $fechaNacimiento, PDO::PARAM_STR);
+        $query->bindParam(5, $fechaFallecimiento, PDO::PARAM_STR);
+        $query->bindParam(6, $biografia, PDO::PARAM_STR);
+        $query->bindParam(7, $video, PDO::PARAM_STR);
+        $query->bindParam(8, $ubicacion, PDO::PARAM_STR);
+        $query->bindParam(9, $cancion, PDO::PARAM_STR);
+    
+        $resultado = $query->execute();
+        if ($row = $query->fetchColumn()){
+            return $row;
+        }
+        conexionBD::cerrar_conexion();
+    }
+
+    public function Editar_Foto($idDifunto, $ruta)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_EDITAR_FOTO(?,?)";
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $idDifunto, PDO::PARAM_INT);
+        $query->bindParam(2, $ruta, PDO::PARAM_STR);
+    
+        $resultado = $query->execute();
+        if ($resultado){
+            return 1;
+        }else{
+            return 0;
+        }
+        conexionBD::cerrar_conexion();
+    }
+
+    public function Eliminar_Difunto($idDifunto)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_ELIMINAR_DIFUNTO(?)";
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $idDifunto, PDO::PARAM_INT);
+        $resultado = $query->execute();
+        if ($resultado){
+            return 1;
+        }else{
+            return 0;
+        }
+        conexionBD::cerrar_conexion();
+    }
 }
