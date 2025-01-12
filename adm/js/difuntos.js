@@ -62,4 +62,23 @@ function AbrirRegistroDifunto(){
   $('.form-control').removeClass('is-invalid').removeClass('is-valid');
 }
 
+/** CARGAR CLIENTES */
+function Cargar_Select_Cliente(){
+  $.ajax({
+    url: "../controller/difunto/controlador_cargar_cliente.php",
+    type: "POST",
+  }).done(function(resp){
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione</option>";
+    if (data.length > 0){
+      for (let i = 0; i < data.length; i++){
+        llenardata += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+      }
+      document.getElementById("select_documento_cliente").innerHTML = llenardata;
+    }else{
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_documento_cliente").innerHTML = llenardata;
+    }
+  })
+}
 

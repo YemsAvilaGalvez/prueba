@@ -19,4 +19,19 @@ class Modelo_Difunto extends conexionBD
         return $arreglo;
         conexionBD::cerrar_conexion();
     }
+
+    public function Cargar_Select_Cliente()
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_CARGAR_SELECT_CLIENTE()";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $resp) {
+            $arreglo[] = $resp;
+        }
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
 }
