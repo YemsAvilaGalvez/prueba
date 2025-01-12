@@ -38,7 +38,7 @@ class Modelo_Difunto extends conexionBD
     public function Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion)
     {
         $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_REGISTRAR_DIFUNTO(?,?,?,?,?,?,?,?,?,?)";
+        $sql = "CALL SP_REGISTRAR_DIFUNTO(?,?,?,?,?,?,?,?,?)";
         $query  = $c->prepare($sql);
         $query->bindParam(1, $documentoCliente, PDO::PARAM_STR);
         $query->bindParam(2, $nombre, PDO::PARAM_STR);

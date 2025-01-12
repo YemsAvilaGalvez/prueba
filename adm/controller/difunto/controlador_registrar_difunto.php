@@ -12,9 +12,9 @@ $cancion = htmlspecialchars($_POST['cancionLink'], ENT_QUOTES, 'UTF-8');
 $nombreFoto = htmlspecialchars($_POST['nombreFoto'], ENT_QUOTES, 'UTF-8');
 
 if (empty($nombreFoto)){
-    $ruta = 'controller/difunto/fotos/default.jpg';
+    $ruta = 'controller/difunto/foto/default.jpg';
 }else{
-    $ruta = 'controller/difunto/fotos/'.$nombreFoto;
+    $ruta = 'controller/difunto/foto/'.$nombreFoto;
 }
 
 $consulta = $MP->Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion);
