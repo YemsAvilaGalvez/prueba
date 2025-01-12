@@ -31,6 +31,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Select2 -->
     <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
 </head>
@@ -286,7 +288,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </footer>
     </div>
     <!-- ./wrapper -->
-    
+
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
@@ -309,6 +311,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- Select2 -->
     <script src="assets/plugins/select2/js/select2.full.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/dist/js/adminlte.min.js"></script>
 
