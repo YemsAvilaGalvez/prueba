@@ -17,7 +17,7 @@ if ($consulta == 1) {
         if(move_uploaded_file($_FILES['foto']['tmp_name'], "foto/".$nombreFoto));
 
         if ($fotoActual != "controller/difunto/foto/default.jpg") {
-            unlink($fotoActual);
+            unlink('../../'.$fotoActual);
         }
     }
     

@@ -171,7 +171,7 @@ function Registrar_Difunto() {
   let f = new Date();
   if (foto.length) {
     nombreFoto =
-      "DIF" +
+      "DIF-" +
       f.getDate() +
       "" +
       (f.getMonth() + 1) +
@@ -239,7 +239,7 @@ function EditarFoto(){
   let f = new Date();
   if (foto.length > 0) {
     nombreFoto =
-      "DIF" +
+      "DIF-" +
       f.getDate() +
       "" +
       (f.getMonth() + 1) +
