@@ -75,77 +75,75 @@ function Cargar_Select_Difunto() {
         llenardata +=
           "<option value='" + data[i][0] + "'>" + data[i][0] + "</option>";
       }
-      document.getElementById("select_id_difunto").innerHTML =
-        llenardata;
+      document.getElementById("select_id_difunto").innerHTML = llenardata;
       //document.getElementById("select_id_difunto_editar").innerHTML = llenardata;
     } else {
       llenardata += "<option value=''>No se encontraron datos</option>";
-      document.getElementById("select_id_difunto").innerHTML =
-        llenardata;
+      document.getElementById("select_id_difunto").innerHTML = llenardata;
       //document.getElementById("select_id_difunto_editar").innerHTML = llenardata;
     }
   });
 }
 
-/** REGISTRAR IMAGEN */
+/*
 function Registrar_Foto() {
   let idDifunto = document.getElementById("select_id_difunto").value;
   let fotos = $("#file_foto")[0].files;
 
-  if (idDifunto.length == 0) {
+  if (idDifunto.length === 0) {
     return Swal.fire("Mensaje de Advertencia", "Seleccione un difunto", "warning");
   }
 
-  // Verifica si se han seleccionado fotos
   if (fotos.length === 0) {
     return Swal.fire("Mensaje de Advertencia", "Seleccione al menos una foto", "warning");
   }
 
-  // Aquí podemos validar las extensiones de las fotos
   let validExtensions = ["jpg", "jpeg", "png", "gif"];
   let fotoObjects = [];
+  let maxFileSize = 500 * 1024 * 1024; // 5 MB
 
   for (let i = 0; i < fotos.length; i++) {
     let foto = fotos[i];
     let extension = foto.name.split(".").pop().toLowerCase();
 
+    // Validar extensión
     if (!validExtensions.includes(extension)) {
       return Swal.fire("Mensaje de Advertencia", "Solo se permiten archivos de imagen (JPG, PNG, GIF)", "warning");
     }
 
-    // Generar el nombre de la foto
+    // Validar tamaño
+    if (foto.size > maxFileSize) {
+      return Swal.fire("Mensaje de Advertencia", "El tamaño máximo permitido es 5 MB por foto", "warning");
+    }
+
+    // Generar el nombre único de la foto
     let f = new Date();
     let nombreFoto =
       "IMG-" +
       f.getDate() +
-      "" +
       (f.getMonth() + 1) +
-      "" +
       f.getFullYear() +
-      "" +
       f.getHours() +
-      "" +
+      f.getMinutes() +
+      f.getSeconds() +
       f.getMilliseconds() +
       "." +
       extension;
 
-    // Agregar la foto al array de objetos
     fotoObjects.push({
       foto: foto,
-      nombreFoto: nombreFoto
+      nombreFoto: nombreFoto,
     });
   }
 
   let formData = new FormData();
   formData.append("idDifunto", idDifunto);
 
-  // Agregar todas las fotos al FormData
-  fotoObjects.forEach(fotoObj => {
+  fotoObjects.forEach((fotoObj) => {
     formData.append("fotos[]", fotoObj.foto);
     formData.append("nombresFotos[]", fotoObj.nombreFoto);
   });
 
-  // Enviar los datos al servidor
   $.ajax({
     url: "../controller/foto/controlador_registrar_foto.php",
     type: "POST",
@@ -154,21 +152,77 @@ function Registrar_Foto() {
     processData: false,
     success: function (resp) {
       if (resp > 0) {
-        LimpiarModalFotos();
-          Swal.fire("Mensaje de Confirmacion", "Fotos registradas correctamente", "success").then((value) => {
+        if (resp == 1) {
+          LimpiarModalFotos();
+          Swal.fire("Mensaje de Confirmación", "Fotos registradas correctamente", "success").then((value) => {
             $("#modal_registro_imagen").modal("hide");
+            LimpiarModalFotos();
             tbl_imagen.ajax.reload();
           });
+        }
       } else {
         Swal.fire("Mensaje de Advertencia", "Error al registrar las Fotos", "error");
       }
     },
     error: function (xhr, status, error) {
-      Swal.fire("Mensaje de Advertencia", "Error en la conexión con el servidor", "error");
-    }
+      Swal.fire(
+        "Mensaje de Advertencia",
+        "Error en la conexión con el servidor: " + error,
+        "error"
+      );
+    },
   });
 }
+*/
 
+/** REGISTRAR IMAGEN */
+function Registrar_Foto() {
+  let idDifunto = document.getElementById("select_id_difunto").value;
+  let fotos = document.getElementById("file_foto").files; // Obtener todos los archivos seleccionados
+
+if (fotos.length == 0) {
+    return Swal.fire("Mensaje de Advertencia", "Seleccione una o más imágenes", "warning");
+}
+
+let formData = new FormData();
+formData.append("idDifunto", idDifunto);
+for (let i = 0; i < fotos.length; i++) {
+    formData.append("foto[]", fotos[i]); // "foto[]" es el campo que usas en PHP
+    let extension = fotos[i].name.split(".").pop();
+    let nombreFoto = "DIF-" + new Date().getTime() + "-" + i + "." + extension;
+    formData.append("nombreFoto[]", nombreFoto); // Guardar los nombres de los archivos
+}
+
+$.ajax({
+    url: "../controller/foto/controlador_registrar_foto.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+        if (resp > 0) {
+            if (resp == 1) {
+                LimpiarModalFotos();
+                Swal.fire("Mensaje de Confirmación", "Las imágenes se registraron correctamente", "success").then((value) => {
+                    $("#modal_registro_imagen").modal("hide");
+                    LimpiarModalFotos();
+                    tbl_imagen.ajax.reload();
+                });
+                
+            } else {
+                Swal.fire("Mensaje de Advertencia", "Error al registrar imágenes", "error");
+            }
+        } else {
+          LimpiarModalFotos();
+          Swal.fire("Mensaje de Confirmación", "Las imágenes se registraron correctamente", "success").then((value) => {
+              $("#modal_registro_imagen").modal("hide");
+              LimpiarModalFotos();
+              tbl_imagen.ajax.reload();
+          });
+        }
+    },
+});
+}
 
 /** LIMPIAR MODAL */
 function LimpiarModalFotos() {

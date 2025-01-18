@@ -35,20 +35,39 @@ class Modelo_Foto extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
-    public function Registrar_Foto($idDifunto, $ruta)
-    {
-        $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_REGISTRAR_FOTO(?,?)";
-        $query  = $c->prepare($sql);
-        $query->bindParam(1, $idDifunto, PDO::PARAM_STR);
-        $query->bindParam(2, $ruta, PDO::PARAM_STR);
-    
-        $resultado = $query->execute();
-        if ($row = $query->fetchColumn()){
-            return $row;
+    public function Registrar_Foto($idDifunto, $rutas)
+{
+    $c = conexionBD::conexionPDO();
+    $sql = "CALL SP_REGISTRAR_FOTO(?, ?)"; // Procedimiento almacenado
+
+    // Verifica si $rutas es un arreglo
+    if (is_array($rutas)) {
+        $success = true;
+        foreach ($rutas as $ruta) {
+            // Vinculamos los parámetros
+            $query = $c->prepare($sql);
+            $query->bindParam(1, $idDifunto, PDO::PARAM_STR);
+            $query->bindParam(2, $ruta, PDO::PARAM_STR);
+
+            // Ejecutamos la consulta para cada ruta
+            $resultado = $query->execute();
+
+            if (!$resultado) {
+                $success = false;
+                break; // Salimos si hay un error
+            }
         }
-        conexionBD::cerrar_conexion();
+    } else {
+        $success = false; // Si $rutas no es un arreglo
     }
+
+    conexionBD::cerrar_conexion();
+
+    return $success ? 1 : 0; // Devuelve 1 si todo fue exitoso
+}
+
+    
+    
 
     public function Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $video, $ubicacion, $cancion)
     {

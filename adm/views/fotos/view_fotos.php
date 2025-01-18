@@ -75,7 +75,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_foto">Imagen</label>
-                                <input type="file" class="form-control" id="file_foto" placeholder="Imagen" multiple>
+                                <input type="file" class="form-control" id="file_foto" placeholder="Imagen" name="foto[]" multiple>
                             </div>
                             <!-- /.form-group -->
                         </div>

@@ -1,35 +1,41 @@
 <?php
 require '../../model/model_foto.php';
-$MP = new Modelo_Foto(); // Instanciamos el modelo
-
+$MP = new Modelo_Foto(); // Instanciamos
 $idDifunto = htmlspecialchars($_POST['idDifunto'], ENT_QUOTES, 'UTF-8');
-$fotoNames = $_POST['nombresFotos']; // Recibimos los nombres de las fotos
+$rutas = []; // Arreglo para almacenar las rutas de las imágenes
 
-// Verificar si se recibieron archivos
-if (!empty($_FILES['foto']['name'][0])) {
-    // Iterar sobre todos los archivos subidos
-    foreach ($_FILES['foto']['name'] as $index => $fileName) {
-        // Obtener la extensión del archivo
-        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-        $nombreFoto = $fotoNames[$index]; // Nombre de archivo proporcionado
-        $ruta = 'controller/foto/foto/' . $nombreFoto; // Ruta donde se guardará la foto
+// Verificar que al menos un archivo se haya subido
+if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'][0])) {
+    $fotos = $_FILES['foto']; // Obtenemos todos los archivos
+    $nombresFotos = $_POST['nombreFoto']; // Nombres de los archivos
 
-        // Registrar foto en la base de datos
-        $consulta = $MP->Registrar_Foto($idDifunto, $ruta);
+    // Iteramos a través de todos los archivos
+    foreach ($fotos['name'] as $index => $nombreFoto) {
+        // Depuración: Verificar las rutas que se están procesando
+        echo "Nombre de archivo: " . $nombreFoto . "<br>"; // Verifica el nombre de cada archivo
+        echo "Ruta a guardar: " . 'controller/foto/img/' . $nombresFotos[$index] . "<br>"; // Verifica la ruta completa
 
-        // Verificar si la consulta fue exitosa
-        if ($consulta == 1) {
-            // Mover el archivo a la carpeta de destino
-            if (move_uploaded_file($_FILES['foto']['tmp_name'][$index], 'foto/' . $nombreFoto)) {
-                echo "Foto subida correctamente: " . $nombreFoto;
+        $ruta = 'controller/foto/img/' . $nombresFotos[$index]; // Ruta de la imagen
+        $rutas[] = $ruta; // Agregamos la ruta al arreglo
+    }
+
+    // Registrar todas las fotos en la base de datos
+    $consulta = $MP->Registrar_Foto($idDifunto, $rutas);
+    echo "Resultado consulta: " . $consulta . "<br>"; // Verifica la respuesta de la consulta
+
+    // Si la consulta fue exitosa, mover los archivos
+    if ($consulta == 1) {
+        foreach ($fotos['name'] as $index => $nombreFoto) {
+            if (move_uploaded_file($fotos['tmp_name'][$index], 'img/' . $nombresFotos[$index])) {
+                echo "Archivo " . $nombresFotos[$index] . " subido con éxito.<br>";
             } else {
-                echo "Error al mover el archivo: " . $nombreFoto;
+                echo "Error al mover el archivo " . $nombresFotos[$index] . "<br>";
             }
-        } else {
-            echo "Error al registrar la foto en la base de datos.";
         }
+    } else {
+        echo "Error al registrar las fotos en la base de datos.<br>";
     }
 } else {
-    echo "No se han recibido archivos.";
+    echo "No se seleccionaron imágenes.<br>";
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 require '../../model/model_difunto.php';
+$ruta = "";
 $MP = new Modelo_Difunto();//Instaciamos
 $documentoCliente = htmlspecialchars($_POST['documentoCliente'], ENT_QUOTES, 'UTF-8');
 $nombre = htmlspecialchars($_POST['nombre'], ENT_QUOTES, 'UTF-8');
