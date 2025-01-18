@@ -125,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <!-- Trabajadores -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','clientes/view_clientes.php')">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','fotos/view_fotos.php')">
                                 <i class="nav-icon fas fa-image"></i> <!-- Cambié el icono a 'fa-image' -->
                                 <p class="font-weight-bold">IMAGENES</p>
                             </a>
