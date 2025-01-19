@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /prueba/profile/
+
+# Redirigir URLs del tipo /prueba/profile/1 a index.php?id=1
+RewriteRule ^([0-9]+)$ index.php?id=$1 [L]

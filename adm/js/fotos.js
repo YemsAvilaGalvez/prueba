@@ -22,7 +22,7 @@ function Listar_Foto() {
     columns: [
       //{ defaultContent: "" },
       { data: "id_foto" },
-      { data: "id_difunto" },
+      { data: "nombre" },
       {
         data: "ruta_foto",
         render: function (data) {
