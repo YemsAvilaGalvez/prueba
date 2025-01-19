@@ -151,7 +151,8 @@ $conn->close();
             <li><a href="#biografia">Biografia</a></li>
             <li><a href="#galeria">Galería</a></li>
             <li><a href="#video">Video</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#Condolencias">Condolencias</a></li>
+            <li><a href="#ubicacion">Ubicacion</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -292,7 +293,7 @@ $conn->close();
       <!-- /Video Section -->
 
       <!-- Contact Section -->
-      <section id="contacto" class="contact section">
+      <section id="Condolencias" class="contact section">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Te invitamos a enviar tu condolencia</h2>
@@ -414,7 +415,7 @@ $conn->close();
       <!-- /Testimonials Section -->
 
       <!-- Maps -->
-      <section class="col-md-12" style="margin: 0; padding: 0">
+      <section id="ubicacion" class="col-md-12" style="margin: 0; padding: 0">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.596540984521!2d-74.25737182515924!3d-12.933632787378226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910d824f73e9d7a3%3A0xa541f1f8b6dbbf3f!2sCementerio%20Huanta!5e0!3m2!1ses!2spe!4v1736469555298!5m2!1ses!2spe"
           width="100%"
