@@ -35,10 +35,10 @@ class Modelo_Difunto extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
-    public function Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion)
+    public function Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion, $plan, $fechaFin)
     {
         $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_REGISTRAR_DIFUNTO(?,?,?,?,?,?,?,?,?)";
+        $sql = "CALL SP_REGISTRAR_DIFUNTO(?,?,?,?,?,?,?,?,?,?,?)";
         $query  = $c->prepare($sql);
         $query->bindParam(1, $documentoCliente, PDO::PARAM_STR);
         $query->bindParam(2, $nombre, PDO::PARAM_STR);
@@ -49,6 +49,8 @@ class Modelo_Difunto extends conexionBD
         $query->bindParam(7, $video, PDO::PARAM_STR);
         $query->bindParam(8, $ubicacion, PDO::PARAM_STR);
         $query->bindParam(9, $cancion, PDO::PARAM_STR);
+        $query->bindParam(10, $plan, PDO::PARAM_STR);
+        $query->bindParam(11, $fechaFin, PDO::PARAM_STR);
     
         $resultado = $query->execute();
         if ($row = $query->fetchColumn()){
@@ -57,10 +59,10 @@ class Modelo_Difunto extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
-    public function Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $video, $ubicacion, $cancion)
+    public function Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $video, $ubicacion, $cancion, $plan, $fechaFin)
     {
         $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_EDITAR_DIFUNTO(?,?,?,?,?,?,?,?,?)";
+        $sql = "CALL SP_EDITAR_DIFUNTO(?,?,?,?,?,?,?,?,?,?,?)";
         $query  = $c->prepare($sql);
         $query->bindParam(1, $idDifunto, PDO::PARAM_INT);
         $query->bindParam(2, $documentoCliente, PDO::PARAM_STR);
@@ -71,6 +73,8 @@ class Modelo_Difunto extends conexionBD
         $query->bindParam(7, $video, PDO::PARAM_STR);
         $query->bindParam(8, $ubicacion, PDO::PARAM_STR);
         $query->bindParam(9, $cancion, PDO::PARAM_STR);
+        $query->bindParam(10, $plan, PDO::PARAM_STR);
+        $query->bindParam(11, $fechaFin, PDO::PARAM_STR);
     
         $resultado = $query->execute();
         if ($row = $query->fetchColumn()){

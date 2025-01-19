@@ -11,7 +11,9 @@ $biografia = htmlspecialchars($_POST['biografia'], ENT_QUOTES, 'UTF-8');
 $videoLink = htmlspecialchars($_POST['videoLink'], ENT_QUOTES, 'UTF-8');
 $ubicacionLink = htmlspecialchars($_POST['ubicacionLink'], ENT_QUOTES, 'UTF-8');
 $cancionLink = htmlspecialchars($_POST['cancionLink'], ENT_QUOTES, 'UTF-8');
+$plan = htmlspecialchars($_POST['plan'], ENT_QUOTES, 'UTF-8');
+$fechaFin = htmlspecialchars($_POST['fechaFin'], ENT_QUOTES, 'UTF-8');
 
-$consulta = $MP->Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $videoLink, $ubicacionLink, $cancionLink);
+$consulta = $MP->Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $videoLink, $ubicacionLink, $cancionLink, $plan, $fechaFin);
 
 echo $consulta;

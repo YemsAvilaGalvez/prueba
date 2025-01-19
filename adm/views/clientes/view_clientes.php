@@ -40,8 +40,6 @@
                                     <th>Departamento</th>
                                     <th>Distrito</th>
                                     <th>Provincia</th>
-                                    <th>Fecha de Registro</th>
-                                    <th>Fecha Fin</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>

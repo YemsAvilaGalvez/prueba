@@ -27,19 +27,35 @@ function Listar_Difunto() {
       { data: "fecha_nacimiento" },
       { data: "fecha_fallecimiento" },
       { data: "biografia" },
-      { data: "imagen_perfil" ,
+      {
+        data: "imagen_perfil",
         render: function (data) {
-          return "<img src='../" + data + "' class='img-responsive' style='width: 50px; height: 50px; border-radius: 50%;'>";
-        }
+          return (
+            "<img src='../" +
+            data +
+            "' class='img-responsive' style='width: 50px; height: 50px; border-radius: 50%;'>"
+          );
+        },
       },
       { data: "video_link" },
       { data: "ubicacion_link" },
       { data: "cancion_link" },
       { data: "fecha_creacion" },
+      { data: "fecha_fin" },
+      {
+        data: "plan",
+        render: function (data, type, row) {
+          if (data === "ANUAL") {
+            return "<span class='badge badge-success'>" + data + "</span>";
+          } else {
+            return "<span class='badge badge-warning'>" + data + "</span>";
+          }
+        },
+      },
       {
         defaultContent:
           "<center>" +
-          "<span class=' editar text-primary px-1' style='cursor:pointer;' title='Editar datos'><i class= 'fa fa-edit'></i></span>&nbsp;<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-image'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
+          "<span class=' editar text-primary px-1' style='cursor:pointer;' title='Editar datos'><i class= 'fa fa-edit'></i></span>&nbsp;<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-edit'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
           "</center>",
       },
     ],
@@ -65,8 +81,8 @@ function AbrirRegistroDifunto() {
 }
 
 /** ABRIR MODAL EDITAR FOTO */
-$('#tabla_difunto').on('click', '.foto', function () {
-  var data = tbl_difunto.row($(this).parents('tr')).data();
+$("#tabla_difunto").on("click", ".foto", function () {
+  var data = tbl_difunto.row($(this).parents("tr")).data();
   if (tbl_difunto.row(this).child.isShown()) {
     var data = tbl_difunto.row(this).data();
   }
@@ -80,8 +96,8 @@ $('#tabla_difunto').on('click', '.foto', function () {
 });
 
 /** ABRIR MODAL EDITAR */
-$('#tabla_difunto').on('click', '.editar', function () {
-  var data = tbl_difunto.row($(this).parents('tr')).data();
+$("#tabla_difunto").on("click", ".editar", function () {
+  var data = tbl_difunto.row($(this).parents("tr")).data();
   if (tbl_difunto.row(this).child.isShown()) {
     var data = tbl_difunto.row(this).data();
   }
@@ -91,13 +107,19 @@ $('#tabla_difunto').on('click', '.editar', function () {
 
   document.getElementById("idDifunto").value = data.id_difunto;
   document.getElementById("txt_nombre_editar").value = data.nombre;
-  document.getElementById("date_nacimiento_editar").value = data.fecha_nacimiento;
-  document.getElementById("date_fallecimiento_editar").value = data.fecha_fallecimiento;
+  document.getElementById("date_nacimiento_editar").value =
+    data.fecha_nacimiento;
+  document.getElementById("date_fallecimiento_editar").value =
+    data.fecha_fallecimiento;
   document.getElementById("txt_biografia_editar").value = data.biografia;
   document.getElementById("txt_video_editar").value = data.video_link;
   document.getElementById("txt_ubicacion_editar").value = data.ubicacion_link;
   document.getElementById("txt_cancion_editar").value = data.cancion_link;
-  $("#select_documento_cliente_editar").select2().val(data.id_cliente).trigger("change.select2");
+  $("#select_documento_cliente_editar")
+    .select2()
+    .val(data.id_cliente)
+    .trigger("change.select2");
+  $("#select_plan_editar").select2().val(data.plan).trigger("change.select2");
 });
 
 /** CARGAR CLIENTES */
@@ -115,12 +137,14 @@ function Cargar_Select_Cliente() {
       }
       document.getElementById("select_documento_cliente").innerHTML =
         llenardata;
-      document.getElementById("select_documento_cliente_editar").innerHTML = llenardata;
+      document.getElementById("select_documento_cliente_editar").innerHTML =
+        llenardata;
     } else {
       llenardata += "<option value=''>No se encontraron datos</option>";
       document.getElementById("select_documento_cliente").innerHTML =
         llenardata;
-      document.getElementById("select_documento_cliente_editar").innerHTML = llenardata;
+      document.getElementById("select_documento_cliente_editar").innerHTML =
+        llenardata;
     }
   });
 }
@@ -138,9 +162,17 @@ function Registrar_Difunto() {
   let videoLink = document.getElementById("txt_video").value;
   let ubicacionLink = document.getElementById("txt_ubicacion").value;
   let cancionLink = document.getElementById("txt_cancion").value;
+  let plan = document.getElementById("select_plan").value;
 
   if (documentoCliente.length == 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione un cliente", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione un cliente",
+      "warning"
+    );
+  }
+  if (plan.length == 0) {
+    return Swal.fire("Mensaje de Advertencia", "Seleccione un plan", "warning");
   }
   if (
     nombre.length == 0 ||
@@ -160,11 +192,29 @@ function Registrar_Difunto() {
       "txt_ubicacion",
       "txt_cancion"
     );
-    return Swal.fire("Mensaje de Advertencia", "Complete los campos", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Complete los campos",
+      "warning"
+    );
   }
 
-  let formattedFechaNacimiento = new Date(fechaNacimiento).toISOString().split("T")[0];
-  let formattedFechaFallecimiento = new Date(fechaFallecimiento).toISOString().split("T")[0];
+  let formattedFechaNacimiento = new Date(fechaNacimiento)
+    .toISOString()
+    .split("T")[0];
+  let formattedFechaFallecimiento = new Date(fechaFallecimiento)
+    .toISOString()
+    .split("T")[0];
+
+  // Calcular fecha_fin dependiendo del plan usando la fecha de registro (fecha actual)
+  let fechaRegistro = new Date(); // Fecha actual
+  let fechaFin = new Date(fechaRegistro); // Copiar fecha actual
+  if (plan === "ANUAL") {
+    fechaFin.setFullYear(fechaFin.getFullYear() + 1);
+  } else if (plan === "SEMESTRAL") {
+    fechaFin.setMonth(fechaFin.getMonth() + 6);
+  }
+  let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
   let extension = foto.split(".").pop();
   let nombreFoto = "";
@@ -198,6 +248,8 @@ function Registrar_Difunto() {
   formData.append("videoLink", videoLink);
   formData.append("ubicacionLink", ubicacionLink);
   formData.append("cancionLink", cancionLink);
+  formData.append("plan", plan);
+  formData.append("fechaFin", formattedFechaFin);
 
   $.ajax({
     url: "../controller/difunto/controlador_registrar_difunto.php",
@@ -209,29 +261,45 @@ function Registrar_Difunto() {
       if (resp > 0) {
         if (resp == 1) {
           LimpiarModalDifunto();
-          Swal.fire("Mensaje de Confirmacion", "Difunto registrado correctamente", "success").then((value) => {
+          Swal.fire(
+            "Mensaje de Confirmacion",
+            "Difunto registrado correctamente",
+            "success"
+          ).then((value) => {
             $("#modal_registro_difunto").modal("hide");
             LimpiarModalDifunto();
             tbl_difunto.ajax.reload();
           });
         } else {
-          Swal.fire("Mensaje de Advertencia", "El Difunto ya se encuentra registrado", "warning");
+          Swal.fire(
+            "Mensaje de Advertencia",
+            "El Difunto ya se encuentra registrado",
+            "warning"
+          );
         }
       } else {
-        Swal.fire("Mensaje de Advertencia", "Error al registrar Difunto", "error");
+        Swal.fire(
+          "Mensaje de Advertencia",
+          "Error al registrar Difunto",
+          "error"
+        );
       }
     },
   });
 }
 
 /** EDITAR FOTO */
-function EditarFoto(){
+function EditarFoto() {
   let idDifunto = document.getElementById("idDifuntoFoto").value;
   let foto = document.getElementById("file_foto_editar").value;
   let fotoActual = document.getElementById("idDifuntoFotoActual").value;
 
   if (foto.length == 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione una foto", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione una foto",
+      "warning"
+    );
   }
 
   let extension = foto.split(".").pop();
@@ -269,7 +337,11 @@ function EditarFoto(){
     processData: false,
     success: function (resp) {
       if (resp > 0) {
-        Swal.fire("Mensaje de Confirmacion", "Foto editada correctamente", "success").then((value) => {
+        Swal.fire(
+          "Mensaje de Confirmacion",
+          "Foto editada correctamente",
+          "success"
+        ).then((value) => {
           $("#modal_editar_foto").modal("hide");
           tbl_difunto.ajax.reload();
         });
@@ -278,7 +350,7 @@ function EditarFoto(){
       }
     },
   });
-} 
+}
 
 /** VALIDAR CAMPOS */
 function ValidarCamposDifunto(
@@ -344,6 +416,7 @@ function ValidarCamposDifunto(
 /** LIMPIAR MODAL */
 function LimpiarModalDifunto() {
   $("#select_documento_cliente").select2().val("").trigger("change.select2");
+  $("#select_plan").select2().val("").trigger("change.select2");
   document.getElementById("txt_nombre").value = "";
   document.getElementById("date_nacimiento").value = "";
   document.getElementById("date_fallecimiento").value = "";
@@ -355,20 +428,34 @@ function LimpiarModalDifunto() {
 }
 
 /** EDITAR DIFUNTO */
-function EditarDifunto(){
+function EditarDifunto() {
   let idDifunto = document.getElementById("idDifunto").value;
-  let documentoCliente = document.getElementById("select_documento_cliente_editar").value;
+  let documentoCliente = document.getElementById(
+    "select_documento_cliente_editar"
+  ).value;
   let nombre = document.getElementById("txt_nombre_editar").value;
   let fechaNacimiento = document.getElementById("date_nacimiento_editar").value;
-  let fechaFallecimiento = document.getElementById("date_fallecimiento_editar").value;
+  let fechaFallecimiento = document.getElementById(
+    "date_fallecimiento_editar"
+  ).value;
   let biografia = document.getElementById("txt_biografia_editar").value;
   let videoLink = document.getElementById("txt_video_editar").value;
   let ubicacionLink = document.getElementById("txt_ubicacion_editar").value;
   let cancionLink = document.getElementById("txt_cancion_editar").value;
-  
+  let plan = document.getElementById("select_plan_editar").value;
+
   if (documentoCliente.length == 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione un cliente", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione un cliente",
+      "warning"
+    );
   }
+
+  if (plan.length == 0) {
+    return Swal.fire("Mensaje de Advertencia", "Seleccione un plan", "warning");
+  }
+
   if (
     nombre.length == 0 ||
     fechaNacimiento.length == 0 ||
@@ -387,8 +474,22 @@ function EditarDifunto(){
       "txt_ubicacion_editar",
       "txt_cancion_editar"
     );
-    return Swal.fire("Mensaje de Advertencia", "Complete los campos", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Complete los campos",
+      "warning"
+    );
   }
+
+  // Calcular fecha_fin dependiendo del plan usando la fecha de registro (fecha actual)
+  let fechaRegistro = new Date(); // Fecha actual
+  let fechaFin = new Date(fechaRegistro); // Copiar fecha actual
+  if (plan === "ANUAL") {
+    fechaFin.setFullYear(fechaFin.getFullYear() + 1);
+  } else if (plan === "SEMESTRAL") {
+    fechaFin.setMonth(fechaFin.getMonth() + 6);
+  }
+  let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
   $.ajax({
     url: "../controller/difunto/controlador_editar_difunto.php",
@@ -403,26 +504,36 @@ function EditarDifunto(){
       videoLink: videoLink,
       ubicacionLink: ubicacionLink,
       cancionLink: cancionLink,
+      plan: plan,
+      fechaFin: formattedFechaFin
     },
   }).done(function (resp) {
     if (resp > 0) {
       if (resp == 1) {
-        Swal.fire("Mensaje de Confirmacion", "Difunto editado correctamente", "success").then((value) => {
+        Swal.fire(
+          "Mensaje de Confirmacion",
+          "Difunto editado correctamente",
+          "success"
+        ).then((value) => {
           $("#modal_editar_difunto").modal("hide");
           tbl_difunto.ajax.reload();
         });
       } else {
-        Swal.fire("Mensaje de Advertencia", "El Difunto ya se encuentra registrado", "warning");
+        Swal.fire(
+          "Mensaje de Advertencia",
+          "El Difunto ya se encuentra registrado",
+          "warning"
+        );
       }
     } else {
       Swal.fire("Mensaje de Advertencia", "Error al editar Difunto", "error");
     }
-  })
+  });
 }
 
 /** MENSAJE DE ELIMINAR */
-$('#tabla_difunto').on('click', '.eliminar', function () {
-  var data = tbl_difunto.row($(this).parents('tr')).data();
+$("#tabla_difunto").on("click", ".eliminar", function () {
+  var data = tbl_difunto.row($(this).parents("tr")).data();
   if (tbl_difunto.row(this).child.isShown()) {
     var data = tbl_difunto.row(this).data();
   }
@@ -453,7 +564,11 @@ function EliminarDifunto(idDifunto) {
     },
   }).done(function (resp) {
     if (resp > 0) {
-      Swal.fire("Mensaje de Confirmacion", "Difunto eliminado correctamente", "success").then((value) => {
+      Swal.fire(
+        "Mensaje de Confirmacion",
+        "Difunto eliminado correctamente",
+        "success"
+      ).then((value) => {
         tbl_difunto.ajax.reload();
       });
     } else {

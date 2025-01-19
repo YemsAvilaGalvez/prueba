@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <!-- Asistencias del día -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','asistencias/view_asistencias.php')">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/view_usuario.php')">
                                 <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' para representar mejor 'Usuarios' -->
                                 <p class="font-weight-bold">USUARIOS</p>
                             </a>
