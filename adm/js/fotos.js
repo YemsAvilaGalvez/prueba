@@ -37,7 +37,7 @@ function Listar_Foto() {
       {
         defaultContent:
           "<center>" +
-          "<span class=' editar text-primary px-1' style='cursor:pointer;' title='Editar datos'><i class= 'fa fa-edit'></i></span>&nbsp;<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-image'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
+          "<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-image'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
           "</center>",
       },
     ],
@@ -62,6 +62,21 @@ function AbrirRegistroImagen() {
   $(".form-control").removeClass("is-invalid").removeClass("is-valid");
 }
 
+/** ABRIR MODAL EDITAR FOTO */
+$("#tabla_imagen").on("click", ".foto", function () {
+  var data = tbl_imagen.row($(this).parents("tr")).data();
+  if (tbl_imagen.row(this).child.isShown()) {
+    var data = tbl_imagen.row(this).data();
+  }
+
+  $("#modal_editar_foto").modal({ backdrop: "static", keyboard: false });
+  $("#modal_editar_foto").modal("show");
+
+  document.getElementById("idImangen").value = data.id_foto;
+  document.getElementById("idDifuntoFotoActual").value = data.ruta_foto;
+  document.getElementById("img-preview").src = "../" + data.ruta_foto;
+});
+
 /** CARGAR DIFUNTOS */
 function Cargar_Select_Difunto() {
   $.ajax({
@@ -84,96 +99,6 @@ function Cargar_Select_Difunto() {
     }
   });
 }
-
-/*
-function Registrar_Foto() {
-  let idDifunto = document.getElementById("select_id_difunto").value;
-  let fotos = $("#file_foto")[0].files;
-
-  if (idDifunto.length === 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione un difunto", "warning");
-  }
-
-  if (fotos.length === 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione al menos una foto", "warning");
-  }
-
-  let validExtensions = ["jpg", "jpeg", "png", "gif"];
-  let fotoObjects = [];
-  let maxFileSize = 500 * 1024 * 1024; // 5 MB
-
-  for (let i = 0; i < fotos.length; i++) {
-    let foto = fotos[i];
-    let extension = foto.name.split(".").pop().toLowerCase();
-
-    // Validar extensión
-    if (!validExtensions.includes(extension)) {
-      return Swal.fire("Mensaje de Advertencia", "Solo se permiten archivos de imagen (JPG, PNG, GIF)", "warning");
-    }
-
-    // Validar tamaño
-    if (foto.size > maxFileSize) {
-      return Swal.fire("Mensaje de Advertencia", "El tamaño máximo permitido es 5 MB por foto", "warning");
-    }
-
-    // Generar el nombre único de la foto
-    let f = new Date();
-    let nombreFoto =
-      "IMG-" +
-      f.getDate() +
-      (f.getMonth() + 1) +
-      f.getFullYear() +
-      f.getHours() +
-      f.getMinutes() +
-      f.getSeconds() +
-      f.getMilliseconds() +
-      "." +
-      extension;
-
-    fotoObjects.push({
-      foto: foto,
-      nombreFoto: nombreFoto,
-    });
-  }
-
-  let formData = new FormData();
-  formData.append("idDifunto", idDifunto);
-
-  fotoObjects.forEach((fotoObj) => {
-    formData.append("fotos[]", fotoObj.foto);
-    formData.append("nombresFotos[]", fotoObj.nombreFoto);
-  });
-
-  $.ajax({
-    url: "../controller/foto/controlador_registrar_foto.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      if (resp > 0) {
-        if (resp == 1) {
-          LimpiarModalFotos();
-          Swal.fire("Mensaje de Confirmación", "Fotos registradas correctamente", "success").then((value) => {
-            $("#modal_registro_imagen").modal("hide");
-            LimpiarModalFotos();
-            tbl_imagen.ajax.reload();
-          });
-        }
-      } else {
-        Swal.fire("Mensaje de Advertencia", "Error al registrar las Fotos", "error");
-      }
-    },
-    error: function (xhr, status, error) {
-      Swal.fire(
-        "Mensaje de Advertencia",
-        "Error en la conexión con el servidor: " + error,
-        "error"
-      );
-    },
-  });
-}
-*/
 
 /** REGISTRAR IMAGEN */
 function Registrar_Foto() {
@@ -224,8 +149,120 @@ $.ajax({
 });
 }
 
+
+/** EDITAR FOTO */
+function EditarFoto() {
+  let idImangen = document.getElementById("idImangen").value;
+  let foto = document.getElementById("file_foto_editar").value;
+  let fotoActual = document.getElementById("idDifuntoFotoActual").value;
+
+  if (foto.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione una foto",
+      "warning"
+    );
+  }
+
+  let extension = foto.split(".").pop();
+  let nombreFoto = "";
+  let f = new Date();
+  if (foto.length > 0) {
+    nombreFoto =
+      "DIF-" +
+      f.getDate() +
+      "" +
+      (f.getMonth() + 1) +
+      "" +
+      f.getFullYear() +
+      "" +
+      f.getHours() +
+      "" +
+      f.getMilliseconds() +
+      "." +
+      extension;
+  }
+
+  let formData = new FormData();
+  let fotoObject = $("#file_foto_editar")[0].files[0];
+
+  formData.append("idImangen", idImangen);
+  formData.append("fotoActual", fotoActual);
+  formData.append("nombreFoto", nombreFoto);
+  formData.append("foto", fotoObject);
+
+  $.ajax({
+    url: "../controller/foto/controlador_editar_foto.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+      if (resp > 0) {
+        Swal.fire(
+          "Mensaje de Confirmacion",
+          "Foto editada correctamente",
+          "success"
+        ).then((value) => {
+          $("#modal_editar_foto").modal("hide");
+          tbl_imagen.ajax.reload();
+        });
+      } else {
+        Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+      }
+    },
+  });
+}
+
 /** LIMPIAR MODAL */
 function LimpiarModalFotos() {
   $("#select_id_difunto").select2().val("").trigger("change.select2");
   document.getElementById("file_foto").value = "";
 }
+
+/** MENSAJE DE ELIMINAR */
+$("#tabla_imagen").on("click", ".eliminar", function () {
+  var data = tbl_imagen.row($(this).parents("tr")).data();
+  if (tbl_imagen.row(this).child.isShown()) {
+    var data = tbl_imagen.row(this).data();
+  }
+
+  Swal.fire({
+    title: "¿Está seguro de eliminar?",
+    text: "Eliminará el difunto seleccionado",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      EliminarFoto(data.id_foto);
+    }
+  });
+});
+
+/** ELIMINAR DIFUNTO */
+function EliminarFoto(idFoto) {
+  $.ajax({
+    url: "../controller/foto/controlador_eliminar_foto.php",
+    type: "POST",
+    data: {
+      idFoto: idFoto,
+    },
+  }).done(function (resp) {
+    if (resp > 0) {
+      Swal.fire(
+        "Mensaje de Confirmacion",
+        "Foto eliminado correctamente",
+        "success"
+      ).then((value) => {
+        tbl_imagen.ajax.reload();
+      });
+    } else {
+      Swal.fire("Mensaje de Advertencia", "Error al eliminar Foto", "error");
+    }
+  });
+}
+

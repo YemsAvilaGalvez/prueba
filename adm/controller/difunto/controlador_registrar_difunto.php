@@ -11,6 +11,8 @@ $video = htmlspecialchars($_POST['videoLink'], ENT_QUOTES, 'UTF-8');
 $ubicacion = htmlspecialchars($_POST['ubicacionLink'], ENT_QUOTES, 'UTF-8');
 $cancion = htmlspecialchars($_POST['cancionLink'], ENT_QUOTES, 'UTF-8');
 $nombreFoto = htmlspecialchars($_POST['nombreFoto'], ENT_QUOTES, 'UTF-8');
+$plan = htmlspecialchars($_POST['plan'], ENT_QUOTES, 'UTF-8');
+$fechaFin = htmlspecialchars($_POST['fechaFin'], ENT_QUOTES, 'UTF-8');
 
 if (empty($nombreFoto)){
     $ruta = 'controller/difunto/foto/default.jpg';
@@ -18,7 +20,7 @@ if (empty($nombreFoto)){
     $ruta = 'controller/difunto/foto/'.$nombreFoto;
 }
 
-$consulta = $MP->Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion);
+$consulta = $MP->Registrar_Difunto($documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $ruta, $video, $ubicacion, $cancion, $plan, $fechaFin);
 
 echo $consulta;
 
