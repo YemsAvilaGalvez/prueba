@@ -138,6 +138,7 @@ $conn->close();
       margin-top: 20px;
     }
 
+<<<<<<< HEAD
     .video-container iframe {
       width: 740px;
       /* Ancho del video */
@@ -147,6 +148,23 @@ $conn->close();
       border: none;
       /* Sin bordes adicionales */
     }
+=======
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a href="#home" class="active">Inicio<br /></a>
+            </li>
+            <li><a href="#biografia">Biografia</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#Condolencias">Condolencias</a></li>
+            <li><a href="#ubicacion">Ubicacion</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+>>>>>>> aa5ef9346e987e65c71f1061de9bc3d70cbcfc90
 
     .section-title h2 {
       text-align: center;
@@ -304,6 +322,7 @@ $conn->close();
 
     <!-- /Video Section -->
 
+<<<<<<< HEAD
     <!-- Contact Section -->
     <section id="contacto" class="contact section">
       <!-- Section Title -->
@@ -311,6 +330,15 @@ $conn->close();
         <h2>Te invitamos a enviar tu condolencia</h2>
       </div>
       <!-- End Section Title -->
+=======
+      <!-- Contact Section -->
+      <section id="Condolencias" class="contact section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Te invitamos a enviar tu condolencia</h2>
+        </div>
+        <!-- End Section Title -->
+>>>>>>> aa5ef9346e987e65c71f1061de9bc3d70cbcfc90
 
       <div class="container" data-aos="fade-up" id="tbl_comentarios" data-aos-delay="100">
         <div class="row gy-4">
@@ -499,8 +527,24 @@ $conn->close();
 
 
 
+<<<<<<< HEAD
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 </body>
+=======
+      <!-- Maps -->
+      <section id="ubicacion" class="col-md-12" style="margin: 0; padding: 0">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.596540984521!2d-74.25737182515924!3d-12.933632787378226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910d824f73e9d7a3%3A0xa541f1f8b6dbbf3f!2sCementerio%20Huanta!5e0!3m2!1ses!2spe!4v1736469555298!5m2!1ses!2spe"
+          width="100%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
+    </main>
+>>>>>>> aa5ef9346e987e65c71f1061de9bc3d70cbcfc90
 
 </html>
