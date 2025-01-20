@@ -121,7 +121,7 @@
 
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="LimpiarModalCLiente();">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="LimpiarModalCliente();">Cancelar</button>
                         <button type="button" class="btn btn-success" id="btnRegistraCliente">Registrar</button>
                     </div>
                 </div>
