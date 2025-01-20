@@ -576,3 +576,108 @@ function EliminarDifunto(idDifunto) {
     }
   });
 }
+
+
+function Registrar_Comentario() {
+  let name = document.getElementById('name').value;
+  let telefono = document.getElementById('telefono').value;
+  let message = document.getElementById('message').value;
+  let id_difunto = document.getElementById('id_difunto').value;
+  let fechaComentario = new Date().toLocaleDateString("es-PE"); // Obtener fecha en formato español
+
+  // Verificación básica antes de la solicitud AJAX
+  if (name.length == 0 || telefono.length == 0 || message.length == 0) {
+      Swal.fire({
+          title: "Advertencia",
+          text: "Debe completar todos los campos",
+          icon: "warning",
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000
+      });
+      return;
+  }
+
+  $.ajax({
+      url: "../adm/controller/difunto/controlador_registrar_comentario.php",
+      type: 'POST',
+      data: {
+          id_difunto: id_difunto,
+          name: name,
+          telefono: telefono,
+          message: message,
+          fecha_comentario: fechaComentario
+      }
+  }).done(function(resp) {
+      if (resp > 0) { // Si el valor retornado es mayor a 0, se insertó correctamente
+          Swal.fire({
+              title: "Comentario Registrado",
+              text: "El comentario fue registrado exitosamente.",
+              icon: "success",
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2000
+          }).then(() => {
+              // Limpiar campos después de éxito
+              document.getElementById('name').value = "";
+              document.getElementById('telefono').value = "";
+              document.getElementById('message').value = "";
+
+              // Agregar el nuevo comentario al slider
+              const newComment = `
+                  <div class="swiper-slide">
+                      <div class="testimonial-item">
+                          <h3>${name}</h3>
+                          <h4>${telefono}</h4>  <!-- Mostrar teléfono -->
+                          <p>
+                              <i class="bi bi-quote quote-icon-left"></i>
+                              <span>${message}</span>
+                              <i class="bi bi-quote quote-icon-right"></i>
+                          </p>
+                          <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
+                              <strong>Fecha del comentario:</strong> ${fechaComentario}
+                          </p>
+                      </div>
+                  </div>
+              `;
+
+              // Insertar el nuevo comentario al principio de la lista
+              $(".swiper-wrapper").prepend(newComment);
+
+              // Recargar la instancia de Swiper después de agregar el comentario
+              var swiper = new Swiper('.swiper.init-swiper', {
+                  loop: true,
+                  speed: 600,
+                  autoplay: { delay: 5000 },
+                  slidesPerView: 'auto',
+                  pagination: { el: ".swiper-pagination", type: "bullets", clickable: true }
+              });
+
+              swiper.update();
+          });
+      } else {
+          Swal.fire({
+              title: "Error",
+              text: "No se completó el registro del comentario.",
+              icon: "error",
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000
+          });
+      }
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+      Swal.fire({
+          title: "Error de Conexión",
+          text: "Hubo un problema al intentar registrar el comentario. Intente de nuevo.",
+          icon: "error",
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+      });
+  });
+}
+

@@ -114,4 +114,28 @@ class Modelo_Difunto extends conexionBD
         }
         conexionBD::cerrar_conexion();
     }
+
+    public function Registrar_Comentario($id_difunto, $name, $telefono, $message) {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_REGISTRAR_COMENTARIO(?, ?, ?, ?)";
+        $query = $c->prepare($sql);
+        $query->bindParam(1, $id_difunto);
+        $query->bindParam(2, $name);
+        $query->bindParam(3, $telefono);
+        $query->bindParam(4, $message);
+        $query->execute();
+        
+        // Captura el valor retornado por el procedimiento (ID del comentario insertado)
+        $row = $query->fetchColumn();
+        
+        if ($row) {
+            return $row; // Retorna el ID del comentario insertado
+        } else {
+            return 0; // Si no se insertó correctamente, retorna 0 o algún valor indicativo de error
+        }
+    
+        conexionBD::cerrar_conexion();
+    }
+    
+    
 }

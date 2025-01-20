@@ -449,7 +449,7 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background: black;
   font-size: 14px;
   padding: 40px 0;
   position: relative;
@@ -1179,7 +1179,7 @@ section,
 
 .testimonials:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: color-mix(in srgb, black, transparent 30%);
   position: absolute;
   inset: 0;
   z-index: 2;
