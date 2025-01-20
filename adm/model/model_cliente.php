@@ -42,14 +42,15 @@ class Modelo_Cliente extends conexionBD
         $sql = "CALL SP_REGISTRAR_CLIENTE(?,?,?,?,?,?)";
         $arreglo = array();
         $query  = $c->prepare($sql);
-        $query->bindParam(1, $nombre);
-        $query->bindParam(2, $documento);
-        $query->bindParam(3, $celular);
-        $query->bindParam(4, $departamento);
-        $query->bindParam(5, $distrito);
-        $query->bindParam(6, $provincia);
-        $query->execute();
-        if ($row = $query->fetchColumn()) {
+        $query->bindParam(1, $nombre, PDO::PARAM_STR);
+        $query->bindParam(2, $documento, PDO::PARAM_STR);
+        $query->bindParam(3, $celular, PDO::PARAM_STR);
+        $query->bindParam(4, $departamento, PDO::PARAM_STR);
+        $query->bindParam(5, $distrito, PDO::PARAM_STR);
+        $query->bindParam(6, $provincia, PDO::PARAM_STR);
+        
+        $resultado = $query->execute();
+        if ($row = $query->fetchColumn()){
             return $row;
         }
         conexionBD::cerrar_conexion();
