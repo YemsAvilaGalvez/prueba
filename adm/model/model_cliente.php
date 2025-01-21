@@ -60,7 +60,7 @@ class Modelo_Cliente extends conexionBD
     public function Editar_Cliente($idCliente, $nombre, $documento, $celular, $departamento, $distrito, $provincia)
     {
         $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_MODIFICAR_CLIENTE(?,?,?,?,?,?,?)";
+        $sql = "CALL SP_EDITAR_CLIENTE(?,?,?,?,?,?,?)";
         $arreglo = array();
         $query  = $c->prepare($sql);
         $query->bindParam(1, $idCliente);
