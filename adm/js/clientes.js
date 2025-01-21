@@ -26,9 +26,9 @@ function Listar_Cliente() {
       { data: "nombre_completo" },
       { data: "documento_identidad" },
       { data: "celular" },
-      { data: "departamento" },
-      { data: "distrito" },
-      { data: "provincia" },
+      { data: "Departamento" },
+      { data: "Distrito" },
+      { data: "Provincia" },
       {
         defaultContent:
           "<center>" +
@@ -71,8 +71,9 @@ $("#tabla_cliente").on("click", ".editar", function () {
   document.getElementById("txt_nombre_editar").value = data.nombre_completo;
   document.getElementById("txt_documento_editar").value = data.documento_identidad;
   document.getElementById("txt_celular_editar").value = data.celular;
-
-  
+  $("#select_departamento_editar").select2().val(data.departamento).trigger("change.select2")
+  $("#select_provincia_editar").select2().val(data.provincia).trigger("change.select2")
+  $("#select_distrito_editar").select2().val(data.distrito).trigger("change.select2")
 });
 
 /** REGISTAR  */
@@ -81,8 +82,8 @@ function Registrar_Cliente() {
   let nombre = document.getElementById("txt_nombre").value;
   let celular = document.getElementById("txt_celular").value;
   let departamento = document.getElementById("select_departamento").value;
-  let distrito = document.getElementById("select_provincia").value;
-  let provincia = document.getElementById("select_distrito").value;
+  let distrito = document.getElementById("select_distrito").value;
+  let provincia = document.getElementById("select_provincia").value;
   
   if (departamento.length == 0) {
     return Swal.fire(
