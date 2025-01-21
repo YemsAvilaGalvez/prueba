@@ -57,6 +57,94 @@ function AbrirModalRegistrarCliente() {
   $(".form-control").removeClass("is-invalid").removeClass("is-valid");
 }
 
+/** SELECT DEPARTAMENTO */
+function Cargar_Select_Departamento() {
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_departamento.php",
+    type: "POST",
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Departamento</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_departamento").innerHTML =
+        llenardata;
+      document.getElementById("select_departamento_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_departamento").innerHTML =
+        llenardata;
+      document.getElementById("select_departamento_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
+/** SELECT PROVINCIA */
+function Cargar_Select_Provincia() {
+  //let departamento = document.getElementById("select_departamento").value;
+  let departamento = $("#select_departamento_editar").val() || $("#select_departamento").val();
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_provincia.php",
+    type: "POST",
+    data: { departamento: departamento },
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Provincia</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_provincia").innerHTML =
+        llenardata;
+      document.getElementById("select_provincia_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_provincia").innerHTML =
+        llenardata;
+      document.getElementById("select_provincia_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
+/** SELECT PROVINCIA */
+function Cargar_Select_Distrito() {
+  //let provincia = document.getElementById("select_provincia").value;
+  let provincia = $("#select_provincia").val() || $("#select_provincia_editar").val();
+
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_distrito.php",
+    type: "POST",
+    data: { provincia: provincia },
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Distrito</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_distrito").innerHTML =
+        llenardata;
+      document.getElementById("select_distrito_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_distrito").innerHTML =
+        llenardata;
+      document.getElementById("select_distrito_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
 /** ABRIR MODAL EDITAR */
 $("#tabla_cliente").on("click", ".editar", function () {
   var data = tbl_cliente.row($(this).parents("tr")).data();
@@ -72,8 +160,8 @@ $("#tabla_cliente").on("click", ".editar", function () {
   document.getElementById("txt_documento_editar").value = data.documento_identidad;
   document.getElementById("txt_celular_editar").value = data.celular;
   $("#select_departamento_editar").select2().val(data.departamento).trigger("change.select2")
-  $("#select_provincia_editar").select2().val(data.provincia).trigger("change.select2")
   $("#select_distrito_editar").select2().val(data.distrito).trigger("change.select2")
+  $("#select_provincia_editar").select2().val(data.provincia).trigger("change.select2")
 });
 
 /** REGISTAR  */
@@ -255,90 +343,6 @@ function EditarCliente() {
   });
 }
 
-/** SELECT DEPARTAMENTO */
-function Cargar_Select_Departamento() {
-  $.ajax({
-    url: "../controller/cliente/controlador_cargar_departamento.php",
-    type: "POST",
-  }).done(function (resp) {
-    let data = JSON.parse(resp);
-    let llenardata = "<option value=''>Seleccione Departamento</option>";
-    if (data.length > 0) {
-      for (let i = 0; i < data.length; i++) {
-        llenardata +=
-          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
-      }
-      document.getElementById("select_departamento").innerHTML =
-        llenardata;
-      document.getElementById("select_departamento_editar").innerHTML =
-        llenardata;
-    } else {
-      llenardata += "<option value=''>No se encontraron datos</option>";
-      document.getElementById("select_departamento").innerHTML =
-        llenardata;
-      document.getElementById("select_departamento_editar").innerHTML =
-        llenardata;
-    }
-  });
-}
-
-/** SELECT PROVINCIA */
-function Cargar_Select_Provincia() {
-  let departamento = document.getElementById("select_departamento").value;
-  $.ajax({
-    url: "../controller/cliente/controlador_cargar_provincia.php",
-    type: "POST",
-    data: { departamento: departamento },
-  }).done(function (resp) {
-    let data = JSON.parse(resp);
-    let llenardata = "<option value=''>Seleccione Provincia</option>";
-    if (data.length > 0) {
-      for (let i = 0; i < data.length; i++) {
-        llenardata +=
-          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
-      }
-      document.getElementById("select_provincia").innerHTML =
-        llenardata;
-      document.getElementById("select_provincia_editar").innerHTML =
-        llenardata;
-    } else {
-      llenardata += "<option value=''>No se encontraron datos</option>";
-      document.getElementById("select_provincia").innerHTML =
-        llenardata;
-      document.getElementById("select_provincia_editar").innerHTML =
-        llenardata;
-    }
-  });
-}
-
-/** SELECT PROVINCIA */
-function Cargar_Select_Distrito() {
-  let provincia = document.getElementById("select_provincia").value;
-  $.ajax({
-    url: "../controller/cliente/controlador_cargar_distrito.php",
-    type: "POST",
-    data: { provincia: provincia },
-  }).done(function (resp) {
-    let data = JSON.parse(resp);
-    let llenardata = "<option value=''>Seleccione Distrito</option>";
-    if (data.length > 0) {
-      for (let i = 0; i < data.length; i++) {
-        llenardata +=
-          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
-      }
-      document.getElementById("select_distrito").innerHTML =
-        llenardata;
-      document.getElementById("select_distrito_editar").innerHTML =
-        llenardata;
-    } else {
-      llenardata += "<option value=''>No se encontraron datos</option>";
-      document.getElementById("select_distrito").innerHTML =
-        llenardata;
-      document.getElementById("select_distrito_editar").innerHTML =
-        llenardata;
-    }
-  });
-}
 
 /** VALIDAR COMPOS */
 function ValidarCamposCliente(documento, nombre, celular) {
