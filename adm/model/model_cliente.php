@@ -33,9 +33,9 @@ class Modelo_Cliente extends conexionBD
         $query->bindParam(4, $departamento, PDO::PARAM_STR);
         $query->bindParam(5, $distrito, PDO::PARAM_STR);
         $query->bindParam(6, $provincia, PDO::PARAM_STR);
-        
+
         $resultado = $query->execute();
-        if ($row = $query->fetchColumn()){
+        if ($row = $query->fetchColumn()) {
             return $row;
         }
         conexionBD::cerrar_conexion();
@@ -80,19 +80,65 @@ class Modelo_Cliente extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
-       public function Traer_Widget(){
-            $c = conexionBD::conexionPDO();
-            $sql = "CALL DASHBOARD()";
-            $arreglo = array();
-            $query  = $c->prepare($sql);
-            $query->execute();
-            $resultado = $query->fetchAll();
-            foreach($resultado as $resp){
-                $arreglo[]=$resp;
-            }
-            return $arreglo;
-            conexionBD::cerrar_conexion();
+    public function Traer_Widget()
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL DASHBOARD()";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetchAll();
+        foreach ($resultado as $resp) {
+            $arreglo[] = $resp;
         }
-        
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
 
+    public function Cargar_Select_Departamento()
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_SELECT_DEPARTAMENTO()";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetchAll();
+        foreach ($resultado as $resp) {
+            $arreglo[] = $resp;
+        }
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
+
+    public function Cargar_Select_Provincia($departamento)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_SELECT_PROVINCIA(?)";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $departamento);
+        $query->execute();
+        $resultado = $query->fetchAll();
+        foreach ($resultado as $resp) {
+            $arreglo[] = $resp;
+        }
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
+
+    public function Cargar_Select_Distrito($provincia)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_SELECT_DISTRITOS(?)";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $provincia);
+        $query->execute();
+        $resultado = $query->fetchAll();
+        foreach ($resultado as $resp) {
+            $arreglo[] = $resp;
+        }
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
 }

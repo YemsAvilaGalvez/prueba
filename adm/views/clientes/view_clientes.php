@@ -91,11 +91,13 @@
                         </div>
                         <!-- /.col -->
 
-                        
+
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_departamento">Departamento</label>
-                                <input type="text" class="form-control" id="txt_departamento" placeholder="Departamento">
+                                <label>Departamento</label>
+                                <select class="form-control select2" id="select_departamento" onchange="Cargar_Select_Provincia()" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -103,8 +105,10 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_distrito">Distrito</label>
-                                <input type="text" class="form-control" id="txt_distrito" placeholder="Distrito">
+                                <label>Provincia</label>
+                                <select class="form-control select2" id="select_provincia" onchange="Cargar_Select_Distrito()" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -112,8 +116,10 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_provincia">Provincia</label>
-                                <input type="text" class="form-control" id="txt_provincia" placeholder="Provincia">
+                                <label>Distrito</label>
+                                <select class="form-control select2" id="select_distrito" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -131,7 +137,7 @@
         </div>
         <!-- /.modal end-->
 
-        
+
         <!-- model registrar -->
         <div class="modal fade" id="modal_editar_cliente">
             <div class="modal-dialog">
@@ -171,11 +177,13 @@
                         </div>
                         <!-- /.col -->
 
-                        
+
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_departamento_editar">Departamento</label>
-                                <input type="text" class="form-control" id="txt_departamento_editar" placeholder="Departamento">
+                                <label>Departamento</label>
+                                <select class="form-control select2" id="select_departamento_editar" onchange="Cargar_Select_Provincia()" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -183,8 +191,10 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_distrito_editar">Distrito</label>
-                                <input type="text" class="form-control" id="txt_distrito_editar" placeholder="Distrito">
+                                <label>Provincia</label>
+                                <select class="form-control select2" id="select_provincia_editar" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -192,8 +202,10 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="txt_provincia">Provincia</label>
-                                <input type="text" class="form-control" id="txt_provincia_editar" placeholder="Provincia">
+                                <label>Distrito</label>
+                                <select class="form-control select2" id="select_distrito_editar" style="width: 100%;">
+
+                                </select>
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -218,6 +230,10 @@
 
 <script>
     Listar_Cliente();
+    Cargar_Select_Departamento();
+    Cargar_Select_Provincia();
+    Cargar_Select_Distrito();
+
     $('#btnRegistraCliente').on('click', function() {
         Registrar_Cliente();
     });

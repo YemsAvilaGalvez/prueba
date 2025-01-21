@@ -71,9 +71,7 @@ $("#tabla_cliente").on("click", ".editar", function () {
   document.getElementById("txt_nombre_editar").value = data.nombre_completo;
   document.getElementById("txt_documento_editar").value = data.documento_identidad;
   document.getElementById("txt_celular_editar").value = data.celular;
-  document.getElementById("txt_departamento_editar").value = data.departamento;
-  document.getElementById("txt_distrito_editar").value = data.distrito;
-  document.getElementById("txt_provincia_editar").value = data.provincia;
+
   
 });
 
@@ -82,25 +80,41 @@ function Registrar_Cliente() {
   let documento = document.getElementById("txt_documento").value;
   let nombre = document.getElementById("txt_nombre").value;
   let celular = document.getElementById("txt_celular").value;
-  let departamento = document.getElementById("txt_departamento").value;
-  let distrito = document.getElementById("txt_distrito").value;
-  let provincia = document.getElementById("txt_provincia").value;
+  let departamento = document.getElementById("select_departamento").value;
+  let distrito = document.getElementById("select_provincia").value;
+  let provincia = document.getElementById("select_distrito").value;
+  
+  if (departamento.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Departamento",
+      "warning"
+    );
+  }
+  if (provincia.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Provincia",
+      "warning"
+    );
+  }
+  if (distrito.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Distrito",
+      "warning"
+    );
+  }
 
   if (
     nombre.length == 0 ||
     documento.length == 0 ||
-    celular.length == 0 ||
-    departamento.length == 0 ||
-    distrito.length == 0 ||
-    provincia.length == 0
+    celular.length == 0 
   ) {
     ValidarCamposCliente(
       "txt_nombre",
       "txt_documento",
-      "txt_celular",
-      "txt_departamento",
-      "txt_distrito",
-      "txt_provincia"
+      "txt_celular"
     );
     return Swal.fire(
       "Mensaje de Advertencia",
@@ -161,26 +175,41 @@ function EditarCliente() {
   let nombre = document.getElementById("txt_nombre_editar").value;
   let documento = document.getElementById("txt_documento_editar").value;
   let celular = document.getElementById("txt_celular_editar").value;
-  let departamento = document.getElementById("txt_departamento_editar").value;
-  let distrito = document.getElementById("txt_distrito_editar").value;
-  let provincia = document.getElementById("txt_provincia_editar").value;
+  let departamento = document.getElementById("select_departamento_editar").value;
+  let distrito = document.getElementById("select_distrito_editar").value;
+  let provincia = document.getElementById("select_provincia_editar").value;
 
+  if (departamento.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Departamento",
+      "warning"
+    );
+  }
+  if (provincia.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Provincia",
+      "warning"
+    );
+  }
+  if (distrito.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione Distrito",
+      "warning"
+    );
+  }
   
   if (
     nombre.length == 0 ||
     documento.length == 0 ||
-    celular.length == 0 ||
-    departamento.length == 0 ||
-    distrito.length == 0 ||
-    provincia.length == 0
+    celular.length == 0 
   ) {
     ValidarCamposCliente(
       "txt_nombre",
       "txt_documento",
-      "txt_celular",
-      "txt_departamento",
-      "txt_distrito",
-      "txt_provincia"
+      "txt_celular"
     );
     return Swal.fire(
       "Mensaje de Advertencia",
@@ -225,8 +254,93 @@ function EditarCliente() {
   });
 }
 
+/** SELECT DEPARTAMENTO */
+function Cargar_Select_Departamento() {
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_departamento.php",
+    type: "POST",
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Departamento</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_departamento").innerHTML =
+        llenardata;
+      document.getElementById("select_departamento_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_departamento").innerHTML =
+        llenardata;
+      document.getElementById("select_departamento_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
+/** SELECT PROVINCIA */
+function Cargar_Select_Provincia() {
+  let departamento = document.getElementById("select_departamento").value;
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_provincia.php",
+    type: "POST",
+    data: { departamento: departamento },
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Provincia</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_provincia").innerHTML =
+        llenardata;
+      document.getElementById("select_provincia_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_provincia").innerHTML =
+        llenardata;
+      document.getElementById("select_provincia_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
+/** SELECT PROVINCIA */
+function Cargar_Select_Distrito() {
+  let provincia = document.getElementById("select_provincia").value;
+  $.ajax({
+    url: "../controller/cliente/controlador_cargar_distrito.php",
+    type: "POST",
+    data: { provincia: provincia },
+  }).done(function (resp) {
+    let data = JSON.parse(resp);
+    let llenardata = "<option value=''>Seleccione Distrito</option>";
+    if (data.length > 0) {
+      for (let i = 0; i < data.length; i++) {
+        llenardata +=
+          "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
+      }
+      document.getElementById("select_distrito").innerHTML =
+        llenardata;
+      document.getElementById("select_distrito_editar").innerHTML =
+        llenardata;
+    } else {
+      llenardata += "<option value=''>No se encontraron datos</option>";
+      document.getElementById("select_distrito").innerHTML =
+        llenardata;
+      document.getElementById("select_distrito_editar").innerHTML =
+        llenardata;
+    }
+  });
+}
+
 /** VALIDAR COMPOS */
-function ValidarCamposCliente(documento, nombre, celular, departamento, distrito, provincia) {
+function ValidarCamposCliente(documento, nombre, celular) {
   Boolean(document.getElementById(documento).value.length > 0)
   ? $("#" + documento)
       .removeClass("is-invalid")
@@ -248,27 +362,6 @@ function ValidarCamposCliente(documento, nombre, celular, departamento, distrito
   : $("#" + celular)  
       .removeClass("is-valid")
       .addClass("is-invalid");
-  Boolean(document.getElementById(departamento).value.length > 0)
-  ? $("#" + departamento)
-      .removeClass("is-invalid")
-      .addClass("is-valid")
-  : $("#" + departamento)
-      .removeClass("is-valid")
-      .addClass("is-invalid");
-  Boolean(document.getElementById(distrito).value.length > 0)
-  ? $("#" + distrito)
-      .removeClass("is-invalid")
-      .addClass("is-valid")
-  : $("#" + distrito)
-      .removeClass("is-valid")
-      .addClass("is-invalid");
-  Boolean(document.getElementById(provincia).value.length > 0)
-  ? $("#" + provincia)
-      .removeClass("is-invalid")
-      .addClass("is-valid")
-  : $("#" + provincia)
-      .removeClass("is-valid")
-      .addClass("is-invalid");
 }
 
 /** LIMPIAR MODAL */
@@ -276,9 +369,9 @@ function LimpiarModalCliente() {
   document.getElementById("txt_documento").value = "";
   document.getElementById("txt_nombre").value = "";
   document.getElementById("txt_celular").value = "";
-  document.getElementById("txt_departamento").value = "";
-  document.getElementById("txt_distrito").value = "";
-  document.getElementById("txt_provincia").value = "";
+  $("#select_departamento").select2().val("").trigger("change.select2");
+  $("#select_provincia").select2().val("").trigger("change.select2");
+  $("#select_distrito").select2().val("").trigger("change.select2");
 }
 
 /** MENSAJE DE ELIMINAR */
