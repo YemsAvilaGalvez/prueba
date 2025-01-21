@@ -181,7 +181,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Departamento</label>
-                                <select class="form-control select2" id="select_departamento_editar" onchange="Cargar_Select_Provincia()" style="width: 100%;">
+                                <select class="form-control select2" id="select_departamento_editar" onchange="Cargar_Select_Provincia();" style="width: 100%;">
 
                                 </select>
                             </div>
@@ -192,7 +192,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Provincia</label>
-                                <select class="form-control select2" id="select_provincia_editar" style="width: 100%;">
+                                <select class="form-control select2" id="select_provincia_editar" onchange="Cargar_Select_Distrito();" style="width: 100%;">
 
                                 </select>
                             </div>
