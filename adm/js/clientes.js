@@ -421,10 +421,6 @@ function EliminarCliente(idCliente) {
       });
     } else {
       Swal.fire("Mensaje de Advertencia", "Error al eliminar Cliente", "error");
-    }
-  });
+    }
+  });
 }
-
-
-
-
