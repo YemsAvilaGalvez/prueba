@@ -149,9 +149,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview pl-3">
                                 <li class="nav-item">
-                                    <a href="#" onclick="cargar_contenido('contenido_principal','reportes/view_reporte_asistencia.php')" class="nav-link">
+                                    <a href="#" onclick="cargar_contenido('contenido_principal','reportes/view_difuntos_vencer.php')" class="nav-link">
                                         <span class="nav-icon" style="display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 50%; margin-right: 10px;"></span>
-                                        <p class="font-weight-bold" style="font-size: 0.9rem;">CLIENTES POR VENCER</p>
+                                        <p class="font-weight-bold" style="font-size: 0.9rem;">DIFUNTOS VENCIMIENTO</p>
                                     </a>
                                 </li>
 
@@ -235,8 +235,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-lg-3 col-6">
                             <div class="small-box" style="background-color: #dc3545; color: white; font-weight: bold;"> <!-- Rojo oscuro -->
                                 <div class="inner">
-                                    <h3 id="lbl_clientes_vencer">0</h3> <!-- Clientes a vencer -->
-                                    <p>Clientes a Vencer</p>
+                                    <h3 id="lbl_difuntos_vencer">0</h3> <!-- Clientes a vencer -->
+                                    <p>Difuntos con plan próximo a vencer</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-exclamation-triangle"></i> <!-- Icono de alerta -->
@@ -322,18 +322,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         function Traer_Widget() {
             $.ajax({
-                "url": "../controller/agencia/traer_widget.php",
+                "url": "../controller/cliente/traer_widget.php",
                 type: 'POST'
             }).done(function(resp) {
                 let data = JSON.parse(resp);
                 if (data.length > 0) {
-                    document.getElementById('lbl_agencias').innerHTML = data[0][0];
-                    document.getElementById('lbl_cargos').innerHTML = data[0][1];
-                    document.getElementById('lbl_trabajadores').innerHTML = data[0][2];
-                    document.getElementById('lbl_asistencias').innerHTML = data[0][3];
-                    document.getElementById('lbl_ocurrencias').innerHTML = data[0][4];
-                    document.getElementById('lbl_usuarios').innerHTML = data[0][5];
-
+                    document.getElementById('lbl_clientes').innerHTML = data[0][0];
+                    document.getElementById('lbl_difuntos').innerHTML = data[0][1];
+                    document.getElementById('lbl_usuarios').innerHTML = data[0][2];
+                    document.getElementById('lbl_difuntos_vencer').innerHTML = data[0][3];
+                    document.getElementById('lbl_ganancias').innerHTML = data[0][4];
 
                 }
             })

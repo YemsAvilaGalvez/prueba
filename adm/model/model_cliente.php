@@ -20,21 +20,6 @@ class Modelo_Cliente extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
-    public function Traer_Widget()
-    {
-        $c = conexionBD::conexionPDO();
-        $sql = "CALL DASHBOARD()";
-        $arreglo = array();
-        $query  = $c->prepare($sql);
-        $query->execute();
-        $resultado = $query->fetchAll();
-        foreach ($resultado as $resp) {
-            $arreglo[] = $resp;
-        }
-        return $arreglo;
-        conexionBD::cerrar_conexion();
-    }
-
 
     public function Registrar_Cliente($nombre, $documento, $celular, $departamento, $distrito, $provincia)
     {
@@ -94,5 +79,20 @@ class Modelo_Cliente extends conexionBD
         }
         conexionBD::cerrar_conexion();
     }
+
+       public function Traer_Widget(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL DASHBOARD()";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query->execute();
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
+            }
+            return $arreglo;
+            conexionBD::cerrar_conexion();
+        }
+        
 
 }

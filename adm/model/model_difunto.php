@@ -20,6 +20,21 @@ class Modelo_Difunto extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
+    public function Listar_Difunto_Vencido()
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_LISTAR_DIFUNTO_VENCIDO()";
+        $arreglo = array();
+        $query  = $c->prepare($sql);
+        $query->execute();
+        $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $resp) {
+            $arreglo["data"][] = $resp;
+        }
+        return $arreglo;
+        conexionBD::cerrar_conexion();
+    }
+
     public function Cargar_Select_Cliente()
     {
         $c = conexionBD::conexionPDO();
