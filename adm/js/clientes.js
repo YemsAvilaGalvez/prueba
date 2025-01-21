@@ -111,8 +111,8 @@ function Registrar_Cliente() {
 
   let formData = new FormData();
 
-  formData.append("documento", documento);
   formData.append("nombre", nombre);
+  formData.append("documento", documento);
   formData.append("celular", celular);
   formData.append("departamento", departamento);
   formData.append("distrito", distrito);
