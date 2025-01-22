@@ -35,6 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+    <link rel="shortcut icon" href="../../profile/assets/img/logo/logo_circular.png" type="image/x-icon">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -81,14 +82,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index.php" class="brand-link">
-                <img src="assets/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light"><strong>VIVIR EN MEMORIA</strong></span>
+                <img src="../../profile/assets/img/logo/logo_circular.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-bold">VIVIR EN MEMORIA</span>
             </a>
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="assets/logo/logo.png" class="img-circle elevation-2" alt="User Image">
+                        <img src="../../profile/assets/img/logo/logo_circular.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><strong><?php echo $_SESSION['S_USUARIO'] ?></strong></a>
@@ -284,7 +285,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Anything you want
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2025-2025.</strong> Bruno And Shagy -> All Rights Reserved
         </footer>
     </div>
     <!-- ./wrapper -->

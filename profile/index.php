@@ -97,8 +97,8 @@ $conn->close();
   <meta name="keywords" content="" />
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon" />
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="assets/img/logo/logo_circular.png" rel="icon" />
+  <link href="assets/img/logo/logo_circular.png" rel="apple-touch-icon" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -122,13 +122,47 @@ $conn->close();
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
+    button.btn {
+      background-color: rgba(0, 0, 0, 1);
+      /* Fondo negro sólido */
+      color: white;
+      /* Texto blanco */
+      padding: 10px 20px;
+      /* Espaciado dentro del botón */
+      border: 2px solid rgba(0, 0, 0, 1);
+      /* Borde negro */
+      border-radius: 5px;
+      /* Bordes redondeados */
+      font-size: 16px;
+      /* Tamaño de texto */
+      cursor: pointer;
+      /* Cambiar el cursor al pasar por encima */
+      transition: background-color 0.3s, box-shadow 0.3s;
+      /* Suaviza la transición */
+      outline: none;
+      /* Eliminar el contorno por defecto */
+    }
+
+    /* Estilo para el botón al hacer clic o cuando tiene foco */
+    button.btn:focus {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      /* Sombra más oscura */
+    }
+
+    /* Estilo para el botón al pasar el ratón (hover) */
+    button.btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      /* Fondo negro con opacidad al pasar el ratón */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      /* Sombra más pronunciada */
+    }
+
+
     .portfolio-item img {
       width: 100%;
-      /* Asegura que las imágenes ocupen todo el espacio disponible */
       height: 300px;
-      /* Ajusta la altura de todas las imágenes al mismo tamaño */
       object-fit: cover;
-      /* Mantiene la proporción de la imagen y la recorta si es necesario */
     }
 
     .video-container {
@@ -152,6 +186,23 @@ $conn->close();
       text-align: center;
       margin-bottom: 20px;
     }
+
+    /* Estilo para los inputs y textarea */
+    input.form-control:focus,
+    textarea.form-control:focus {
+      outline: 2px solid rgba(0, 0, 0, 1);
+      /* Borde negro */
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      /* Sombra más oscura */
+    }
+
+    /* Estilo para el botón al hacer clic */
+    button:focus {
+      outline: 2px solid rgba(0, 0, 0, 1);
+      /* Borde negro */
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      /* Sombra más oscura */
+    }
   </style>
 </head>
 
@@ -161,18 +212,18 @@ $conn->close();
       class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
 
-        <h1 class="sitename">Vivir en Memoria</h1>
+        <h1 class="sitename"> <img src="assets/img/logo/logo_circular.png"> Vivir en Memoria</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li>
-            <a href="#home" class="active">Inicio<br /></a>
+            <a href="#home" class="active"><strong>Inicio</strong><br /></a>
           </li>
-          <li><a href="#biografia">Biografia</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#video">Video</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#biografia"><strong>Biografia</strong></a></li>
+          <li><a href="#galeria"><strong>Galería</strong></a></li>
+          <li><a href="#video"><strong>Video</strong></a></li>
+          <li><a href="#condolencia"><strong>Condolencias</strong></a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -182,16 +233,37 @@ $conn->close();
   <main class="main">
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
-      <img src="../adm/<?php echo ($difunto['imagen_perfil']); ?>" class="img-fluid" alt="" />
+      <img src="assets/img/logo/fondo.png" class="img-fluid" alt="" />
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
         <h2><?php echo ($difunto['nombre']) ?></h2>
-        <h6>ETERNAMENTE EN NUESTROS CORAZONES</h6>
+        <h6><strong>ETERNAMENTE EN NUESTROS CORAZONES</strong></h6>
         <p>
           <span class="typed" data-typed-items="Fecha de Nacimiento: <?php echo $fechaNacimientoFormateada ?>, Fecha de Fallecimiento: <?php echo $fechaFallecimientoFormateada ?>"></span>
         </p>
+
+        <!-- Botones -->
+        <div class="mt-4">
+          <!-- Botón para copiar URL -->
+          <button class="btn btn-primary" onclick="copiarEnlace()" style="background-color: #6c757d; border-color: #6c757d;">
+            <i class="fas fa-share-alt"></i> Copiar Enlace
+          </button>
+
+          <!-- Enlace de Condolencias con icono -->
+          <a href="#condolencia" class="btn btn-secondary" style="background-color: #6c757d; border-color: #6c757d;">
+            <i class="fas fa-heart"></i> Enviar Condolencias
+          </a>
+        </div>
+
+        <!-- Mensaje de copiado -->
+        <div id="mensajeCopiado" class="alert alert-success" style="display:none; margin-top: 15px;">
+          ¡Enlace copiado al portapapeles con éxito!
+        </div>
       </div>
     </section>
+
+
+
     <!-- /Hero Section -->
 
     <!-- About Section -->
@@ -264,51 +336,51 @@ $conn->close();
       </div>
     </section>
 
-    <!-- End Portfolio Section -->
+    
 
-    <!-- /Portfolio Section -->
 
     <!-- Video Section -->
-    <section id="video" class="col-12">
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Video Conmemorativo</h2>
-      </div>
+<section id="video" class="col-12">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Video Conmemorativo</h2>
+  </div>
 
-      <div class="video-container">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe
-            class="embed-responsive-item"
-            src="<?php
-                  // Obtener la URL original del video
-                  $videoURL = $difunto['video_link'];
+  <div class="video-container">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe
+        class="embed-responsive-item"
+        src="<?php
+              // Obtener la URL original del video
+              $videoURL = $difunto['video_link'];
 
-                  // Extraer el ID del video de YouTube
-                  preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $videoURL, $matches);
+              // Extraer el ID del video de YouTube
+              preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $videoURL, $matches);
 
-                  // Si se encuentra un ID de video válido, construir el URL embed
-                  if (isset($matches[1])) {
-                    echo "https://www.youtube.com/embed/" . $matches[1];
-                  } else {
-                    echo ""; // Si no se encuentra el ID, dejar vacío o manejar otro error
-                  }
-                  ?>"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-    </section>
+              // Si se encuentra un ID de video válido, construir el URL embed con autoplay
+              if (isset($matches[1])) {
+                echo "https://www.youtube.com/embed/" . $matches[1] . "?autoplay=1";
+              } else {
+                echo ""; // Si no se encuentra el ID, dejar vacío o manejar otro error
+              }
+              ?>"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
 
 
 
     <!-- /Video Section -->
 
     <!-- Contact Section -->
-    <section id="contacto" class="contact section">
+    <section id="condolencia" class="contact section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Te invitamos a enviar tu condolencia</h2>
+        <h2>Te invitamos a enviar tu Condolencia</h2>
       </div>
       <!-- End Section Title -->
 
@@ -319,27 +391,26 @@ $conn->close();
           </div>
 
           <div class="col-md-6">
-            <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" required />
+            <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Ingrese el Nº de Celular (OPCIONAL)" />
           </div>
 
           <div class="col-md-12">
             <textarea class="form-control" name="message" id="message" rows="6" placeholder="Escribe tu Condolencia" required></textarea>
           </div>
 
-          <input type="hidden" name="id_difunto" id="id_difunto" value="<?php echo $id; ?>" /> <!-- Asegúrate de que el valor de $id sea válido -->
+          <input type="hidden" name="id_difunto" id="id_difunto" value="<?php echo $id; ?>" />
 
           <div class="col-md-12 text-center">
 
 
           </div>
 
-          <button type="submit" class="btn btn-primary" onclick="Registrar_Comentario()">Enviar Condolencia</button>
+          <button type="submit" class="btn" onclick="Registrar_Comentario()">Enviar Condolencia</button>
         </div>
       </div>
       <!-- End Contact Form -->
       </div>
     </section>
-
 
 
     <!-- /Contact Section -->
@@ -439,7 +510,7 @@ $conn->close();
 
     <!-- Maps -->
     <section class="col-md-12" style="margin: 0; padding: 0">
-    <?php echo ($difunto['ubicacion_link']) ?>
+      <?php echo ($difunto['ubicacion_link']) ?>
     </section>
 
   </main>
@@ -478,6 +549,23 @@ $conn->close();
   <!-- Preloader -->
   <div id="preloader"></div>
 
+
+  <script>
+    function copiarEnlace() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        // Mostrar mensaje bonito en lugar de alerta
+        var mensaje = document.getElementById("mensajeCopiado");
+        mensaje.style.display = "block";
+
+        // Ocultar el mensaje después de 3 segundos
+        setTimeout(function() {
+          mensaje.style.display = "none";
+        }, 1000);
+      }, function(err) {
+        console.error('Error al copiar el enlace: ', err);
+      });
+    }
+  </script>
   <!-- Vendor JS Files -->
   <!-- Agregar jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -38,7 +38,7 @@ if (isset($_SESSION['S_ID'])){
       width: 400px;
     }
     .card {
-      border-top: 3px solid #138A6F;
+      border-top: 3px solid #222222;
     }
     .card-header img {
       width: 280px; /* Ajusta el tamaño de la imagen */
@@ -57,7 +57,7 @@ if (isset($_SESSION['S_ID'])){
 <div class="login-box">
   <div class="card card-outline">
     <div class="card-header text-center">
-      <img src="views/logo/logo_horizontal.png" alt="Logo"> <!-- Cambia la ruta de la imagen -->
+      <img src="../profile/assets/img/logo/logo_circular.png" alt="Logo"> <!-- Cambia la ruta de la imagen -->
       <h1><b>VIVIR EN MEMORIA</b></h1>
     </div>
     <div class="card-body">
@@ -79,7 +79,12 @@ if (isset($_SESSION['S_ID'])){
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-success btn-block shadow-sm mb-3"><b>INICIAR SESIÓN</b></button>
+        <button type="submit" class="btn btn-success btn-block shadow-sm mb-3" 
+    style="background-color: #222222; border-color: #222222; color: #fff;" 
+    onmouseover="this.style.backgroundColor='#444444'" 
+    onmouseout="this.style.backgroundColor='#222222'">
+    <b>INICIAR SESIÓN</b>
+</button>
       </form>
 
     </div>
