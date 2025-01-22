@@ -52,6 +52,14 @@ function Listar_Difunto() {
           }
         },
       },
+      { data: "estado",
+        render: function (data, type, row) {
+          if (data === "HABILITADO") {
+            return "<span class='badge badge-success'>" + data + "</span>";
+          } else {
+            return "<span class='badge badge-danger'>" + data + "</span>";
+          }
+        }, },
       {
         defaultContent:
           "<center>" +
@@ -120,6 +128,7 @@ $("#tabla_difunto").on("click", ".editar", function () {
     .val(data.id_cliente)
     .trigger("change.select2");
   $("#select_plan_editar").select2().val(data.plan).trigger("change.select2");
+  $("#select_estado_editar").select2().val(data.estado).trigger("change.select2");
 });
 
 /** CARGAR CLIENTES */
@@ -443,6 +452,7 @@ function EditarDifunto() {
   let ubicacionLink = document.getElementById("txt_ubicacion_editar").value;
   let cancionLink = document.getElementById("txt_cancion_editar").value;
   let plan = document.getElementById("select_plan_editar").value;
+  let estado = document.getElementById("select_estado_editar").value;
 
   if (documentoCliente.length == 0) {
     return Swal.fire(
@@ -454,6 +464,10 @@ function EditarDifunto() {
 
   if (plan.length == 0) {
     return Swal.fire("Mensaje de Advertencia", "Seleccione un plan", "warning");
+  }
+
+  if (estado.length == 0) {
+    return Swal.fire("Mensaje de Advertencia", "Seleccione un estado", "warning");
   }
 
   if (
@@ -505,7 +519,8 @@ function EditarDifunto() {
       ubicacionLink: ubicacionLink,
       cancionLink: cancionLink,
       plan: plan,
-      fechaFin: formattedFechaFin
+      fechaFin: formattedFechaFin,
+      estado: estado
     },
   }).done(function (resp) {
     if (resp > 0) {
