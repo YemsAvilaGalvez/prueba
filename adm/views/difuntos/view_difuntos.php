@@ -46,6 +46,7 @@
                                     <th>Fecha de Creación</th>
                                     <th>Fecha de Culminacion</th>
                                     <th>Plan</th>
+                                    <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -222,16 +223,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Biografia</label>
                                     <textarea class="form-control" rows="3" id="txt_biografia_editar" placeholder="Enter ..."></textarea>
                                 </div>
                                 <!-- textarea -->
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_video_editar">Video</label>
@@ -239,10 +237,20 @@
                                 </div>
                                 <!-- /.form-group -->
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_ubicacion_editar">Ubicacion</label>
                                     <input type="text" class="form-control" id="txt_ubicacion_editar" placeholder="Link de Ubicacion">
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="txt_cancion_editar">Cancion</label>
+                                    <input type="text" class="form-control" id="txt_cancion_editar" placeholder="Link de Cancion">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -251,18 +259,22 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="txt_cancion_editar">Cancion</label>
-                                    <input type="text" class="form-control" id="txt_cancion_editar" placeholder="Link de Cancion">
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
                                     <label>Plan</label>
                                     <select class="form-control select2" id="select_plan_editar" style="width: 100%;">
                                         <option value="">Seleccnione un plan</option>
                                         <option value="ANUAL">ANUAL</option>
                                         <option value="SEMESTRAL">SEMESTRAL</option>
+                                    </select>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select class="form-control select2" id="select_estado_editar" style="width: 100%;">
+                                        <option value="">Seleccnione un estado</option>
+                                        <option value="HABILITADO">HABILITADO</option>
+                                        <option value="DESABILITADO">DESABILITADO</option>
                                     </select>
                                 </div>
                                 <!-- /.form-group -->
