@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/img/logo/logo_circular.png" rel="icon" />
+    <link href="assets/img/logo/logo_circular.png" rel="apple-touch-icon" />
     <title>Error 404</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Gilda+Display');
@@ -97,7 +99,7 @@
     <div class="error">Error 404</div>
     <div class="info">Archivo no Encontrado</div>
     <div class="buttons">
-        <a href="../index.php">Volver al Inicio</a>
+        <a href="../index.html">Volver al Inicio</a>
         <a href="https://api.whatsapp.com/send?phone=51944395871&text=Buenos%20dias%2C%20no%20encuentro%20mi%20pagina.%0ANecesito%20una%20solucion%2C%20gracias." target="_blank">Contactar al Administrador</a>
     </div>
 
