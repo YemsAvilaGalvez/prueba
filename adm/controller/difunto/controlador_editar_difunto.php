@@ -10,11 +10,12 @@ $fechaFallecimiento = htmlspecialchars($_POST['fechaFallecimiento'], ENT_QUOTES,
 $biografia = htmlspecialchars($_POST['biografia'], ENT_QUOTES, 'UTF-8');
 $videoLink = ($_POST['videoLink']);
 $ubicacionLink = htmlspecialchars($_POST['ubicacionLink'], ENT_QUOTES, 'UTF-8');
-$cancionLink = htmlspecialchars($_POST['cancionLink'], ENT_QUOTES, 'UTF-8');
 $plan = htmlspecialchars($_POST['plan'], ENT_QUOTES, 'UTF-8');
 $fechaFin = htmlspecialchars($_POST['fechaFin'], ENT_QUOTES, 'UTF-8');
 $estado = htmlspecialchars($_POST['estado'], ENT_QUOTES, 'UTF-8');
 
-$consulta = $MP->Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $videoLink, $ubicacionLink, $cancionLink, $plan, $fechaFin, $estado);
+$cancion = "controller/difunto/audio/".$nombreAudio;
+
+$consulta = $MP->Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $videoLink, $ubicacionLink, $plan, $fechaFin, $estado);
 
 echo $consulta;

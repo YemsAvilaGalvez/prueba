@@ -145,7 +145,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_cancion">Cancion</label>
-                                    <input type="text" class="form-control" id="txt_cancion" placeholder="Link de Cancion">
+                                    <input type="file" class="form-control" id="txt_cancion" placeholder="Link de Cancion">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -223,13 +223,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Biografia</label>
                                     <textarea class="form-control" rows="3" id="txt_biografia_editar" placeholder="Enter ..."></textarea>
                                 </div>
                                 <!-- textarea -->
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_video_editar">Video</label>
@@ -237,20 +240,10 @@
                                 </div>
                                 <!-- /.form-group -->
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_ubicacion_editar">Ubicacion</label>
                                     <input type="text" class="form-control" id="txt_ubicacion_editar" placeholder="Link de Ubicacion">
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="txt_cancion_editar">Cancion</label>
-                                    <input type="text" class="form-control" id="txt_cancion_editar" placeholder="Link de Cancion">
                                 </div>
                                 <!-- /.form-group -->
                             </div>

@@ -52,14 +52,16 @@ function Listar_Difunto() {
           }
         },
       },
-      { data: "estado",
+      {
+        data: "estado",
         render: function (data, type, row) {
           if (data === "HABILITADO") {
             return "<span class='badge badge-success'>" + data + "</span>";
           } else {
             return "<span class='badge badge-danger'>" + data + "</span>";
           }
-        }, },
+        },
+      },
       {
         defaultContent:
           "<center>" +
@@ -122,13 +124,15 @@ $("#tabla_difunto").on("click", ".editar", function () {
   document.getElementById("txt_biografia_editar").value = data.biografia;
   document.getElementById("txt_video_editar").value = data.video_link;
   document.getElementById("txt_ubicacion_editar").value = data.ubicacion_link;
-  document.getElementById("txt_cancion_editar").value = data.cancion_link;
   $("#select_documento_cliente_editar")
     .select2()
     .val(data.id_cliente)
     .trigger("change.select2");
   $("#select_plan_editar").select2().val(data.plan).trigger("change.select2");
-  $("#select_estado_editar").select2().val(data.estado).trigger("change.select2");
+  $("#select_estado_editar")
+    .select2()
+    .val(data.estado)
+    .trigger("change.select2");
 });
 
 /** CARGAR CLIENTES */
@@ -170,7 +174,7 @@ function Registrar_Difunto() {
   let foto = document.getElementById("file_foto").value;
   let videoLink = document.getElementById("txt_video").value;
   let ubicacionLink = document.getElementById("txt_ubicacion").value;
-  let cancionLink = document.getElementById("txt_cancion").value;
+  let audio = document.getElementById("txt_cancion").value;
   let plan = document.getElementById("select_plan").value;
 
   if (documentoCliente.length == 0) {
@@ -190,7 +194,7 @@ function Registrar_Difunto() {
     biografia.length == 0 ||
     videoLink.length == 0 ||
     ubicacionLink.length == 0 ||
-    cancionLink.length == 0
+    audio.length == 0
   ) {
     ValidarCamposDifunto(
       "txt_nombre",
@@ -225,6 +229,27 @@ function Registrar_Difunto() {
   }
   let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
+  /**AUDIO */
+  let extensionau = audio.split(".").pop();
+  let nombreAudio = "";
+  let a = new Date();
+  if (audio.length) {
+    nombreAudio =
+      "AUD-" +
+      a.getDate() +
+      "" +
+      (a.getMonth() + 1) +
+      "" +
+      a.getFullYear() +
+      "" +
+      a.getHours() +
+      "" +
+      a.getMilliseconds() +
+      "." +
+      extensionau;
+  }
+
+  /**FOTO */
   let extension = foto.split(".").pop();
   let nombreFoto = "";
   let f = new Date();
@@ -246,6 +271,7 @@ function Registrar_Difunto() {
 
   let formData = new FormData();
   let fotoObject = $("#file_foto")[0].files[0];
+  let audioObject = $("#txt_cancion")[0].files[0];
 
   formData.append("documentoCliente", documentoCliente);
   formData.append("nombre", nombre);
@@ -256,7 +282,8 @@ function Registrar_Difunto() {
   formData.append("foto", fotoObject);
   formData.append("videoLink", videoLink);
   formData.append("ubicacionLink", ubicacionLink);
-  formData.append("cancionLink", cancionLink);
+  formData.append("nombreAudio", nombreAudio);
+  formData.append("audio", audioObject);
   formData.append("plan", plan);
   formData.append("fechaFin", formattedFechaFin);
 
@@ -450,7 +477,6 @@ function EditarDifunto() {
   let biografia = document.getElementById("txt_biografia_editar").value;
   let videoLink = document.getElementById("txt_video_editar").value;
   let ubicacionLink = document.getElementById("txt_ubicacion_editar").value;
-  let cancionLink = document.getElementById("txt_cancion_editar").value;
   let plan = document.getElementById("select_plan_editar").value;
   let estado = document.getElementById("select_estado_editar").value;
 
@@ -467,7 +493,11 @@ function EditarDifunto() {
   }
 
   if (estado.length == 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione un estado", "warning");
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione un estado",
+      "warning"
+    );
   }
 
   if (
@@ -476,8 +506,7 @@ function EditarDifunto() {
     fechaFallecimiento.length == 0 ||
     biografia.length == 0 ||
     videoLink.length == 0 ||
-    ubicacionLink.length == 0 ||
-    cancionLink.length == 0
+    ubicacionLink.length == 0
   ) {
     ValidarCamposDifunto(
       "txt_nombre_editar",
@@ -485,8 +514,7 @@ function EditarDifunto() {
       "date_fallecimiento_editar",
       "txt_biografia_editar",
       "txt_video_editar",
-      "txt_ubicacion_editar",
-      "txt_cancion_editar"
+      "txt_ubicacion_editar"
     );
     return Swal.fire(
       "Mensaje de Advertencia",
@@ -517,10 +545,9 @@ function EditarDifunto() {
       biografia: biografia,
       videoLink: videoLink,
       ubicacionLink: ubicacionLink,
-      cancionLink: cancionLink,
       plan: plan,
       fechaFin: formattedFechaFin,
-      estado: estado
+      estado: estado,
     },
   }).done(function (resp) {
     if (resp > 0) {
@@ -592,56 +619,57 @@ function EliminarDifunto(idDifunto) {
   });
 }
 
-
 function Registrar_Comentario() {
-  let name = document.getElementById('name').value;
-  let telefono = document.getElementById('telefono').value;
-  let message = document.getElementById('message').value;
-  let id_difunto = document.getElementById('id_difunto').value;
+  let name = document.getElementById("name").value;
+  let telefono = document.getElementById("telefono").value;
+  let message = document.getElementById("message").value;
+  let id_difunto = document.getElementById("id_difunto").value;
   let fechaComentario = new Date().toLocaleDateString("es-PE"); // Obtener fecha en formato español
 
   // Verificación básica antes de la solicitud AJAX
   if (name.length == 0 || telefono.length == 0 || message.length == 0) {
-      Swal.fire({
-          title: "Advertencia",
-          text: "Debe completar todos los campos",
-          icon: "warning",
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 2000
-      });
-      return;
+    Swal.fire({
+      title: "Advertencia",
+      text: "Debe completar todos los campos",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    return;
   }
 
   $.ajax({
-      url: "../adm/controller/difunto/controlador_registrar_comentario.php",
-      type: 'POST',
-      data: {
-          id_difunto: id_difunto,
-          name: name,
-          telefono: telefono,
-          message: message,
-          fecha_comentario: fechaComentario
-      }
-  }).done(function(resp) {
-      if (resp > 0) { // Si el valor retornado es mayor a 0, se insertó correctamente
-          Swal.fire({
-              title: "Comentario Registrado",
-              text: "El comentario fue registrado exitosamente.",
-              icon: "success",
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 2000
-          }).then(() => {
-              // Limpiar campos después de éxito
-              document.getElementById('name').value = "";
-              document.getElementById('telefono').value = "";
-              document.getElementById('message').value = "";
+    url: "../adm/controller/difunto/controlador_registrar_comentario.php",
+    type: "POST",
+    data: {
+      id_difunto: id_difunto,
+      name: name,
+      telefono: telefono,
+      message: message,
+      fecha_comentario: fechaComentario,
+    },
+  })
+    .done(function (resp) {
+      if (resp > 0) {
+        // Si el valor retornado es mayor a 0, se insertó correctamente
+        Swal.fire({
+          title: "Comentario Registrado",
+          text: "El comentario fue registrado exitosamente.",
+          icon: "success",
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          // Limpiar campos después de éxito
+          document.getElementById("name").value = "";
+          document.getElementById("telefono").value = "";
+          document.getElementById("message").value = "";
 
-              // Agregar el nuevo comentario al slider
-              const newComment = `
+          // Agregar el nuevo comentario al slider
+          const newComment = `
                   <div class="swiper-slide">
                       <div class="testimonial-item">
                           <h3>${name}</h3>
@@ -658,41 +686,45 @@ function Registrar_Comentario() {
                   </div>
               `;
 
-              // Insertar el nuevo comentario al principio de la lista
-              $(".swiper-wrapper").prepend(newComment);
+          // Insertar el nuevo comentario al principio de la lista
+          $(".swiper-wrapper").prepend(newComment);
 
-              // Recargar la instancia de Swiper después de agregar el comentario
-              var swiper = new Swiper('.swiper.init-swiper', {
-                  loop: true,
-                  speed: 600,
-                  autoplay: { delay: 5000 },
-                  slidesPerView: 'auto',
-                  pagination: { el: ".swiper-pagination", type: "bullets", clickable: true }
-              });
-
-              swiper.update();
+          // Recargar la instancia de Swiper después de agregar el comentario
+          var swiper = new Swiper(".swiper.init-swiper", {
+            loop: true,
+            speed: 600,
+            autoplay: { delay: 5000 },
+            slidesPerView: "auto",
+            pagination: {
+              el: ".swiper-pagination",
+              type: "bullets",
+              clickable: true,
+            },
           });
+
+          swiper.update();
+        });
       } else {
-          Swal.fire({
-              title: "Error",
-              text: "No se completó el registro del comentario.",
-              icon: "error",
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000
-          });
-      }
-  }).fail(function(jqXHR, textStatus, errorThrown) {
-      Swal.fire({
-          title: "Error de Conexión",
-          text: "Hubo un problema al intentar registrar el comentario. Intente de nuevo.",
+        Swal.fire({
+          title: "Error",
+          text: "No se completó el registro del comentario.",
           icon: "error",
           toast: true,
-          position: 'top-end',
+          position: "top-end",
           showConfirmButton: false,
-          timer: 3000
+          timer: 3000,
+        });
+      }
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      Swal.fire({
+        title: "Error de Conexión",
+        text: "Hubo un problema al intentar registrar el comentario. Intente de nuevo.",
+        icon: "error",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
       });
-  });
+    });
 }
-
