@@ -14,8 +14,6 @@ $plan = htmlspecialchars($_POST['plan'], ENT_QUOTES, 'UTF-8');
 $fechaFin = htmlspecialchars($_POST['fechaFin'], ENT_QUOTES, 'UTF-8');
 $estado = htmlspecialchars($_POST['estado'], ENT_QUOTES, 'UTF-8');
 
-$cancion = "controller/difunto/audio/".$nombreAudio;
-
 $consulta = $MP->Editar_Difunto($idDifunto, $documentoCliente, $nombre, $fechaNacimiento, $fechaFallecimiento, $biografia, $videoLink, $ubicacionLink, $plan, $fechaFin, $estado);
 
 echo $consulta;
