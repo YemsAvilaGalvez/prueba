@@ -170,9 +170,9 @@ function Registrar_Cliente() {
   let nombre = document.getElementById("txt_nombre").value;
   let celular = document.getElementById("txt_celular").value;
   let departamento = document.getElementById("select_departamento").value;
-  let distrito = document.getElementById("select_provincia").value;
-  let provincia = document.getElementById("select_distrito").value;
-  
+  let distrito = document.getElementById("select_distrito").value;
+  let provincia = document.getElementById("select_provincia").value;
+  select_distrito
   if (departamento.length == 0) {
     return Swal.fire(
       "Mensaje de Advertencia",
