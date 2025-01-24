@@ -34,15 +34,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>ID</th>
                                     <th>Documento Cliente</th>
                                     <th>Nombre</th>
                                     <th>Fecha Nacimiento</th>
                                     <th>Fecha Fallecimiento</th>
-                                    <th>Biografia</th>
                                     <th>Imagen</th>
-                                    <th>Video</th>
-                                    <th>Ubicacion</th>
-                                    <th>Canción</th>
                                     <th>Fecha de Creación</th>
                                     <th>Fecha de Culminacion</th>
                                     <th>Plan</th>

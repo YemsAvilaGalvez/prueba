@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'pruedif';
+$dbname = 'pruedif_respaldo';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
@@ -25,14 +25,14 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 
 if ($resultado->num_rows > 0) {
-    $fila = $resultado->fetch_assoc();
-    if ($fila['estado'] !== 'HABILITADO') {
-        header("Location: 404.php");
-        exit;
-    }
-} else {
+  $fila = $resultado->fetch_assoc();
+  if ($fila['estado'] !== 'HABILITADO') {
     header("Location: 404.php");
     exit;
+  }
+} else {
+  header("Location: 404.php");
+  exit;
 }
 
 // Consulta para obtener los datos del difunto
@@ -135,6 +135,8 @@ $conn->close();
     href="assets/vendor/glightbox/css/glightbox.min.css"
     rel="stylesheet" />
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <!-- Enlace a Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet" />
@@ -225,6 +227,9 @@ $conn->close();
 </head>
 
 <body class="index-page">
+
+  <audio id="miCancion" src="../adm/<?php echo ($difunto['cancion_link']) ?>"></audio>
+
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div
       class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -260,22 +265,21 @@ $conn->close();
           <span class="typed" data-typed-items="Fecha de Nacimiento: <?php echo $fechaNacimientoFormateada ?>, Fecha de Fallecimiento: <?php echo $fechaFallecimientoFormateada ?>"></span>
         </p>
 
-        <!-- Botones -->
-        <div class="mt-4">
+        <div class="mt-4 d-flex gap-3">
           <!-- Botón para copiar URL -->
-          <button class="btn btn-primary" onclick="copiarEnlace()" style="background-color: #6c757d; border-color: #6c757d;">
-            <i class="fas fa-share-alt"></i> Copiar Enlace
+          <button class="btn btn-primary d-flex align-items-center" onclick="copiarEnlace()" style="background-color: #6c757d; border-color: #6c757d;">
+            <i class="fas fa-share-alt"></i>&nbsp;&nbsp;Compartir URL
           </button>
 
           <!-- Enlace de Condolencias con icono -->
-          <a href="#condolencia" class="btn btn-secondary" style="background-color: #6c757d; border-color: #6c757d;">
-            <i class="fas fa-heart"></i> Enviar Condolencias
+          <a href="#condolencia" class="btn btn-secondary d-flex align-items-center" style="background-color: #6c757d; border-color: #6c757d;">
+            <i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Enviar Condolencias
           </a>
         </div>
 
         <!-- Mensaje de copiado -->
         <div id="mensajeCopiado" class="alert alert-success" style="display:none; margin-top: 15px;">
-          ¡Enlace copiado al portapapeles con éxito!
+          ¡Enlace copiado con éxito!
         </div>
       </div>
     </section>
@@ -354,47 +358,48 @@ $conn->close();
       </div>
     </section>
 
-    
+
 
 
     <!-- Video Section -->
-<section id="video" class="col-12">
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Video Conmemorativo</h2>
-  </div>
+    <section id="video" class="col-12">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Video Conmemorativo</h2>
+      </div>
 
-  <div class="video-container">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe
-        class="embed-responsive-item"
-        src="<?php
-              // Obtener la URL original del video
-              $videoURL = $difunto['video_link'];
+      <div class="video-container">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            id="youtubeVideo"
+            class="embed-responsive-item"
+            src="<?php
+                  // Obtener la URL original del video
+                  $videoURL = $difunto['video_link'];
 
-              // Extraer el ID del video de YouTube
-              preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $videoURL, $matches);
+                  // Extraer el ID del video de YouTube
+                  preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $videoURL, $matches);
 
-              // Si se encuentra un ID de video válido, construir el URL embed con autoplay
-              if (isset($matches[1])) {
-                echo "https://www.youtube.com/embed/" . $matches[1] . "?autoplay=1";
-              } else {
-                echo ""; // Si no se encuentra el ID, dejar vacío o manejar otro error
-              }
-              ?>"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</section>
+                  // Si se encuentra un ID de video válido, construir el URL embed con autoplay
+                  if (isset($matches[1])) {
+                    echo "https://www.youtube.com/embed/" . $matches[1] . "?enablejsapi=1";
+                  } else {
+                    echo ""; // Si no se encuentra el ID, dejar vacío o manejar otro error
+                  }
+                  ?>"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
 
 
 
     <!-- /Video Section -->
 
-    <!-- Contact Section -->
+    <!-- Condolencias Section -->
     <section id="condolencia" class="contact section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -426,14 +431,13 @@ $conn->close();
           <button type="submit" class="btn" onclick="Registrar_Comentario()">Enviar Condolencia</button>
         </div>
       </div>
-      <!-- End Contact Form -->
+      <!-- End Condolencia Form -->
       </div>
     </section>
 
 
-    <!-- /Contact Section -->
 
-    <!-- Testimonials Section -->
+    <!-- Comentarios Section -->
     <section id="testimonials" class="testimonials section accent-background">
       <img src="assets/img/rosas.jpg" class="testimonials-bg" alt="" />
 
@@ -518,13 +522,15 @@ $conn->close();
           <div class="swiper-pagination"></div>
         </div>
       </div>
-    </section>
+    </section><br><br>
 
 
 
 
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Lugar de Defunción </h2>
+      </div>
 
-    <!-- /Testimonials Section -->
 
     <!-- Maps -->
     <section class="col-md-12" style="margin: 0; padding: 0">
@@ -553,7 +559,7 @@ $conn->close();
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Diseñado por <a href="https://bootstrapmade.com/">Vivir en Memoria</a>
+        Diseñado por <a href="#">Vivir en Memoria</a>
       </div>
     </div>
   </footer>
@@ -568,22 +574,69 @@ $conn->close();
   <div id="preloader"></div>
 
 
-  <script>
-    function copiarEnlace() {
-      navigator.clipboard.writeText(window.location.href).then(function() {
-        // Mostrar mensaje bonito en lugar de alerta
-        var mensaje = document.getElementById("mensajeCopiado");
-        mensaje.style.display = "block";
 
-        // Ocultar el mensaje después de 3 segundos
-        setTimeout(function() {
-          mensaje.style.display = "none";
-        }, 1000);
-      }, function(err) {
-        console.error('Error al copiar el enlace: ', err);
+  <script>
+    // Iniciar reproducción de la canción al interactuar con la página
+    function reproducirCancion() {
+      var cancion = document.getElementById('miCancion');
+      if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
+        cancion.play();
+      }
+    }
+
+    // Agregar eventos de interacción con la página
+    document.body.addEventListener('click', reproducirCancion);
+    document.body.addEventListener('mousemove', reproducirCancion);
+    document.body.addEventListener('touchstart', reproducirCancion);
+
+    // Manejar la interacción entre la canción MP3 y el video de YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtubeVideo', {
+        events: {
+          onStateChange: onPlayerStateChange
+        }
       });
     }
+
+    function onPlayerStateChange(event) {
+      var cancion = document.getElementById('miCancion');
+
+      if (event.data === YT.PlayerState.PLAYING) {
+        // Pausar la canción cuando el video está en reproducción
+        cancion.pause();
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        // Reanudar la canción cuando el video se pausa o termina
+        if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
+          cancion.play();
+        }
+      }
+    }
   </script>
+
+
+<script>
+  function copiarEnlace() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      // Mostrar mensaje bonito en lugar de alerta
+      var mensaje = document.getElementById("mensajeCopiado");
+      mensaje.style.display = "block";
+
+      // Ocultar el mensaje después de 3 segundos
+      setTimeout(function() {
+        mensaje.style.display = "none";
+      }, 1000); // Lo dejamos visible por 3 segundos
+    }, function(err) {
+      console.error('Error al copiar el enlace: ', err);
+    });
+  }
+</script>
   <!-- Vendor JS Files -->
   <!-- Agregar jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

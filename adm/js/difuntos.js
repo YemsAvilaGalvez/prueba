@@ -20,13 +20,12 @@ function Listar_Difunto() {
     },
     dom: "Blfrtip",
     columns: [
-      //{ defaultContent: "" },
+      { defaultContent: "" },
       { data: "id_difunto" },
       { data: "documento_identidad" },
       { data: "nombre" },
       { data: "fecha_nacimiento" },
       { data: "fecha_fallecimiento" },
-      { data: "biografia" },
       {
         data: "imagen_perfil",
         render: function (data) {
@@ -37,9 +36,6 @@ function Listar_Difunto() {
           );
         },
       },
-      { data: "video_link" },
-      { data: "ubicacion_link" },
-      { data: "cancion_link" },
       { data: "fecha_creacion" },
       { data: "fecha_fin" },
       {
