@@ -39,7 +39,8 @@
                                     <th>Fecha Nacimiento</th>
                                     <th>Fecha Fallecimiento</th>
                                     <th>Biografia</th>
-                                    <th>Imagen</th>
+                                    <th>Imagen Perfil</th>
+                                    <th>Imagen Portada</th>
                                     <th>Video</th>
                                     <th>Ubicacion</th>
                                     <th>Canción</th>
@@ -108,17 +109,27 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Biografia</label>
                                     <textarea class="form-control" rows="3" id="txt_biografia" placeholder="Enter ..."></textarea>
                                 </div>
                                 <!-- textarea -->
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="file_foto">Imagen</label>
+                                    <label for="file_foto">Imagen Perfil</label>
                                     <input type="file" class="form-control" id="file_foto" placeholder="Imagen">
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="file_foto_portada">Imagen Portada</label>
+                                    <input type="file" class="form-control" id="file_foto_portada" placeholder="Imagen">
                                 </div>
                                 <!-- /.form-group -->
                             </div>

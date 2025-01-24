@@ -37,6 +37,16 @@ function Listar_Difunto() {
           );
         },
       },
+      {
+        data: "imagen_portada",
+        render: function (data) {
+          return (
+            "<img src='../" +
+            data +
+            "' class='img-responsive' style='width: 50px; height: 50px; border-radius: 50%;'>"
+          );
+        },
+      },
       { data: "video_link" },
       { data: "ubicacion_link" },
       { data: "cancion_link" },
@@ -172,6 +182,7 @@ function Registrar_Difunto() {
   let fechaFallecimiento = document.getElementById("date_fallecimiento").value;
   let biografia = document.getElementById("txt_biografia").value;
   let foto = document.getElementById("file_foto").value;
+  let portada = document.getElementById("file_foto_portada").value;
   let videoLink = document.getElementById("txt_video").value;
   let ubicacionLink = document.getElementById("txt_ubicacion").value;
   let audio = document.getElementById("txt_cancion").value;
@@ -193,8 +204,7 @@ function Registrar_Difunto() {
     fechaFallecimiento.length == 0 ||
     biografia.length == 0 ||
     videoLink.length == 0 ||
-    ubicacionLink.length == 0 ||
-    audio.length == 0
+    ubicacionLink.length == 0
   ) {
     ValidarCamposDifunto(
       "txt_nombre",
@@ -202,8 +212,7 @@ function Registrar_Difunto() {
       "date_fallecimiento",
       "txt_biografia",
       "txt_video",
-      "txt_ubicacion",
-      "txt_cancion"
+      "txt_ubicacion"
     );
     return Swal.fire(
       "Mensaje de Advertencia",
@@ -269,9 +278,30 @@ function Registrar_Difunto() {
       extension;
   }
 
+    /**FOTO PORTADA*/
+    let extensionPortada = portada.split(".").pop();
+    let nombreFotoPortada = "";
+    let p = new Date();
+    if (portada.length) {
+      nombreFotoPortada =
+        "PORT-" +
+        p.getDate() +
+        "" +
+        (p.getMonth() + 1) +
+        "" +
+        p.getFullYear() +
+        "" +
+        p.getHours() +
+        "" +
+        p.getMilliseconds() +
+        "." +
+        extensionPortada;
+    }
+
   let formData = new FormData();
   let fotoObject = $("#file_foto")[0].files[0];
   let audioObject = $("#txt_cancion")[0].files[0];
+  let portadaObject = $("#file_foto_portada")[0].files[0];
 
   formData.append("documentoCliente", documentoCliente);
   formData.append("nombre", nombre);
@@ -280,6 +310,8 @@ function Registrar_Difunto() {
   formData.append("biografia", biografia);
   formData.append("nombreFoto", nombreFoto);
   formData.append("foto", fotoObject);
+  formData.append("nombreFotoPortada", nombreFotoPortada);
+  formData.append("portada", portadaObject);
   formData.append("videoLink", videoLink);
   formData.append("ubicacionLink", ubicacionLink);
   formData.append("nombreAudio", nombreAudio);
@@ -395,8 +427,7 @@ function ValidarCamposDifunto(
   fallecimiento,
   biografia,
   video,
-  ubicacion,
-  cancion
+  ubicacion
 ) {
   Boolean(document.getElementById(nombre).value.length > 0)
     ? $("#" + nombre)
@@ -438,13 +469,6 @@ function ValidarCamposDifunto(
         .removeClass("is-invalid")
         .addClass("is-valid")
     : $("#" + ubicacion)
-        .removeClass("is-valid")
-        .addClass("is-invalid");
-  Boolean(document.getElementById(cancion).value.length > 0)
-    ? $("#" + cancion)
-        .removeClass("is-invalid")
-        .addClass("is-valid")
-    : $("#" + cancion)
         .removeClass("is-valid")
         .addClass("is-invalid");
 }
