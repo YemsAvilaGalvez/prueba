@@ -75,7 +75,7 @@ function Listar_Difunto() {
       {
         defaultContent:
           "<center>" +
-          "<span class=' editar text-primary px-1' style='cursor:pointer;' title='Editar datos'><i class= 'fa fa-edit'></i></span>&nbsp;<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-image'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
+          "<span class=' editar text-primary px-1' style='cursor:pointer;' title='Editar datos'><i class= 'fa fa-edit'></i></span>&nbsp;<span class='foto text-info px-1' style='cursor:pointer;' title='Cambiar foto'><i class='fa fa-image'></i></span>&nbsp;<span class='portada text-info px-1' style='cursor:pointer;' title='Cambiar Portada'><i class='fa fa-camera'></i></span>&nbsp;<span class='audio text-info px-1' style='cursor:pointer;' title='Cambiar Audio'><i class='fa fa-volume-up'></i></span>&nbsp;<span class='eliminar text-danger px-1' style='cursor:pointer;' title='Eliminar'><i class= 'fa fa-trash'></i></span>" +
           "</center>",
       },
     ],
@@ -113,6 +113,22 @@ $("#tabla_difunto").on("click", ".foto", function () {
   document.getElementById("idDifuntoFoto").value = data.id_difunto;
   document.getElementById("idDifuntoFotoActual").value = data.imagen_perfil;
   document.getElementById("img-preview").src = "../" + data.imagen_perfil;
+});
+
+/** ABRIR MODAL EDITAR PORTADA */
+$("#tabla_difunto").on("click", ".portada", function () {
+  var data = tbl_difunto.row($(this).parents("tr")).data();
+  if (tbl_difunto.row(this).child.isShown()) {
+    var data = tbl_difunto.row(this).data();
+  }
+
+  $("#modal_editar_portada").modal({ backdrop: "static", keyboard: false });
+  $("#modal_editar_portada").modal("show");
+
+  document.getElementById("idDifuntoPortada").value = data.id_difunto;
+  document.getElementById("idDifuntoPortadaActual").value = data.imagen_portada;
+  document.getElementById("img-preview-portada").src =
+    "../" + data.imagen_portada;
 });
 
 /** ABRIR MODAL EDITAR */
@@ -278,25 +294,25 @@ function Registrar_Difunto() {
       extension;
   }
 
-    /**FOTO PORTADA*/
-    let extensionPortada = portada.split(".").pop();
-    let nombreFotoPortada = "";
-    let p = new Date();
-    if (portada.length) {
-      nombreFotoPortada =
-        "PORT-" +
-        p.getDate() +
-        "" +
-        (p.getMonth() + 1) +
-        "" +
-        p.getFullYear() +
-        "" +
-        p.getHours() +
-        "" +
-        p.getMilliseconds() +
-        "." +
-        extensionPortada;
-    }
+  /**FOTO PORTADA*/
+  let extensionPortada = portada.split(".").pop();
+  let nombreFotoPortada = "";
+  let p = new Date();
+  if (portada.length) {
+    nombreFotoPortada =
+      "PORT-" +
+      p.getDate() +
+      "" +
+      (p.getMonth() + 1) +
+      "" +
+      p.getFullYear() +
+      "" +
+      p.getHours() +
+      "" +
+      p.getMilliseconds() +
+      "." +
+      extensionPortada;
+  }
 
   let formData = new FormData();
   let fotoObject = $("#file_foto")[0].files[0];
@@ -415,6 +431,70 @@ function EditarFoto() {
         });
       } else {
         Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+      }
+    },
+  });
+}
+
+/** EDITAR PORTADA */
+function EditarPortada() {
+  let idDifuntoPortada = document.getElementById("idDifuntoPortada").value;
+  let portada = document.getElementById("file_Portada_editar").value;
+  let portadaActual = document.getElementById("idDifuntoPortadaActual").value;
+
+  if (portada.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione una foto",
+      "warning"
+    );
+  }
+
+  /**FOTO PORTADA*/
+  let extensionPortada = portada.split(".").pop();
+  let nombreFotoPortada = "";
+  let p = new Date();
+  if (portada.length) {
+    nombreFotoPortada =
+      "PORT-" +
+      p.getDate() +
+      "" +
+      (p.getMonth() + 1) +
+      "" +
+      p.getFullYear() +
+      "" +
+      p.getHours() +
+      "" +
+      p.getMilliseconds() +
+      "." +
+      extensionPortada;
+  }
+
+  let formData = new FormData();
+  let portadaObject = $("#file_Portada_editar")[0].files[0];
+  formData.append("idDifuntoPortada", idDifuntoPortada);
+  formData.append("portadaActual", portadaActual);
+  formData.append("nombreFotoPortada", nombreFotoPortada);
+  formData.append("portada", portadaObject);
+
+  $.ajax({
+    url: "../controller/difunto/controlador_editar_portada.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+      if (resp > 0) {
+        Swal.fire(
+          "Mensaje de Confirmacion",
+          "Portada editada correctamente",
+          "success"
+        ).then((value) => {
+          $("#modal_editar_portada").modal("hide");
+          tbl_difunto.ajax.reload();
+        });
+      } else {
+        Swal.fire("Mensaje de Error", "Error al editar Portada", "error");
       }
     },
   });

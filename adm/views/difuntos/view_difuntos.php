@@ -341,6 +341,51 @@
         </div>
         <!-- /.modal end-->
 
+            <!-- model editar foto -->
+            <div class="modal fade" id="modal_editar_portada">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Foto de Portada</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="idDifuntoPortada" hidden>
+                        <input type="text" id="idDifuntoPortadaActual" hidden>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="file_Portada_editar">Imagen de Portada</label>
+                                <input type="file" class="form-control" id="file_Portada_editar" placeholder="Imagen">
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Portada Actual</label>
+                                    <div class="card">
+                                        <img class="" id="img-preview-portada">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" onclick="EditarPortada();">Editar Portada</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal end-->
+
     </div>
     <!-- /.container-fluid -->
 </section>

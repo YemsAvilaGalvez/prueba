@@ -116,6 +116,23 @@ class Modelo_Difunto extends conexionBD
         conexionBD::cerrar_conexion();
     }
 
+    public function Editar_Portada($idDifuntoPortada, $portada)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_EDITAR_PORTADA(?,?)";
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $idDifuntoPortada, PDO::PARAM_INT);
+        $query->bindParam(2, $portada, PDO::PARAM_STR);
+    
+        $resultado = $query->execute();
+        if ($resultado){
+            return 1;
+        }else{
+            return 0;
+        }
+        conexionBD::cerrar_conexion();
+    }
+
     public function Eliminar_Difunto($idDifunto)
     {
         $c = conexionBD::conexionPDO();
