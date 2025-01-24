@@ -159,8 +159,9 @@ $("#tabla_cliente").on("click", ".editar", function () {
   document.getElementById("txt_nombre_editar").value = data.nombre_completo;
   document.getElementById("txt_documento_editar").value = data.documento_identidad;
   document.getElementById("txt_celular_editar").value = data.celular;
-
-  
+  $("#select_departamento_editar").select2().val(data.departamento).trigger("change.select2");
+  $("#select_provincia_editar").select2().val(data.provincia).trigger("change.select2");
+  $("#select_distrito_editar").select2().val(data.distrito).trigger("change.select2");
 });
 
 /** REGISTAR  */
