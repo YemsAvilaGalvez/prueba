@@ -24,13 +24,13 @@ if (empty($nombreFoto)){
 }
 
 if (empty($nombreFotoPortada)){
-    $portada = 'controller/difunto/portada/default.jpg';
+    $portada = 'controller/difunto/portada/default.png';
 }else{
     $portada = 'controller/difunto/portada/'.$nombreFotoPortada;
 }
 
 if (empty($nombreAudio)){
-    $cancion = 'controller/difunto/audio/default.jpg';
+    $cancion = 'controller/difunto/audio/default.mp3';
 }else{
     $cancion = 'controller/difunto/audio/'.$nombreAudio;
 }

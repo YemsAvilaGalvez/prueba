@@ -117,6 +117,22 @@ $("#tabla_difunto").on("click", ".portada", function () {
     "../" + data.imagen_portada;
 });
 
+/** ABRIR MODAL EDITAR UDUIO */
+$("#tabla_difunto").on("click", ".audio", function () {
+  var data = tbl_difunto.row($(this).parents("tr")).data();
+  if (tbl_difunto.row(this).child.isShown()) {
+    var data = tbl_difunto.row(this).data();
+  }
+
+  $("#modal_editar_audio").modal({ backdrop: "static", keyboard: false });
+  $("#modal_editar_audio").modal("show");
+
+  document.getElementById("idDifuntoAudio").value = data.id_difunto;
+  document.getElementById("idDifuntoAudioActual").value = data.cancion_link;
+  document.getElementById("aud-preview").src =
+    "../" + data.cancion_link;
+});
+
 /** ABRIR MODAL EDITAR */
 $("#tabla_difunto").on("click", ".editar", function () {
   var data = tbl_difunto.row($(this).parents("tr")).data();
@@ -481,6 +497,69 @@ function EditarPortada() {
         });
       } else {
         Swal.fire("Mensaje de Error", "Error al editar Portada", "error");
+      }
+    },
+  });
+}
+
+/** EDITAR AUDIO */
+function EditarAudio() {
+  let idDifuntoAudio = document.getElementById("idDifuntoAudio").value;
+  let audio = document.getElementById("file_cancion_editar").value;
+  let audioActual = document.getElementById("idDifuntoAudioActual").value;
+
+  if (audio.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione una foto",
+      "warning"
+    );
+  }
+
+  let extensionau = audio.split(".").pop();
+  let nombreAudio = "";
+  let a = new Date();
+  if (audio.length) {
+    nombreAudio =
+      "AUD-" +
+      a.getDate() +
+      "" +
+      (a.getMonth() + 1) +
+      "" +
+      a.getFullYear() +
+      "" +
+      a.getHours() +
+      "" +
+      a.getMilliseconds() +
+      "." +
+      extensionau;
+  }
+
+  let formData = new FormData();
+  let audioObject = $("#file_cancion_editar")[0].files[0];
+  formData.append("idDifuntoAudio", idDifuntoAudio);
+  formData.append("audioActual", audioActual);
+  formData.append("nombreAudio", nombreAudio);
+  formData.append("audio", audioObject);
+
+  $.ajax({
+    url: "../controller/difunto/controlador_editar_audio.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+      if (resp > 0) {
+        Swal.fire(
+          "Mensaje de Confirmacion",
+          "Cancion editada correctamente",
+          "success"
+        ).then((value) => {
+          $("#modal_editar_audio").modal("hide");
+          tbl_difunto.ajax.reload();
+        });
+      } else {
+        Swal.fire("Mensaje de Error", "Error al editar Cancion", "error");
       }
     },
   });

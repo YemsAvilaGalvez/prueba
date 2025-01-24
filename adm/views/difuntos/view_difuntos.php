@@ -382,7 +382,7 @@
         </div>
         <!-- /.modal end-->
 
-        <!-- model editar portada -->
+        <!-- model editar audio -->
         <div class="modal fade" id="modal_editar_audio">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -397,8 +397,8 @@
                         <input type="text" id="idDifuntoAudioActual" hidden>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="file_Portada_editar">Cancion</label>
-                                <input type="file" class="form-control" id="file_Portada_editar" placeholder="Imagen">
+                                <label for="file_cancion_editar">Cancion</label>
+                                <input type="file" class="form-control" id="file_cancion_editar">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -409,7 +409,7 @@
                                 <div class="form-group">
                                     <label for="">Portada Actual</label>
                                     <div class="card">
-                                        <img class="" id="img-preview-portada">
+                                        <audio class="" id="aud-preview" controls></audio>
                                     </div>
                                 </div>
                             </div>
@@ -418,7 +418,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success" onclick="EditarPortada();">Editar Portada</button>
+                        <button type="button" class="btn btn-success" onclick="EditarAudio();">Editar Cancion</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->

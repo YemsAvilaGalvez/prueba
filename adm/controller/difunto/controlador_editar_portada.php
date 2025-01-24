@@ -16,7 +16,7 @@ if ($consulta == 1) {
     if (!empty($nombreFotoPortada)) {
         if(move_uploaded_file($_FILES['portada']['tmp_name'], "portada/".$nombreFotoPortada));
 
-        if ($portadaActual != "controller/difunto/portada/default.jpg") {
+        if ($portadaActual != "controller/difunto/portada/default.png") {
             unlink('../../'.$portadaActual);
         }
     }
