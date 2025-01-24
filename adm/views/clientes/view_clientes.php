@@ -229,6 +229,10 @@
 
 
 <script>
+    $(document).ready(function() {
+        $('.select2').select2()
+    })
+
     Listar_Cliente();
     Cargar_Select_Departamento();
     Cargar_Select_Provincia();
