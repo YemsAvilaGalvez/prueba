@@ -215,7 +215,7 @@ function RegistrarTestimonio() {
   }
 
   $.ajax({
-    url: "../adm/controller/comentarios/controlador_registrar_testimonio.php",
+    url: "adm/controller/comentarios/controlador_registrar_testimonio.php",
     type: "POST",
     data: {
       name: name,
@@ -226,17 +226,16 @@ function RegistrarTestimonio() {
       if (resp > 0) {
         // Si el valor retornado es mayor a 0, se insertó correctamente
         Swal.fire({
-          title: "Comentario Registrado",
-          text: "El comentario fue registrado exitosamente.",
+          title: "Testimonio Registrado",
+          text: "Gracias por dejar tu testimonio.",
           icon: "success",
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 5000,
         }).then(() => {
           // Limpiar campos después de éxito
           document.getElementById("name").value = "";
-          document.getElementById("telefono").value = "";
           document.getElementById("message").value = "";
 
           // Agregar el nuevo comentario al slider
@@ -278,7 +277,7 @@ function RegistrarTestimonio() {
       } else {
         Swal.fire({
           title: "Error",
-          text: "No se completó el registro del comentario.",
+          text: "No se completó el registro del testimonio.",
           icon: "error",
           toast: true,
           position: "top-end",
@@ -290,7 +289,7 @@ function RegistrarTestimonio() {
     .fail(function (jqXHR, textStatus, errorThrown) {
       Swal.fire({
         title: "Error de Conexión",
-        text: "Hubo un problema al intentar registrar el comentario. Intente de nuevo.",
+        text: "Hubo un problema al intentar registrar el testimonio. Intente de nuevo.",
         icon: "error",
         toast: true,
         position: "top-end",

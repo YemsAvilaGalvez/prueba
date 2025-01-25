@@ -43,9 +43,9 @@ class Modelo_Comentario extends conexionBD
         $query  = $c->prepare($sql);
         $query->bindParam(1, $idTes, PDO::PARAM_INT);
         $resultado = $query->execute();
-        if ($resultado){
+        if ($resultado) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
         conexionBD::cerrar_conexion();
@@ -58,12 +58,31 @@ class Modelo_Comentario extends conexionBD
         $query  = $c->prepare($sql);
         $query->bindParam(1, $idCon, PDO::PARAM_INT);
         $resultado = $query->execute();
-        if ($resultado){
+        if ($resultado) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
         conexionBD::cerrar_conexion();
     }
-    
+
+    public function Registrar_Testimonio($name, $message)
+    {
+        $c = conexionBD::conexionPDO();
+        $sql = "CALL SP_REGISTRAR_TESTIMONIO(?,?)";
+        $query  = $c->prepare($sql);
+        $query->bindParam(1, $name);
+        $query->bindParam(2, $message);
+
+        // Captura el valor retornado por el procedimiento (ID del comentario insertado)
+        $row = $query->fetchColumn();
+
+        if ($row) {
+            return $row; // Retorna el ID del comentario insertado
+        } else {
+            return 0; // Si no se insertó correctamente, retorna 0 o algún valor indicativo de error
+        }
+
+        conexionBD::cerrar_conexion();
+    }
 }
