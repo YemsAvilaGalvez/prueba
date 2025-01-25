@@ -75,7 +75,20 @@ function Registrar_Cliente() {
   let departamento = document.getElementById("select_departamento").value;
   let distrito = document.getElementById("select_distrito").value;
   let provincia = document.getElementById("select_provincia").value;
-  select_distrito;
+
+  if (nombre.length == 0 || documento.length == 0 || celular.length == 0) {
+    ValidarCamposCliente("txt_nombre", "txt_documento", "txt_celular");
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Campos vacios",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+  
   if (departamento.length == 0) {
     return Swal.fire({
       title: "Advertencia",
@@ -110,18 +123,6 @@ function Registrar_Cliente() {
     });
   }
 
-  if (nombre.length == 0 || documento.length == 0 || celular.length == 0) {
-    ValidarCamposCliente("txt_nombre", "txt_documento", "txt_celular");
-    return Swal.fire({
-      title: "Advertencia",
-      text: "Campos vacios",
-      icon: "warning",
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-  }
 
   let formData = new FormData();
 
