@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
@@ -141,13 +141,13 @@
           <div class="col-lg-6">
             <div class="text-container">
               <h1>
-                <span class="turquoise">Bienvenidos a</span> VIVIR EN MEMORIA
+                <span class="turquoise">BIENVENIDOS</span> VIVIR EN MEMORIA
               </h1>
               <p class="p-large">
                 Un espacio para recordar, honrar y compartir el legado de
                 quienes siempre vivirán en nuestros corazones.
               </p>
-              <a class="btn-solid-lg page-scroll" href="#services">DISCOVER</a>
+              <a class="btn-solid-lg page-scroll" href="#services">VER NUESTROS SERVICIOS</a>
             </div>
             <!-- end of text-container -->
           </div>
@@ -172,142 +172,49 @@
   <!-- end of header -->
   <!-- end of header -->
 
-  <!-- Customers -->
-  <div class="slider-1">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h5>Trusted By</h5>
 
-          <!-- Image Slider -->
-          <div class="slider-container">
-            <div class="swiper-container image-slider">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-1.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-2.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-3.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-4.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-5.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="image-container">
-                    <img
-                      class="img-responsive"
-                      src="images/customer-logo-6.png"
-                      alt="alternative" />
-                  </div>
-                </div>
-              </div>
-              <!-- end of swiper-wrapper -->
-            </div>
-            <!-- end of swiper container -->
-          </div>
-          <!-- end of slider-container -->
-          <!-- end of image slider -->
-        </div>
-        <!-- end of col -->
-      </div>
-      <!-- end of row -->
-    </div>
-    <!-- end of container -->
-  </div>
-  <!-- end of slider-1 -->
-  <!-- end of customers -->
 
   <!-- Services -->
   <div id="services" class="cards-1">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2>Business Growth Services</h2>
+          <h2>Visión y Misión</h2>
           <p class="p-heading p-large">
-            We serve small and medium sized companies in all tech related
-            industries with high quality growth services which are presented
-            below
+            En <strong>Vivir en Memoria</strong>, transformamos los recuerdos en homenajes eternos. Creamos páginas web personalizadas en honor a quienes han partido, permitiendo que sus seres queridos celebren y compartan su legado con facilidad y significado.
           </p>
         </div>
         <!-- end of col -->
       </div>
       <!-- end of row -->
+
       <div class="row">
         <div class="col-lg-12">
-          <!-- Card -->
+          <!-- Card: Misión -->
           <div class="card">
             <img
               class="card-image"
-              src="images/services-icon-1.svg"
-              alt="alternative" />
+              src="images/mission-icon.svg"
+              alt="Misión" />
             <div class="card-body">
-              <h4 class="card-title">Market Analysis</h4>
+              <h4 class="card-title">Misión</h4>
               <p>
-                Our team of enthusiastic marketers will analyse and evaluate
-                how your company stacks against the closest competitors
+                Brindar una experiencia única para honrar y preservar el recuerdo de quienes han partido, conectando emociones y recuerdos a través de tecnología innovadora que permita mantener el amor y la memoria vivos para siempre.
               </p>
             </div>
           </div>
           <!-- end of card -->
 
-          <!-- Card -->
+          <!-- Card: Visión -->
           <div class="card">
             <img
               class="card-image"
-              src="images/services-icon-2.svg"
-              alt="alternative" />
+              src="images/vision-icon.svg"
+              alt="Visión" />
             <div class="card-body">
-              <h4 class="card-title">Opportunity Scan</h4>
+              <h4 class="card-title">Visión</h4>
               <p>
-                Once the market analysis process is completed our staff will
-                search for opportunities that are in reach
-              </p>
-            </div>
-          </div>
-          <!-- end of card -->
-
-          <!-- Card -->
-          <div class="card">
-            <img
-              class="card-image"
-              src="images/services-icon-3.svg"
-              alt="alternative" />
-            <div class="card-body">
-              <h4 class="card-title">Action Plan</h4>
-              <p>
-                With all the information in place you will be presented with
-                an action plan that your company needs to follow
+                Ser la plataforma líder en la preservación de memorias digitales, proporcionando herramientas accesibles y significativas para que el legado de cada vida perdure en el tiempo y en el corazón de quienes los recuerdan.
               </p>
             </div>
           </div>
@@ -317,52 +224,19 @@
       </div>
       <!-- end of row -->
     </div>
+
     <!-- end of container -->
   </div>
   <!-- end of cards-1 -->
   <!-- end of services -->
 
-  <!-- Details 1 -->
-  <div class="basic-1">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="text-container">
-            <h2>Design And Plan Your Business Growth Steps</h2>
-            <p>
-              Use our staff and our expertise to design and plan your business
-              growth strategy. Evolo team is eager to advise you on the best
-              opportunities that you should look into
-            </p>
-            <a
-              class="btn-solid-reg popup-with-move-anim"
-              href="#details-lightbox-1">LIGHTBOX</a>
-          </div>
-          <!-- end of text-container -->
-        </div>
-        <!-- end of col -->
-        <div class="col-lg-6">
-          <div class="image-container">
-            <img
-              class="img-fluid"
-              src="images/details-1-office-worker.svg"
-              alt="alternative" />
-          </div>
-          <!-- end of image-container -->
-        </div>
-        <!-- end of col -->
-      </div>
-      <!-- end of row -->
-    </div>
-    <!-- end of container -->
-  </div>
-  <!-- end of basic-1 -->
-  <!-- end of details 1 -->
+
 
   <!-- Details 2 -->
   <div class="basic-2">
     <div class="container">
       <div class="row">
+        <!-- Imagen actual (no se elimina) -->
         <div class="col-lg-6">
           <div class="image-container">
             <img
@@ -373,32 +247,40 @@
           <!-- end of image-container -->
         </div>
         <!-- end of col -->
+
+        <!-- Contenido actualizado -->
         <div class="col-lg-6">
           <div class="text-container">
-            <h2>Search For Optimization Wherever Is Possible</h2>
+            <h2>Un homenaje eterno a quienes amamos</h2>
             <ul class="list-unstyled li-space-lg">
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  Basically we'll teach you step by step what you need to do
+                  Registra los momentos más importantes de tu ser querido: música favorita, biografía, fotos, videos, y más.
                 </div>
               </li>
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  In order to develop your company and reach new heights
+                  Genera una página conmemorativa única que celebra su vida y legado.
                 </div>
               </li>
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  Everyone will be pleased from stakeholders to employees
+                  Accede fácilmente al homenaje a través de un código QR colocado en su lápida.
+                </div>
+              </li>
+              <li class="media">
+                <i class="fas fa-check"></i>
+                <div class="media-body">
+                  Permite a familiares y amigos compartir mensajes y recuerdos desde cualquier lugar.
                 </div>
               </li>
             </ul>
             <a
               class="btn-solid-reg popup-with-move-anim"
-              href="#details-lightbox-2">LIGHTBOX</a>
+              href="#details-lightbox-2">Conoce más</a>
           </div>
           <!-- end of text-container -->
         </div>
@@ -408,6 +290,7 @@
     </div>
     <!-- end of container -->
   </div>
+
   <!-- end of basic-2 -->
   <!-- end of details 2 -->
 
@@ -432,17 +315,16 @@
         </div>
         <!-- end of col -->
         <div class="col-lg-4">
-          <h3>Design And Plan</h3>
+          <h3>Planes y Precios</h3>
           <hr />
-          <h5>Core feature</h5>
+          <h5>Características principales</h5>
           <p>
-            The emailing module basically will speed up your email marketing
-            operations while offering more subscriber control.
+            Ofrecemos diferentes planes que se adaptan a tus necesidades, desde un homenaje sencillo hasta una página conmemorativa completa con fotos, videos, música y mensajes.
           </p>
           <p>
-            Do you need to build lists for your email campaigns? It just got
-            easier with Evolo.
+            ¿Quieres crear un espacio único para recordar y compartir momentos especiales? Con "Vivir en Memoria" lo puedes hacer de manera fácil y accesible.
           </p>
+
           <ul class="list-unstyled li-space-lg">
             <li class="media">
               <i class="fas fa-check"></i>
@@ -556,150 +438,173 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2>Multiple Pricing Options</h2>
+          <h2>Planes de Precios</h2>
           <p class="p-heading p-large">
-            We've prepared pricing plans for all budgets so you can get
-            started right away. They're great for small companies and large
-            organizations
+            Hemos creado planes de precios accesibles que se adaptan a diferentes necesidades y presupuestos. Cada uno de nuestros planes está diseñado para ofrecer una experiencia única y personalizada, permitiéndote rendir un homenaje especial y significativo a tus seres queridos.
           </p>
         </div>
+
+
         <!-- end of col -->
       </div>
       <!-- end of row -->
       <div class="row">
-        <div class="col-lg-12">
-          <!-- Card-->
+        <!-- Card - PLAN BASICO -->
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
-              <div class="card-title">STARTER</div>
-              <div class="card-subtitle">
-                Just to see what can be achieved
-              </div>
+              <div class="card-title">PLAN BASICO</div>
+              <div class="card-subtitle">Ideal para comenzar</div>
               <hr class="cell-divide-hr" />
               <div class="price">
-                <span class="currency">$</span><span class="value">199</span>
-                <div class="frequency">monthly</div>
+                <span class="currency">S/</span><span class="value">150.00</span>
               </div>
               <hr class="cell-divide-hr" />
               <ul class="list-unstyled li-space-lg">
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">Improve Your Email Marketing</div>
+                  <div class="media-body">Placa QR</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">User And Admin Rights Control</div>
+                  <div class="media-body">Biografía</div>
                 </li>
                 <li class="media">
-                  <i class="fas fa-times"></i>
-                  <div class="media-body">List Building And Cleaning</div>
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">10 Fotos</div>
                 </li>
                 <li class="media">
-                  <i class="fas fa-times"></i>
-                  <div class="media-body">Collected Data Management</div>
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">1 Video Personalizado en YouTube (2 minutos)</div>
                 </li>
                 <li class="media">
-                  <i class="fas fa-times"></i>
-                  <div class="media-body">More Planning And Evaluation</div>
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Sección de Condolencia</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Ubicación de Cementerio</div>
                 </li>
               </ul>
               <div class="button-wrapper">
-                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
+                <a class="btn-solid-reg page-scroll" href="#request">SOLICITAR</a>
               </div>
             </div>
           </div>
-          <!-- end of card -->
-          <!-- end of card -->
+        </div>
 
-          <!-- Card-->
+        <!-- Card - PLAN STANDARD -->
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
-              <div class="card-title">MEDIUM</div>
-              <div class="card-subtitle">
-                Very appropriate for the short term
-              </div>
+              <div class="card-title">PLAN STANDARD</div>
+              <div class="card-subtitle">Excelente para necesidades intermedias</div>
               <hr class="cell-divide-hr" />
               <div class="price">
-                <span class="currency">$</span><span class="value">299</span>
-                <div class="frequency">monthly</div>
+                <span class="currency">S/</span><span class="value">199.00</span>
               </div>
               <hr class="cell-divide-hr" />
               <ul class="list-unstyled li-space-lg">
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">Improve Your Email Marketing</div>
+                  <div class="media-body">Placa QR</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">User And Admin Rights Control</div>
+                  <div class="media-body">Biografía</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">List Building And Cleaning</div>
+                  <div class="media-body">15 Fotos</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">Collected Data Management</div>
+                  <div class="media-body">Canción Favorita del Difunto</div>
                 </li>
                 <li class="media">
-                  <i class="fas fa-times"></i>
-                  <div class="media-body">More Planning And Evaluation</div>
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">1 Collar o Llavero QR</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">1 Video Personalizado en YouTube (5 minutos)</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Sección de Condolencia</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Ubicación de Cementerio</div>
                 </li>
               </ul>
               <div class="button-wrapper">
-                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
+                <a class="btn-solid-reg page-scroll" href="#request">SOLICITAR</a>
               </div>
             </div>
           </div>
-          <!-- end of card -->
-          <!-- end of card -->
+        </div>
 
-          <!-- Card-->
+        <!-- Card - PLAN PREMIUM -->
+        <div class="col-lg-4">
           <div class="card">
             <div class="label">
-              <p class="best-value">Best Value</p>
+              <p class="best-value">Mejor Valor</p>
             </div>
             <div class="card-body">
-              <div class="card-title">COMPLETE</div>
-              <div class="card-subtitle">Must have for large companies</div>
+              <div class="card-title">PLAN PREMIUM</div>
+              <div class="card-subtitle">El paquete completo para quienes desean lo mejor</div>
               <hr class="cell-divide-hr" />
               <div class="price">
-                <span class="currency">$</span><span class="value">399</span>
-                <div class="frequency">monthly</div>
+                <span class="currency">S/</span><span class="value">299.00</span>
               </div>
               <hr class="cell-divide-hr" />
               <ul class="list-unstyled li-space-lg">
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">Improve Your Email Marketing</div>
+                  <div class="media-body">Placa QR</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">User And Admin Rights Control</div>
+                  <div class="media-body">Biografía</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">List Building And Cleaning</div>
+                  <div class="media-body">20 Fotos</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">Collected Data Management</div>
+                  <div class="media-body">Imagen Familiar de Portada</div>
                 </li>
                 <li class="media">
                   <i class="fas fa-check"></i>
-                  <div class="media-body">More Planning And Evaluation</div>
+                  <div class="media-body">Canción Favorita del Difunto</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">2 Collares o Llaveros QR</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">1 Video Personalizado en YouTube (10 minutos)</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Sección de Condolencia</div>
+                </li>
+                <li class="media">
+                  <i class="fas fa-check"></i>
+                  <div class="media-body">Ubicación de Cementerio</div>
                 </li>
               </ul>
               <div class="button-wrapper">
-                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
+                <a class="btn-solid-reg page-scroll" href="#request">SOLICITAR</a>
               </div>
             </div>
           </div>
-          <!-- end of card -->
-          <!-- end of card -->
         </div>
-        <!-- end of col -->
       </div>
+
       <!-- end of row -->
     </div>
     <!-- end of container -->
@@ -713,39 +618,33 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="text-container">
-            <h2>Fill The Following Form To Request A Meeting</h2>
+            <h2>Llena el siguiente formulario para registrar tu información</h2>
             <p>
-              Evolo is one of the easiest and feature packed marketing
-              automation apps in the market. Discover what it can do for your
-              business organization right away.
+              Después de completar tu registro, nosotros nos encargamos de todo lo demás. Ofrecemos planes personalizados para el recuerdo y tributo a tus seres queridos.
             </p>
             <ul class="list-unstyled li-space-lg">
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  <strong class="blue">Automate your marketing</strong>
-                  activities and get results today
+                  <strong class="blue">Te ayudamos a crear</strong> un tributo único con fotografías y videos personalizados
                 </div>
               </li>
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  <strong class="blue">Interact with all your</strong>
-                  targeted customers at a personal level
+                  <strong class="blue">Incluimos placas QR</strong> para que los recuerdos sean accesibles de manera sencilla
                 </div>
               </li>
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  <strong class="blue">Convince them to buy</strong> your
-                  company's awesome products
+                  <strong class="blue">Ofrecemos productos personalizados</strong> como collares o llaveros con QR
                 </div>
               </li>
               <li class="media">
                 <i class="fas fa-check"></i>
                 <div class="media-body">
-                  <strong class="blue">Save precious time</strong> and invest
-                  it where you need it the most
+                  <strong class="blue">Nos encargamos de todo</strong> después de tu registro, incluyendo la creación de videos y canciones
                 </div>
               </li>
             </ul>
@@ -818,9 +717,9 @@
                 id="rterms"
                 value="Agreed-to-Terms"
                 name="rterms"
-                required />I agree with Evolo's stated
-              <a href="privacy-policy.html">Privacy Policy</a> and
-              <a href="terms-conditions.html">Terms & Conditions</a>
+                required />Acepto la
+              <a href="privacy-policy.html">Política de Privacidad</a> y los
+              <a href="terms-conditions.html">Términos y Condiciones</a>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
@@ -831,7 +730,6 @@
             <div class="form-message">
               <div id="rmsgSubmit" class="h3 text-center hidden"></div>
             </div>
-
           </div>
           <!-- end of form-container -->
           <!-- end of request form -->
@@ -842,6 +740,7 @@
     </div>
     <!-- end of container -->
   </div>
+
   <!-- end of form-1 -->
   <!-- end of request -->
 
