@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['S_ID'])) {
-    header('Location: views/index.php');
+    header('Location: ../index.php');
 } else {
 }
 
