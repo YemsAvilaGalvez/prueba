@@ -811,7 +811,7 @@
                     id="txt_documento"
                     name="N° Documento de Identidad"
                     required
-                  />
+                    onkeypress="return soloNumeros(event)"/>
                   <label class="label-control" for="txt_documento"
                     >N° de Documento</label
                   >
@@ -824,7 +824,7 @@
                     id="txt_nombre"
                     name="Nombre Completo"
                     required
-                  />
+                    onkeypress="return soloLetras(event)"/>
                   <label class="label-control" for="txt_nombre"
                     >Nombre Completo</label
                   >
@@ -837,7 +837,7 @@
                     id="txt_celular"
                     name="Celular"
                     required
-                  />
+                    onkeypress="return soloNumeros(event)"/>
                   <label class="label-control" for="txt_celular">Celular</label>
                   <div class="help-block with-errors"></div>
                 </div>

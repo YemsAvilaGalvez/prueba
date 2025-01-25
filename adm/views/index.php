@@ -383,6 +383,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
             return patron.test(tecla_final);
         }
 
+        function soloImagenes(fileInput) {
+            // Lista de extensiones permitidas
+            var extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            // Obtener el valor del input (nombre del archivo)
+            var archivo = fileInput.value;
+
+            // Verificar si el archivo cumple con el patrón de extensiones permitidas
+            if (!extensionesPermitidas.test(archivo)) {
+                alert("Solo se permiten archivos con extensiones .jpg, .jpeg, .png, .gif");
+                fileInput.value = ''; // Limpiar el input si la extensión no es válida
+                return false;
+            }
+
+            return true;
+        }
+
+        function soloAudios(fileInput) {
+            // Lista de extensiones permitidas para archivos de audio
+            var extensionesPermitidas = /(\.mp3|\.wav|\.ogg|\.flac)$/i;
+
+            // Obtener el valor del input (nombre del archivo)
+            var archivo = fileInput.value;
+
+            // Verificar si el archivo cumple con el patrón de extensiones permitidas
+            if (!extensionesPermitidas.test(archivo)) {
+                alert("Solo se permiten archivos de audio con extensiones .mp3, .wav, .ogg, .flac");
+                fileInput.value = ''; // Limpiar el input si la extensión no es válida
+                return false;
+            }
+
+            return true;
+        }
+
         function soloLetras(e) {
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();

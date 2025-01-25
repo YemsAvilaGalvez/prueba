@@ -81,7 +81,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_nombre">Nombre Completo</label>
-                                    <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre Completo">
+                                    <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre Completo" onkeypress="return soloLetras(event)">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -118,14 +118,14 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="file_foto">Imagen Perfil</label>
-                                    <input type="file" class="form-control" id="file_foto" placeholder="Imagen">
+                                    <input type="file" class="form-control" id="file_foto" placeholder="Imagen" onchange="soloImagenes(this)">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="file_foto_portada">Imagen Portada</label>
-                                    <input type="file" class="form-control" id="file_foto_portada" placeholder="Imagen">
+                                    <input type="file" class="form-control" id="file_foto_portada" placeholder="Imagen" onchange="soloImagenes(this)">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -152,7 +152,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="txt_cancion">Cancion</label>
-                                    <input type="file" class="form-control" id="txt_cancion" placeholder="Link de Cancion">
+                                    <input type="file" class="form-control" id="txt_cancion" placeholder="Link de Cancion" onchange="soloAudios(this)">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -206,7 +206,7 @@
                                 <input type="text" id="idDifunto" hidden>
                                 <div class="form-group">
                                     <label for="txt_nombre_editar">Nombre Completo</label>
-                                    <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Nombre Completo">
+                                    <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Nombre Completo" onkeypress="return soloLetras(event)">
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -308,7 +308,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_foto">Imagen</label>
-                                <input type="file" class="form-control" id="file_foto_editar" placeholder="Imagen">
+                                <input type="file" class="form-control" id="file_foto_editar" placeholder="Imagen" onchange="soloImagenes(this)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -353,7 +353,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_Portada_editar">Imagen de Portada</label>
-                                <input type="file" class="form-control" id="file_Portada_editar" placeholder="Imagen">
+                                <input type="file" class="form-control" id="file_Portada_editar" placeholder="Imagen" onchange="soloImagenes(this)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -398,7 +398,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_cancion_editar">Cancion</label>
-                                <input type="file" class="form-control" id="file_cancion_editar">
+                                <input type="file" class="form-control" id="file_cancion_editar" onchange="soloAudios(this)">
                             </div>
                             <!-- /.form-group -->
                         </div>

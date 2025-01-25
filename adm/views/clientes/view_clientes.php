@@ -76,7 +76,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="txt_nombre">Nombre Completo</label>
-                                <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre Completo">
+                                <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre Completo" onkeypress="return soloLetras(event)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="txt_celular">Celular</label>
-                                <input type="tel" class="form-control" id="txt_celular" placeholder="Celular">
+                                <input type="tel" class="form-control" id="txt_celular" placeholder="Celular" onkeypress="return soloNumeros(event)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -162,7 +162,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="txt_nombre_editar">Nombre Completo</label>
-                                <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Nombre Completo">
+                                <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Nombre Completo" onkeypress="return soloLetras(event)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -171,7 +171,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="txt_celular_editar">Celular</label>
-                                <input type="tel" class="form-control" id="txt_celular_editar" placeholder="Celular">
+                                <input type="tel" class="form-control" id="txt_celular_editar" placeholder="Celular" onkeypress="return soloNumeros(event)">
                             </div>
                             <!-- /.form-group -->
                         </div>

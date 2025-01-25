@@ -75,7 +75,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_foto">Imagen</label>
-                                <input type="file" class="form-control" id="file_foto" placeholder="Imagen" name="foto[]" multiple>
+                                <input type="file" class="form-control" id="file_foto" placeholder="Imagen" name="foto[]" multiple onchange="soloImagenes(this)">
                             </div>
                             <!-- /.form-group -->
                         </div>
@@ -109,7 +109,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="file_foto">Imagen</label>
-                                <input type="file" class="form-control" id="file_foto_editar" placeholder="Imagen">
+                                <input type="file" class="form-control" id="file_foto_editar" placeholder="Imagen" onchange="soloImagenes(this)">
                             </div>
                             <!-- /.form-group -->
                         </div>

@@ -65,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="nombre_usuario">Nombre</label>
-                                <input type="text" class="form-control" id="nombre_usuario" placeholder="Nombre">
+                                <input type="text" class="form-control" id="nombre_usuario" placeholder="Nombre" onkeypress="return soloLetras(event)">
                             </div>
                             <!-- /.form-group -->
                         </div>
