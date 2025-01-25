@@ -132,6 +132,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','comentarios/view_comentarios.php')">
+                                <i class="nav-icon fas fa-users"></i> <!-- Cambié el icono a 'fa-users' para representar mejor 'Usuarios' -->
+                                <p class="font-weight-bold">COMENTARIOS</p>
+                            </a>
+                        </li>
+
                         <!-- Asistencias del día -->
                         <li class="nav-item">
                             <a href="#" class="nav-link" onclick="cargar_contenido('contenido_principal','usuario/view_usuario.php')">
