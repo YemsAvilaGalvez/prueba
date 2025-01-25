@@ -161,8 +161,9 @@
                                     <label>Plan</label>
                                     <select class="form-control select2" id="select_plan" style="width: 100%;">
                                         <option value="">Seleccnione un plan</option>
-                                        <option value="ANUAL">ANUAL</option>
-                                        <option value="SEMESTRAL">SEMESTRAL</option>
+                                        <option value="BASICO">BASICO</option>
+                                        <option value="STANDARD">STANDARD</option>
+                                        <option value="PREMIUM">PREMIUM</option>
                                     </select>
                                 </div>
                                 <!-- /.form-group -->
@@ -262,8 +263,9 @@
                                     <label>Plan</label>
                                     <select class="form-control select2" id="select_plan_editar" style="width: 100%;">
                                         <option value="">Seleccnione un plan</option>
-                                        <option value="ANUAL">ANUAL</option>
-                                        <option value="SEMESTRAL">SEMESTRAL</option>
+                                        <option value="BASICO">BASICO</option>
+                                        <option value="STANDARD">STANDARD</option>
+                                        <option value="PREMIUM">PREMIUM</option>
                                     </select>
                                 </div>
                                 <!-- /.form-group -->

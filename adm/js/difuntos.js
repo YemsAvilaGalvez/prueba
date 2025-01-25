@@ -41,10 +41,12 @@ function Listar_Difunto() {
       {
         data: "plan",
         render: function (data, type, row) {
-          if (data === "ANUAL") {
-            return "<span class='badge badge-success'>" + data + "</span>";
+          if (data === "PREMIUM") {
+            return "<span class='badge' style='background-color: #FFC300; color: #000; font-weight: bold;'>" + data + "</span>";
+          } else if (data === "STANDARD") {
+            return "<span class='badge' style='background-color: #A8A9AD; color: #000; font-weight: bold;'>" + data + "</span>";
           } else {
-            return "<span class='badge badge-warning'>" + data + "</span>";
+            return "<span class='badge' style='background-color: #B87333; color: #000; font-weight: bold;'>" + data + "</span>";
           }
         },
       },
@@ -249,11 +251,10 @@ function Registrar_Difunto() {
   // Calcular fecha_fin dependiendo del plan usando la fecha de registro (fecha actual)
   let fechaRegistro = new Date(); // Fecha actual
   let fechaFin = new Date(fechaRegistro); // Copiar fecha actual
-  if (plan === "ANUAL") {
-    fechaFin.setFullYear(fechaFin.getFullYear() + 1);
-  } else if (plan === "SEMESTRAL") {
-    fechaFin.setMonth(fechaFin.getMonth() + 6);
-  }
+
+  // Agregar un año automáticamente sin necesidad de condicionales
+  fechaFin.setFullYear(fechaFin.getFullYear() + 1);
+
   let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
   /**AUDIO */
@@ -695,11 +696,10 @@ function EditarDifunto() {
   // Calcular fecha_fin dependiendo del plan usando la fecha de registro (fecha actual)
   let fechaRegistro = new Date(); // Fecha actual
   let fechaFin = new Date(fechaRegistro); // Copiar fecha actual
-  if (plan === "ANUAL") {
-    fechaFin.setFullYear(fechaFin.getFullYear() + 1);
-  } else if (plan === "SEMESTRAL") {
-    fechaFin.setMonth(fechaFin.getMonth() + 6);
-  }
+
+  // Agregar un año automáticamente sin necesidad de condicionales
+  fechaFin.setFullYear(fechaFin.getFullYear() + 1);
+
   let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
   $.ajax({
