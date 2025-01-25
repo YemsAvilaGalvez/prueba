@@ -797,43 +797,29 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <form id="contactForm" data-toggle="validator" data-focus="false">
             <div class="form-group">
               <input
                 type="text"
                 class="form-control-input"
-                id="cname"
+                id="name"
                 required />
-              <label class="label-control" for="cname">Name</label>
+              <label class="label-control" for="name" id="name">Nombre Completo</label>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
               <textarea
                 class="form-control-textarea"
-                id="cmessage"
+                id="message"
                 required></textarea>
-              <label class="label-control" for="cmessage">Your message</label>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group checkbox">
-              <input
-                type="checkbox"
-                id="cterms"
-                value="Agreed-to-Terms"
-                required />I have read and agree with Evolo's stated
-              <a href="privacy-policy.html">Privacy Policy</a> and
-              <a href="terms-conditions.html">Terms Conditions</a>
+              <label class="label-control" for="message" id="message">Tú Testimonio</label>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
-              <button type="submit" class="form-control-submit-button">
-                SUBMIT MESSAGE
+              <button type="submit" class="form-control-submit-button" onclick="RegistrarTestimonio();">
+                Enviar Testimonio
               </button>
             </div>
-            <div class="form-message">
-              <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-            </div>
-          </form>
+
           <!-- end of image-container -->
         </div>
         <!-- end of col -->
@@ -1146,6 +1132,7 @@
   <script src="js/scripts.js"></script>
   <!-- Custom scripts -->
   <script src="adm/js/registrar.js?rev=<?php echo time(); ?>"></script>
+  <script src="adm/js/comentarios.js?rev=<?php echo time(); ?>"></script>
 
   <script>
     Cargar_Select_Departamento();
