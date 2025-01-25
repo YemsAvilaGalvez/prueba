@@ -75,37 +75,54 @@ function Registrar_Cliente() {
   let departamento = document.getElementById("select_departamento").value;
   let distrito = document.getElementById("select_distrito").value;
   let provincia = document.getElementById("select_provincia").value;
-  select_distrito;
-  if (departamento.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Departamento",
-      "warning"
-    );
-  }
-  if (provincia.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Provincia",
-      "warning"
-    );
-  }
-  if (distrito.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Distrito",
-      "warning"
-    );
-  }
 
   if (nombre.length == 0 || documento.length == 0 || celular.length == 0) {
     ValidarCamposCliente("txt_nombre", "txt_documento", "txt_celular");
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Complete los campos",
-      "warning"
-    );
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Campos vacios",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
+  
+  if (departamento.length == 0) {
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde departamento",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+  if (provincia.length == 0) {
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde provincia",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+  if (distrito.length == 0) {
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde distrito",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
 
   let formData = new FormData();
 
@@ -132,8 +149,8 @@ function Registrar_Cliente() {
             icon: "success",
             toast: true,
             position: "top-end",
-            showConfirmButton: false,
-            timer: 2000,
+            showConfirmButton: true,
+            //timer: 2000,
           }).then((value) => {
             LimpiarModalCliente();
           });
