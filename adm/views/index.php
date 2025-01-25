@@ -228,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="icon">
                                     <i class="fas fa-users-cog"></i> <!-- Icono de usuarios -->
                                 </div>
-                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','usuarios/view_usuarios.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','usuario/view_usuario.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -242,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="icon">
                                     <i class="fas fa-exclamation-triangle"></i> <!-- Icono de alerta -->
                                 </div>
-                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','clientes_vencer/view_clientes_vencer.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer" style="color: white; font-weight: bold;" onclick="cargar_contenido('contenido_principal','reportes/view_difuntos_vencer.php')">Ver más... <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
