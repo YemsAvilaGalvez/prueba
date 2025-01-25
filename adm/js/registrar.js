@@ -77,34 +77,50 @@ function Registrar_Cliente() {
   let provincia = document.getElementById("select_provincia").value;
   select_distrito;
   if (departamento.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Departamento",
-      "warning"
-    );
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde departamento",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
   if (provincia.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Provincia",
-      "warning"
-    );
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde provincia",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
   if (distrito.length == 0) {
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Seleccione Distrito",
-      "warning"
-    );
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Seleccionde distrito",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
 
   if (nombre.length == 0 || documento.length == 0 || celular.length == 0) {
     ValidarCamposCliente("txt_nombre", "txt_documento", "txt_celular");
-    return Swal.fire(
-      "Mensaje de Advertencia",
-      "Complete los campos",
-      "warning"
-    );
+    return Swal.fire({
+      title: "Advertencia",
+      text: "Campos vacios",
+      icon: "warning",
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
 
   let formData = new FormData();
@@ -132,8 +148,8 @@ function Registrar_Cliente() {
             icon: "success",
             toast: true,
             position: "top-end",
-            showConfirmButton: false,
-            timer: 2000,
+            showConfirmButton: true,
+            //timer: 2000,
           }).then((value) => {
             LimpiarModalCliente();
           });
