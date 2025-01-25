@@ -223,6 +223,7 @@ $conn->close();
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
       /* Sombra más oscura */
     }
+    
   </style>
 </head>
 
