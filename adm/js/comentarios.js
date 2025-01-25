@@ -196,12 +196,11 @@ function EliminarCondolencia(id_comentario) {
 }
 
 function RegistrarTestimonio() {
-  let name = document.getElementById("name").value;
-  let message = document.getElementById("message").value;
-  //let fechaComentario = new Date().toLocaleDateString("es-PE"); // Obtener fecha en formato español
+  let name = document.getElementById("name").value.trim();
+  let message = document.getElementById("message").value.trim();
+  let fechaComentario = new Date().toLocaleDateString("es-PE");
 
-  // Verificación básica antes de la solicitud AJAX
-  if (name.length == 0 || message.length == 0) {
+  if (name.length === 0 || message.length === 0) {
     Swal.fire({
       title: "Advertencia",
       text: "Debe completar todos los campos",
@@ -217,14 +216,10 @@ function RegistrarTestimonio() {
   $.ajax({
     url: "adm/controller/comentarios/controlador_registrar_testimonio.php",
     type: "POST",
-    data: {
-      name: name,
-      message: message
-    },
+    data: { name: name, message: message },
   })
     .done(function (resp) {
       if (resp > 0) {
-        // Si el valor retornado es mayor a 0, se insertó correctamente
         Swal.fire({
           title: "Testimonio Registrado",
           text: "Gracias por dejar tu testimonio.",
@@ -232,47 +227,31 @@ function RegistrarTestimonio() {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 5000,
+          timer: 3000,
         }).then(() => {
-          // Limpiar campos después de éxito
           document.getElementById("name").value = "";
           document.getElementById("message").value = "";
 
-          // Agregar el nuevo comentario al slider
+          // Agregar nuevo testimonio
           const newComment = `
-                  <div class="swiper-slide">
-                      <div class="testimonial-item">
-                          <h3>${name}</h3>
-                          <h4>${telefono}</h4>  <!-- Mostrar teléfono -->
-                          <p>
-                              <i class="bi bi-quote quote-icon-left"></i>
-                              <span>${message}</span>
-                              <i class="bi bi-quote quote-icon-right"></i>
-                          </p>
-                          <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
-                              <strong>Fecha del comentario:</strong> ${fechaComentario}
-                          </p>
-                      </div>
-                  </div>
-              `;
+            <div class="swiper-slide">
+              <div class="card">
+                <!-- Imagen estática del testimonio -->
+                <img class="card-image" src="profile/assets/img/logo/logo_circular.png" alt="Testimonio de ${name}" />
+                <div class="card-body">
+                  <p class="testimonial-text">"${message}"</p>
+                  <p class="testimonial-author">${name}</p>
+                  <p class="testimonial-date"><strong>Fecha del comentario:</strong> ${fechaComentario}</p>
+                </div>
+              </div>
+            </div>
+          `;
 
-          // Insertar el nuevo comentario al principio de la lista
-          $(".swiper-wrapper").prepend(newComment);
+          // Obtener instancia del swiper
+          const swiper = document.querySelector('.swiper-container').swiper;
 
-          // Recargar la instancia de Swiper después de agregar el comentario
-          var swiper = new Swiper(".swiper.init-swiper", {
-            loop: true,
-            speed: 600,
-            autoplay: { delay: 5000 },
-            slidesPerView: "auto",
-            pagination: {
-              el: ".swiper-pagination",
-              type: "bullets",
-              clickable: true,
-            },
-          });
-
-          swiper.update();
+          // Usar appendSlide para agregar sin resetear
+          swiper.appendSlide(newComment);
         });
       } else {
         Swal.fire({
@@ -286,7 +265,7 @@ function RegistrarTestimonio() {
         });
       }
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
+    .fail(function () {
       Swal.fire({
         title: "Error de Conexión",
         text: "Hubo un problema al intentar registrar el testimonio. Intente de nuevo.",
@@ -298,3 +277,4 @@ function RegistrarTestimonio() {
       });
     });
 }
+

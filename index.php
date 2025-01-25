@@ -1,3 +1,32 @@
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'prueba_final';
+
+$conn = new mysqli($host, $user, $password, $dbname);
+if ($conn->connect_error) {
+  die("Conexión fallida: " . $conn->connect_error);
+}
+
+$sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
+$stmt_testimonio = $conn->prepare($sql_testimonio);
+
+if ($stmt_testimonio === false) {
+  die('Error en la preparación de la consulta: ' . $conn->error);
+}
+
+$stmt_testimonio->execute();
+$result_testimonio = $stmt_testimonio->get_result();
+
+if ($result_testimonio->num_rows > 0) {
+  while ($testimonio = $result_testimonio->fetch_assoc()) {
+  }
+}
+
+$stmt_testimonio->close();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -44,6 +73,29 @@
   <!-- Favicon  -->
   <link rel="icon" href="images/favicon.png" />
 </head>
+
+<style>
+  .no-testimonial-message {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Estilos para la imagen en caso de no testimonios */
+  .card-image {
+    max-width: 200px;
+    /* Ajusta el tamaño según sea necesario */
+    margin: 0 auto;
+  }
+</style>
 
 <body data-spy="scroll" data-target=".fixed-top">
   <!-- Preloader -->
@@ -797,31 +849,23 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control-input"
-                id="name"
-                required />
-              <label class="label-control" for="name" id="name">Nombre Completo</label>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group">
-              <textarea
-                class="form-control-textarea"
-                id="message"
-                required></textarea>
-              <label class="label-control" for="message" id="message">Tú Testimonio</label>
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="form-control-submit-button" onclick="RegistrarTestimonio();">
-                Enviar Testimonio
-              </button>
-            </div>
-
-          <!-- end of image-container -->
+          <div class="form-group">
+            <input type="text" class="form-control-input" id="name" required />
+            <label class="label-control" for="name">Nombre Completo</label>
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control-textarea" id="message" required></textarea>
+            <label class="label-control" for="message">Tu Testimonio</label>
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control-submit-button" onclick="RegistrarTestimonio();">
+              Enviar Testimonio
+            </button>
+          </div>
         </div>
+
         <!-- end of col -->
         <div class="col-lg-6">
           <h2>Testimonials</h2>
@@ -830,67 +874,59 @@
           <div class="slider-container">
             <div class="swiper-container card-slider">
               <div class="swiper-wrapper">
-                <!-- Slide -->
-                <div class="swiper-slide">
-                  <div class="card">
-                    <img
-                      class="card-image"
-                      src="images/testimonial-1.svg"
-                      alt="alternative" />
-                    <div class="card-body">
-                      <p class="testimonial-text">
-                        I just finished my trial period and was so amazed with
-                        the support and results that I purchased Evolo right
-                        away at the special price.
-                      </p>
-                      <p class="testimonial-author">Jude Thorn - Designer</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- end of swiper-slide -->
-                <!-- end of slide -->
+                <?php
+                // Ejecutar la consulta
+                $sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
+                $stmt_testimonio = $conn->prepare($sql_testimonio);
 
-                <!-- Slide -->
-                <div class="swiper-slide">
-                  <div class="card">
-                    <img
-                      class="card-image"
-                      src="images/testimonial-2.svg"
-                      alt="alternative" />
-                    <div class="card-body">
-                      <p class="testimonial-text">
-                        Evolo has always helped or startup to position itself
-                        in the highly competitive market of mobile
-                        applications. You will not regret using it!
-                      </p>
-                      <p class="testimonial-author">
-                        Marsha Singer - Developer
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- end of swiper-slide -->
-                <!-- end of slide -->
+                // Verificar si la preparación fue exitosa
+                if ($stmt_testimonio === false) {
+                  die('Error en la preparación de la consulta: ' . $conn->error);
+                }
 
-                <!-- Slide -->
-                <div class="swiper-slide">
-                  <div class="card">
-                    <img
-                      class="card-image"
-                      src="images/testimonial-3.svg"
-                      alt="alternative" />
-                    <div class="card-body">
-                      <p class="testimonial-text">
-                        Love their services and was so amazed with the support
-                        and results that I purchased Evolo for two years in a
-                        row. They are awesome.
-                      </p>
-                      <p class="testimonial-author">Roy Smith - Marketer</p>
+                $stmt_testimonio->execute();
+                $result_testimonio = $stmt_testimonio->get_result();
+
+                // Verificar si hay testimonios
+                if ($result_testimonio->num_rows > 0) {
+                  // Recorrer todos los testimonios
+                  while ($testimonio = $result_testimonio->fetch_assoc()) {
+                    // Aquí se imprime cada testimonio dentro de un swiper-slide
+                ?>
+                    <div class="swiper-slide">
+                      <div class="card">
+                        <img class="card-image" src="profile/assets/img/logo/logo_circular.png" alt="alternative" />
+                        <div class="card-body">
+                          <!-- Comentario entre comillas -->
+                          <p class="testimonial-text">"<?php echo htmlspecialchars($testimonio['comentario']); ?>"</p>
+
+                          <!-- Nombre del autor -->
+                          <p class="testimonial-author"><?php echo htmlspecialchars($testimonio['nombre']); ?></p>
+
+                          <!-- Fecha del testimonio -->
+                          <p class="testimonial-date"><?php echo htmlspecialchars($testimonio['fechates']); ?></p>
+                        </div>
+                      </div>
+                    </div>
+                  <?php
+                  }
+                } else {
+                  // Si no se encontraron testimonios, mostrar la imagen y mensaje
+                  ?>
+                  <div class="swiper-slide">
+                    <div class="card">
+                      <img class="card-image" src="profile/assets/img/logo/logo_circular.png" />
+                      <div class="card-body">
+                        <p class="no-testimonial-message">No se encontraron testimonios. ¡Sé el primero en compartir tu experiencia!</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <!-- end of swiper-slide -->
-                <!-- end of slide -->
+                <?php
+                }
+
+                // Cerrar la conexión
+                $stmt_testimonio->close();
+                ?>
               </div>
               <!-- end of swiper-wrapper -->
 
@@ -901,6 +937,9 @@
             </div>
             <!-- end of swiper-container -->
           </div>
+
+
+
           <!-- end of slider-container -->
           <!-- end of card slider -->
         </div>
