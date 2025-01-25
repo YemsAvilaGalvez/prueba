@@ -392,7 +392,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             // Verificar si el archivo cumple con el patrón de extensiones permitidas
             if (!extensionesPermitidas.test(archivo)) {
-                alert("Solo se permiten archivos con extensiones .jpg, .jpeg, .png, .gif");
+                //alert("Solo se permiten archivos con extensiones .jpg, .jpeg, .png, .gif");
+                Swal.fire(
+                    "Mensaje de Advertencia",
+                    "Solo se permiten archivos con extensiones .jpg, .jpeg, .png, .gif",
+                    "warning"
+                );
                 fileInput.value = ''; // Limpiar el input si la extensión no es válida
                 return false;
             }
@@ -409,7 +414,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             // Verificar si el archivo cumple con el patrón de extensiones permitidas
             if (!extensionesPermitidas.test(archivo)) {
-                alert("Solo se permiten archivos de audio con extensiones .mp3, .wav, .ogg, .flac");
+                //alert("Solo se permiten archivos de audio con extensiones .mp3, .wav, .ogg, .flac");
+                Swal.fire(
+                    "Mensaje de Advertencia",
+                    "Solo se permiten archivos de audio con extensiones .mp3, .wav, .ogg, .flac",
+                    "warning"
+                );
                 fileInput.value = ''; // Limpiar el input si la extensión no es válida
                 return false;
             }
