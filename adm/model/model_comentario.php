@@ -68,7 +68,7 @@ class Modelo_Comentario extends conexionBD
 
     public function Registrar_Testimonio($name, $message) {
         $c = conexionBD::conexionPDO();
-        $sql = "CALL SP_REGISTRAR_TESTIMONIOO(?,?)";
+        $sql = "CALL SP_REGISTRAR_TESTIMONIO(?,?)";
         $query = $c->prepare($sql);
         $query->bindParam(1, $name);
         $query->bindParam(2, $message);

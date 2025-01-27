@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'prueba_final';
+$dbname = 'prueba_final_v2';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
@@ -1302,7 +1302,6 @@ $stmt_testimonio->close();
 
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <!-- Formulario Responsivo -->
             <div class="row justify-content-center mb-5">
                 <div class="col-12">
                     <h2 class="text-center mb-4">¡Queremos saber tu opinión!</h2>
@@ -1383,30 +1382,6 @@ $stmt_testimonio->close();
     </div>
 
 
-    <script>
-        $(document).ready(function() {
-            $(".owl-carousel").owlCarousel({
-                loop: true, // Permite que el carrusel se repita
-                margin: 10, // Espaciado entre los elementos
-                nav: true, // Habilita los botones de siguiente y anterior
-                dots: true, // Habilita los puntos de navegación
-                autoplay: true, // Habilita el desplazamiento automático
-                autoplayTimeout: 5000, // Tiempo entre los desplazamientos (5000ms = 5 segundos)
-                autoplayHoverPause: true, // Pausa el autoplay al pasar el ratón por encima
-                responsive: {
-                    0: {
-                        items: 1 // Una sola imagen por vez en pantallas pequeñas
-                    },
-                    600: {
-                        items: 2 // Dos imágenes por vez en pantallas medianas
-                    },
-                    1000: {
-                        items: 3 // Tres imágenes por vez en pantallas grandes
-                    }
-                }
-            });
-        });
-    </script>
 
 
 
@@ -1511,7 +1486,6 @@ $stmt_testimonio->close();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
@@ -1521,8 +1495,6 @@ $stmt_testimonio->close();
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

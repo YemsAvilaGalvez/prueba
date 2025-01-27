@@ -7,7 +7,7 @@ class conexionBD
         $host       = "localhost";
         $usuario    = "root";
         $contrasena = "";
-        $bdName     = "prueba_final";
+        $bdName     = "prueba_final_v2";
         try {
             // Establecer la conexión PDO
             $this->pdo = new PDO("mysql:host=$host;dbname=$bdName",$usuario,$contrasena);

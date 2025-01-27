@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'prueba_final';
+$dbname = 'prueba_final_v2';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
@@ -100,7 +100,6 @@ if ($result_difunto->num_rows > 0) {
 
   if ($result_foto->num_rows > 0) {
   } else {
-   
   }
 
   $stmt_foto->close();
@@ -155,19 +154,21 @@ $conn->close();
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
-
- /* Fondo del popup */
- .popup-fondo {
-      display: flex; /* Mostrado automáticamente al cargar */
+    /* Fondo del popup */
+    .popup-fondo {
+      display: flex;
+      /* Mostrado automáticamente al cargar */
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+      background: rgba(0, 0, 0, 0.7);
+      /* Fondo semitransparente */
       justify-content: center;
       align-items: center;
-      z-index: 9999; /* Asegura que esté encima de otros elementos */
+      z-index: 9999;
+      /* Asegura que esté encima de otros elementos */
     }
 
     /* Contenedor del popup */
@@ -175,8 +176,10 @@ $conn->close();
       background: white;
       padding: 15px;
       border-radius: 10px;
-      width: 90%; /* Ocupa el 90% del ancho */
-      max-width: 400px; /* Máximo tamaño en pantallas grandes */
+      width: 90%;
+      /* Ocupa el 90% del ancho */
+      max-width: 400px;
+      /* Máximo tamaño en pantallas grandes */
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
@@ -209,7 +212,7 @@ $conn->close();
     }
 
     .btn-cerrar:hover {
-      background-color:rgb(112, 111, 111);
+      background-color: rgb(112, 111, 111);
     }
 
     button.btn {
@@ -293,8 +296,6 @@ $conn->close();
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
       /* Sombra más oscura */
     }
-
- 
   </style>
 </head>
 
@@ -305,12 +306,12 @@ $conn->close();
   <!-- Popup -->
   <div class="popup-fondo" id="popup">
     <div class="popup-contenido">
-    <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="" />
-    <h4 class="popup-frase" id="frase"></h4>
-    <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
+      <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="" />
+      <h4 class="popup-frase" id="frase"></h4>
+      <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
     </div>
   </div>
-  
+
 
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div
@@ -338,7 +339,7 @@ $conn->close();
   <main class="main">
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
-    <img src="../adm/<?php echo ($difunto['imagen_portada']) ?>" class="img-fluid" alt="" />
+      <img src="../adm/<?php echo ($difunto['imagen_portada']) ?>" class="img-fluid" alt="" />
 
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
@@ -388,15 +389,18 @@ $conn->close();
             </div>
           </div>
           <!-- End Left Column -->
-    <style>
-      .img-fija {
-    width: 600px; /* Ancho fijo */
-    height: 600px; /* Alto fijo */
-    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
-    border-radius: 10px; /* Opcional: esquinas redondeadas */
-}
-
-    </style>
+          <style>
+            .img-fija {
+              width: 600px;
+              /* Ancho fijo */
+              height: 600px;
+              /* Alto fijo */
+              object-fit: cover;
+              /* Ajusta la imagen sin distorsionarla */
+              border-radius: 10px;
+              /* Opcional: esquinas redondeadas */
+            }
+          </style>
           <!-- Right Column -->
           <div class="col-md-6">
             <div class="about-me">
@@ -411,6 +415,66 @@ $conn->close();
       </div>
     </section>
     <!-- End About Section -->
+
+
+    <?php if ($difunto['plan'] !== "BASICO") { ?>
+      <!-- Resume Section -->
+      <section id="resume" class="resume section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Un Viaje en el Tiempo recordando Su Legado</h2>
+          <p>"Celebramos la vida de <?php echo ($difunto['nombre']) ?> con fechas clave y sus pasiones, recordando los momentos que marcaron su legado."</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="resume-title">Fechas Importantes y Conmemorativas</h3>
+
+              <div class="resume-item pb-0">
+
+                <ul>
+                  <?php
+                  if (!empty($resumenes)) {
+                    foreach ($resumenes as $resumen) {
+                      echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
+                    }
+                  } else {
+                    echo "<h1>No hay datos para este difunto</h1>";
+                  }
+                  ?>
+                </ul>
+              </div><!-- Edn Resume Item -->
+
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="resume-title">Hobbies</h3>
+              <div class="resume-item">
+                <ul>
+                  <?php
+                  if (!empty($resumenes)) {
+                    foreach ($resumenes as $resumen) {
+                      echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
+                    }
+                  } else {
+                    echo "<h1>No hay datos para este difunto</h1>";
+                  }
+                  ?>
+                </ul>
+              </div><!-- Edn Resume Item -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section><!-- /Resume Section -->
+    <?php } ?>
+
 
     <!-- Portfolio Section -->
     <section id="galeria" class="portfolio section">
@@ -490,65 +554,9 @@ $conn->close();
 
     <!-- /Video Section -->
 
-    <?php if ($difunto['plan'] !== "BASICO") { ?>
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-      </div><!-- End Section Title -->
 
-      <div class="container">
 
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Fechas Importantes</h3>
-
-            <div class="resume-item pb-0">
-
-              <ul>
-                <?php
-                if (!empty($resumenes)) {
-                  foreach ($resumenes as $resumen) {
-                    echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
-                  }
-                } else {
-                  echo "<h1>No hay datos para este difunto</h1>";
-                }
-                ?>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Hobbies</h3>
-            <div class="resume-item">
-              <ul>
-                <?php
-                if (!empty($resumenes)) {
-                  foreach ($resumenes as $resumen) {
-                    echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
-                  }
-                } else {
-                  echo "<h1>No hay datos para este difunto</h1>";
-                }
-                ?>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-    <?php } ?> 
-
-    
     <!-- Condolencias Section -->
     <section id="condolencia" class="contact section">
       <!-- Section Title -->

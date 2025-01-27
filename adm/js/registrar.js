@@ -145,7 +145,7 @@ function Registrar_Cliente() {
           LimpiarModalCliente();
           Swal.fire({
             title: "Exito",
-            text: "Tú registro se realizo de manera correcta.",
+            text: "Tú registro se realizo de manera correcta, en breve nos comunicaremos contigo. Gracias !.",
             icon: "success",
             toast: true,
             position: "top-end",

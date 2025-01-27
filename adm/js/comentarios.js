@@ -285,3 +285,27 @@ function RegistrarTestimonio() {
     });
 }
 
+
+
+$(document).ready(function() {
+    $(".owl-carousel").owlCarousel({
+        loop: true, // Permite que el carrusel se repita
+        margin: 10, // Espaciado entre los elementos
+        nav: true, // Habilita los botones de siguiente y anterior
+        dots: true, // Habilita los puntos de navegación
+        autoplay: true, // Habilita el desplazamiento automático
+        autoplayTimeout: 5000, // Tiempo entre los desplazamientos (5000ms = 5 segundos)
+        autoplayHoverPause: true, // Pausa el autoplay al pasar el ratón por encima
+        responsive: {
+            0: {
+                items: 1 // Una sola imagen por vez en pantallas pequeñas
+            },
+            600: {
+                items: 2 // Dos imágenes por vez en pantallas medianas
+            },
+            1000: {
+                items: 3 // Tres imágenes por vez en pantallas grandes
+            }
+        }
+    });
+});
