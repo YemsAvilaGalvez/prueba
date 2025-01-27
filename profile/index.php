@@ -428,52 +428,49 @@ $conn->close();
         </div><!-- End Section Title -->
 
         <div class="container">
+  <div class="row">
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="resume-title">Fechas Importantes y Conmemorativas</h3>
+      <div class="resume-item pb-0">
+        <ul>
+          <?php
+          if (!empty($resumenes)) {
+            foreach ($resumenes as $resumen) {
+              if (!empty($resumen['fecha_import'])) {
+                echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
+              }
+            }
+          } else {
+            echo "<h1>No hay datos para este difunto</h1>";
+          }
+          ?>
+        </ul>
+      </div><!-- End Resume Item -->
+    </div>
 
-          <div class="row">
+    <?php if ($difunto['plan'] !== "STANDARD") { ?>
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="resume-title">Hobbies</h3>
+        <div class="resume-item">
+          <ul>
+            <?php
+            if (!empty($resumenes)) {
+              foreach ($resumenes as $resumen) {
+                if (!empty($resumen['hobbies'])) {
+                  echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
+                }
+              }
+            } else {
+              echo "<h1>No hay datos para este difunto</h1>";
+            }
+            ?>
+          </ul>
+        </div><!-- End Resume Item -->
+      </div>
+    <?php } ?>
+  </div>
+</div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="resume-title">Fechas Importantes y Conmemorativas</h3>
-
-              <div class="resume-item pb-0">
-
-                <ul>
-                  <?php
-                  if (!empty($resumenes)) {
-                    foreach ($resumenes as $resumen) {
-                      echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
-                    }
-                  } else {
-                    echo "<h1>No hay datos para este difunto</h1>";
-                  }
-                  ?>
-                </ul>
-              </div><!-- Edn Resume Item -->
-
-            </div>
-
-            <?php if ($difunto['plan'] !== "STANDARD") { ?>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <h3 class="resume-title">Hobbies</h3>
-              <div class="resume-item">
-                <ul>
-                  <?php
-                  if (!empty($resumenes)) {
-                    foreach ($resumenes as $resumen) {
-                      echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
-                    }
-                  } else {
-                    echo "<h1>No hay datos para este difunto</h1>";
-                  }
-                  ?>
-                </ul>
-              </div><!-- Edn Resume Item -->
-
-            </div>
-            <?php } ?>
-
-          </div>
-
-        </div>
 
       </section><!-- /Resume Section -->
     <?php } ?>
