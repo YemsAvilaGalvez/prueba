@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'prueba_final_v2';
+$dbname = 'pruedif';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
@@ -692,7 +692,9 @@ $conn->close();
 
     <!-- Maps -->
     <section class="col-md-12" style="margin: 0; padding: 0">
-      <?php echo ($difunto['ubicacion_link']) ?>
+      <?//php echo ($difunto['ubicacion_link']) ?>
+
+      <iframe src="<?php echo ($difunto['ubicacion_link']) ?>" width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
   </main>
