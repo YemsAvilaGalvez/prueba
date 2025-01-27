@@ -897,3 +897,59 @@ function Registrar_Comentario() {
       });
     });
 }
+
+    // Listado de frases para popup
+    const frases = [
+      "Tu luz nunca se apagará en nuestros corazones.",
+      "Aunque no podamos verte, te sentimos en cada momento.",
+      "Fuiste una bendición en vida y lo seguirás siendo en la eternidad.",
+      "El cielo ganó un ángel, pero aquí siempre te extrañaremos.",
+      "Tu recuerdo será el refugio donde encontraremos consuelo.",
+      "Nos dejaste físicamente, pero tu amor siempre nos acompañará.",
+      "La vida nos separó, pero el amor nos mantendrá unidos.",
+      "Eternamente agradecidos por los momentos que compartimos contigo.",
+      "Tu ausencia duele, pero tu memoria nos llena de paz.",
+      "Descansa en paz, siempre serás nuestro ejemplo de amor y fortaleza.",
+      "En el silencio, encontramos tu voz guiándonos.",
+      "Te llevamos en el alma, donde siempre vivirás.",
+      "Aunque te hayas ido, dejaste huellas imborrables en nuestras vidas.",
+      "Nunca te diremos adiós, porque siempre estarás con nosotros.",
+      "La muerte no borra el amor, solo lo transforma en eternidad.",
+      "Viviste con amor, partiste en paz, y siempre te recordaremos.",
+      "Gracias por los recuerdos, risas y amor que dejaste en nuestro camino.",
+      "Tu partida no es el final, es el comienzo de un amor eterno.",
+      "La eternidad te recibe, pero aquí tu amor sigue latiendo.",
+      "Nos duele tu ausencia, pero agradecemos haber tenido tu presencia.",
+      "Fuiste nuestro pilar en vida, y ahora nuestra estrella en el cielo.",
+      "Cada lágrima es un reflejo del amor eterno que te tenemos.",
+      "Aunque tu partida nos rompe el corazón, tu legado nos da fuerzas.",
+      "Las memorias que creaste con nosotros serán eternas.",
+      "Te extrañaremos siempre, pero tu amor será nuestro refugio.",
+      "El amor que compartimos es inmortal, igual que tu esencia.",
+      "Tu risa, tu bondad y tu amor siempre estarán vivos en nuestras almas.",
+      "El tiempo no puede borrar el amor ni los recuerdos que compartimos.",
+      "Hoy el cielo celebra tu llegada, mientras aquí guardamos tu recuerdo.",
+      "No hay adiós, solo un hasta luego. Te llevamos en nuestros corazones."
+    ];
+
+    // Seleccionar una frase aleatoria
+    const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+
+    // Mostrar la frase en el elemento con id "frase"
+    document.getElementById('frase').innerText = fraseAleatoria;
+
+
+  
+    const btnCerrar = document.getElementById("btnCerrar");
+    const popup = document.getElementById("popup");
+
+    // Ocultar el popup al hacer clic en el botón de cierre
+    btnCerrar.addEventListener("click", () => {
+      popup.style.display = "none"; // Oculta el popup
+    });
+
+    // Mostrar automáticamente el popup al cargar la página
+    window.addEventListener("load", () => {
+      popup.style.display = "flex"; // Asegura que el popup esté visible
+    });
+  

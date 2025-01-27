@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'pruedif';
+$dbname = 'prueba_final';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
@@ -83,10 +83,9 @@ if ($result_difunto->num_rows > 0) {
   $stmt_foto->execute();
   $result_foto = $stmt_foto->get_result();
 
-  // Verificar si se encontró una foto del difunto
   if ($result_foto->num_rows > 0) {
-    $foto = $result_foto->fetch_assoc();
-    // Aquí puedes trabajar con los datos de la foto
+  } else {
+     
   }
 
   $stmt_foto->close();
@@ -97,7 +96,6 @@ if ($result_difunto->num_rows > 0) {
 
 $stmt_difunto->close();
 
-// Cerrar la conexión
 $conn->close();
 ?>
 
@@ -142,6 +140,63 @@ $conn->close();
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
+
+ /* Fondo del popup */
+ .popup-fondo {
+      display: flex; /* Mostrado automáticamente al cargar */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Asegura que esté encima de otros elementos */
+    }
+
+    /* Contenedor del popup */
+    .popup-contenido {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 90%; /* Ocupa el 90% del ancho */
+      max-width: 400px; /* Máximo tamaño en pantallas grandes */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    /* Imagen dentro del popup */
+    .popup-contenido img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* Frase debajo de la imagen */
+    .popup-frase {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Botón de cierre */
+    .btn-cerrar {
+      margin-top: 15px;
+      background-color: #222222;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-cerrar:hover {
+      background-color:rgb(112, 111, 111);
+    }
+
     button.btn {
       background-color: rgba(0, 0, 0, 1);
       /* Fondo negro sólido */
@@ -223,12 +278,24 @@ $conn->close();
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
       /* Sombra más oscura */
     }
+
+ 
   </style>
 </head>
 
 <body class="index-page">
 
   <audio id="miCancion" src="../adm/<?php echo ($difunto['cancion_link']) ?>"></audio>
+
+  <!-- Popup -->
+  <div class="popup-fondo" id="popup">
+    <div class="popup-contenido">
+    <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="" />
+    <h4 class="popup-frase" id="frase"></h4>
+    <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
+    </div>
+  </div>
+  
 
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div
@@ -256,7 +323,8 @@ $conn->close();
   <main class="main">
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
-      <img src="assets/img/logo/fondo.png" class="img-fluid" alt="" />
+    <img src="../adm/<?php echo ($difunto['imagen_portada']) ?>" class="img-fluid" alt="" />
+
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
         <h2><?php echo ($difunto['nombre']) ?></h2>
@@ -297,7 +365,7 @@ $conn->close();
           <div class="col-md-6">
             <div class="row justify-content-between gy-4">
               <div class="col-lg-12">
-                <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="" />
+                <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid img-fija" alt="" />
               </div>
             </div>
             <div class="skills-content skills-animation" style="text-align: center">
@@ -305,7 +373,15 @@ $conn->close();
             </div>
           </div>
           <!-- End Left Column -->
+    <style>
+      .img-fija {
+    width: 600px; /* Ancho fijo */
+    height: 600px; /* Alto fijo */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+}
 
+    </style>
           <!-- Right Column -->
           <div class="col-md-6">
             <div class="about-me">
