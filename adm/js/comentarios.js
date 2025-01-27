@@ -227,31 +227,38 @@ function RegistrarTestimonio() {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 3000,
+          timer: 1000,
         }).then(() => {
           document.getElementById("name").value = "";
           document.getElementById("message").value = "";
 
-          // Agregar nuevo testimonio
-          const newComment = `
-            <div class="swiper-slide">
-              <div class="card">
-                <!-- Imagen estática del testimonio -->
-                <img class="card-image" src="profile/assets/img/logo/logo_circular.png" alt="Testimonio de ${name}" />
-                <div class="card-body">
-                  <p class="testimonial-text">"${message}"</p>
-                  <p class="testimonial-author">${name}</p>
-                  <p class="testimonial-date"><strong>Fecha del comentario:</strong> ${fechaComentario}</p>
+          // Agregar nuevo testimonio al carrusel
+          const newTestimonio = `
+            <div class="testimonial-item">
+              <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
+                "${message}"
+              </div>
+              <div class="d-flex align-items-center pt-3">
+                <img class="img-fluid rounded-circle" src="profile/assets/img/logo/logo_circular.png" style="width: 80px; height: 80px;" alt="Testimonio de ${name}">
+                <div class="pl-4">
+                  <h5>${name}</h5>
+                  <p class="m-0">${fechaComentario}</p>
                 </div>
               </div>
             </div>
           `;
 
-          // Obtener instancia del swiper
-          const swiper = document.querySelector('.swiper-container').swiper;
+          // Obtener el número de testimonios actuales
+          const totalTestimonios = $('.testimonial-carousel .testimonial-item').length;
 
-          // Usar appendSlide para agregar sin resetear
-          swiper.appendSlide(newComment);
+          // Si hay menos de 4 testimonios, no habilitar el carrusel, solo mostrar estáticos
+          if (totalTestimonios < 3) {
+            // Agregar el testimonio al carrusel sin moverlo
+            $('.testimonial-carousel').append(newTestimonio);
+          } else {
+            // Si hay 4 o más testimonios, hacer que el carrusel se mueva
+            $('.testimonial-carousel').trigger('add.owl.carousel', [$(newTestimonio)]).trigger('refresh.owl.carousel');
+          }
         });
       } else {
         Swal.fire({
@@ -261,7 +268,7 @@ function RegistrarTestimonio() {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 3000,
+          timer: 1000,
         });
       }
     })
@@ -273,7 +280,7 @@ function RegistrarTestimonio() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1000,
       });
     });
 }
