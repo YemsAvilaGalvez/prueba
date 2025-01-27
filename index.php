@@ -671,18 +671,11 @@ $stmt_testimonio->close();
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Practice</a>
-                            <a href="team.html" class="nav-item nav-link">Attorneys</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="#" class="dropdown-item">Menu Item 1</a>
-                                    <a href="#" class="dropdown-item">Menu Item 2</a>
-                                    <a href="#" class="dropdown-item">Menu Item 3</a>
-                                </div>
-                            </div>
+                            <a href="index.php" class="nav-item nav-link active">Inicio</a>
+                            <a href="#nosotros" class="nav-item nav-link">Sobre Nosotros</a>
+                            <a href="#servicios" class="nav-item nav-link">Servicios</a>
+                            <a href="#memoriales" class="nav-item nav-link">Memoriales</a>
+                            <a href="#planes" class="nav-item nav-link">Planes</a>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
@@ -717,12 +710,33 @@ $stmt_testimonio->close();
     </div>
     <!-- Inicio -->
 
+    <!-- Sobre Nosotros -->
+    <div class="container-fluid py-5" id="nosotros">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <!-- Imagen -->
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded" src="img/about.jpg" alt="Imagen conmemorativa">
+                </div>
+
+                <!-- Texto y detalles -->
+                <div class="col-lg-7 mt-4 mt-lg-0">
+                    <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">VIVIR EN MEMORIA</h2>
+                    <h6 class="text-uppercase">Bienvenidos</h6>
+                    <h1 class="mb-4">Honra y preserva los recuerdos de tus seres queridos</h1>
+                    <p>En "Vivir en Memoria", nos dedicamos a crear páginas únicas y personalizadas para rendir homenaje a tus seres queridos. Con un simple escaneo de un código QR, podrás revivir sus historias y preservar su legado por siempre.</p>
+                    <a href="#planes" class="btn btn-primary mt-2">Descubre más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sobre Nosotros -->
 
 
 
 
     <!-- Nuestros Servicios -->
-    <div class="container-fluid py-5" style="background: #F4F4F4;">
+    <div class="container-fluid py-5" style="background: #F4F4F4;" id="servicios">
         <div class="container py-5">
             <div class="row">
                 <!-- Título y descripción -->
@@ -807,7 +821,7 @@ $stmt_testimonio->close();
 
 
     <!-- Memoriales de Ejemplo -->
-    <div class="container py-5">
+    <div class="container py-5" id="memoriales">
         <!-- Encabezado -->
         <div class="text-center mb-5">
             <h6 class="text-uppercase text-primary">Explorar</h6>
@@ -904,30 +918,6 @@ $stmt_testimonio->close();
     </div>
     <!-- Como funciona -->
 
-
-
-
-    <!-- Sobre Nosotros -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <!-- Imagen -->
-                <div class="col-lg-5">
-                    <img class="img-fluid rounded" src="img/about.jpg" alt="Imagen conmemorativa">
-                </div>
-
-                <!-- Texto y detalles -->
-                <div class="col-lg-7 mt-4 mt-lg-0">
-                    <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">VIVIR EN MEMORIA</h2>
-                    <h6 class="text-uppercase">Bienvenidos</h6>
-                    <h1 class="mb-4">Honra y preserva los recuerdos de tus seres queridos</h1>
-                    <p>En "Vivir en Memoria", nos dedicamos a crear páginas únicas y personalizadas para rendir homenaje a tus seres queridos. Con un simple escaneo de un código QR, podrás revivir sus historias y preservar su legado por siempre.</p>
-                    <a href="#" class="btn btn-primary mt-2">Descubre más</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Sobre Nosotros -->
 
     <!-- Preguntas Frecuentes -->
     <div class="container-fluid py-5">
@@ -1076,7 +1066,7 @@ $stmt_testimonio->close();
 
 
     <!-- Nuestro planes -->
-    <div id="pricing" class="cards-2" style="background-color: #f4f4f4;">
+    <div id="planes" class="cards-2" style="background-color: #f4f4f4;">
         <div class="container-fluid py-5">
             <div class="row text-center">
                 <div class="col-lg-12">
@@ -1109,7 +1099,7 @@ $stmt_testimonio->close();
                                 <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
                             </ul>
                             <div class="text-center">
-                                <a class="btn btn-primary" href="#request">SOLICITAR</a>
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
                             </div>
                         </div>
                     </div>
@@ -1137,7 +1127,7 @@ $stmt_testimonio->close();
                                 <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
                             </ul>
                             <div class="text-center">
-                                <a class="btn btn-primary" href="#request">SOLICITAR</a>
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
                             </div>
                         </div>
                     </div>
@@ -1169,7 +1159,7 @@ $stmt_testimonio->close();
                                 <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
                             </ul>
                             <div class="text-center">
-                                <a class="btn btn-primary" href="#request">SOLICITAR</a>
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
                             </div>
                         </div>
                     </div>
@@ -1186,7 +1176,7 @@ $stmt_testimonio->close();
 
 
     <!-- Appointment Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5" id="registrar">
         <div class="container py-5">
             <div class="bg-appointment rounded">
                 <div class="row h-100 align-items-center justify-content-center">

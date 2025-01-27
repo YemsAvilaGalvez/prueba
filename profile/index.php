@@ -450,6 +450,8 @@ $conn->close();
               </div><!-- Edn Resume Item -->
 
             </div>
+
+            <?php if ($difunto['plan'] !== "STANDARD") { ?>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
               <h3 class="resume-title">Hobbies</h3>
               <div class="resume-item">
@@ -467,6 +469,7 @@ $conn->close();
               </div><!-- Edn Resume Item -->
 
             </div>
+            <?php } ?>
 
           </div>
 
