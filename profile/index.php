@@ -76,6 +76,21 @@ if ($result_difunto->num_rows > 0) {
 
   $stmt_comentarios->close();
 
+  // Consulta para obtener los resumen del difunto
+  $sql_resumen = "SELECT * FROM datospersonales WHERE id_difunto = ?";
+  $stmt_resumen = $conn->prepare($sql_resumen);
+  $stmt_resumen->bind_param("i", $id);
+  $stmt_resumen->execute();
+  $result_resumen = $stmt_resumen->get_result();
+
+  // Guardar los resultados en un array
+  $resumenes = [];
+  while ($resumen = $result_resumen->fetch_assoc()) {
+    $resumenes[] = $resumen;
+  }
+
+  $stmt_resumen->close();
+
   // Consulta para obtener las fotos del difunto
   $sql_foto = "SELECT * FROM fotosdifunto WHERE id_difunto = ?";
   $stmt_foto = $conn->prepare($sql_foto);
@@ -83,10 +98,9 @@ if ($result_difunto->num_rows > 0) {
   $stmt_foto->execute();
   $result_foto = $stmt_foto->get_result();
 
-  // Verificar si se encontró una foto del difunto
   if ($result_foto->num_rows > 0) {
-    $foto = $result_foto->fetch_assoc();
-    // Aquí puedes trabajar con los datos de la foto
+  } else {
+    echo "<h1>No hay fotos disponibles para este difunto</h1>";
   }
 
   $stmt_foto->close();
@@ -97,7 +111,6 @@ if ($result_difunto->num_rows > 0) {
 
 $stmt_difunto->close();
 
-// Cerrar la conexión
 $conn->close();
 ?>
 
@@ -399,13 +412,13 @@ $conn->close();
 
     <!-- /Video Section -->
 
+    <?php if ($difunto['plan'] !== "BASICO") { ?>
     <!-- Resume Section -->
     <section id="resume" class="resume section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -413,58 +426,38 @@ $conn->close();
         <div class="row">
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Sumary</h3>
+            <h3 class="resume-title">Fechas Importantes</h3>
 
             <div class="resume-item pb-0">
-              <h4>Brandon Johnson</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+
               <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
+                <?php
+                if (!empty($resumenes)) {
+                  foreach ($resumenes as $resumen) {
+                    echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
+                  }
+                } else {
+                  echo "<h1>No hay datos para este difunto</h1>";
+                }
+                ?>
               </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Fine Arts &amp; Graphic Design</h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
             </div><!-- Edn Resume Item -->
 
           </div>
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
+            <h3 class="resume-title">Hobbies</h3>
             <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
               <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+                <?php
+                if (!empty($resumenes)) {
+                  foreach ($resumenes as $resumen) {
+                    echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
+                  }
+                } else {
+                  echo "<h1>No hay datos para este difunto</h1>";
+                }
+                ?>
               </ul>
             </div><!-- Edn Resume Item -->
 
@@ -475,7 +468,9 @@ $conn->close();
       </div>
 
     </section><!-- /Resume Section -->
+    <?php } ?> 
 
+    
     <!-- Condolencias Section -->
     <section id="condolencia" class="contact section">
       <!-- Section Title -->
