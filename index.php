@@ -32,13 +32,13 @@ $stmt_testimonio->close();
 
 <head>
     <meta charset="utf-8">
-    <title>JUSTICE - Free Lawyer Website Template</title>
+    <title>Vivir en Memoria</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="profile/assets/img/logo/logo_circular.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -626,8 +626,8 @@ $stmt_testimonio->close();
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <h1 class="m-0 display-4 text-primary text-uppercase">Justice</h1>
+                <a href="index.php" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <img src="ruta/a/tu/imagen.jpg" alt="Justice" class="img-fluid">
                 </a>
             </div>
             <div class="col-lg-9">
@@ -635,11 +635,11 @@ $stmt_testimonio->close();
                     <div class="col-lg-7 text-left">
                         <div class="h-100 d-inline-flex align-items-center py-2 px-3">
                             <i class="fa fa-envelope text-primary mr-2"></i>
-                            <small>info@example.com</small>
+                            <small>contacto@vivirenmemoria.com</small>
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2 px-2">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>
-                            <small>+012 345 6789</small>
+                            <small>999 999 999</small>
                         </div>
                     </div>
                     <div class="col-lg-5 text-right">
@@ -649,9 +649,6 @@ $stmt_testimonio->close();
                             </a>
                             <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
                                 <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
                             </a>
                             <a class="btn btn-sm btn-outline-primary btn-sm-square mr-2" href="">
                                 <i class="fab fa-instagram"></i>
@@ -676,9 +673,8 @@ $stmt_testimonio->close();
                             <a href="#servicios" class="nav-item nav-link">Servicios</a>
                             <a href="#memoriales" class="nav-item nav-link">Memoriales</a>
                             <a href="#planes" class="nav-item nav-link">Planes</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
+                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Contactanos</a>
                     </div>
                 </nav>
             </div>
@@ -688,7 +684,7 @@ $stmt_testimonio->close();
 
 
     <!-- Inicio -->
-    <div class="container-fluid p-0 mb-5 pb-5">
+    <div class="container-fluid p-0 mb-1 pb-5">
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
@@ -701,7 +697,7 @@ $stmt_testimonio->close();
                                 Crea un espacio único donde familiares y amigos puedan recordar, compartir momentos especiales y honrar la vida de tus seres queridos con un memorial digital.
                             </p>
                             <a href="#servicios" class="btn btn-primary py-3 px-5 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;">Explorar Servicios</a>
-                            <a href="#contacto" class="btn btn-outline-light py-3 px-5 ml-3 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;">Crear Memorial</a>
+                            <a href="#registrar" class="btn btn-outline-light py-3 px-5 ml-3 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;">Crear Memorial</a>
                         </div>
                     </div>
                 </div>
@@ -711,7 +707,7 @@ $stmt_testimonio->close();
     <!-- Inicio -->
 
     <!-- Sobre Nosotros -->
-    <div class="container-fluid py-5" id="nosotros">
+    <div class="container-fluid py-1" id="nosotros">
         <div class="container py-5">
             <div class="row align-items-center">
                 <!-- Imagen -->
@@ -724,13 +720,63 @@ $stmt_testimonio->close();
                     <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">VIVIR EN MEMORIA</h2>
                     <h6 class="text-uppercase">Bienvenidos</h6>
                     <h1 class="mb-4">Honra y preserva los recuerdos de tus seres queridos</h1>
-                    <p>En "Vivir en Memoria", nos dedicamos a crear páginas únicas y personalizadas para rendir homenaje a tus seres queridos. Con un simple escaneo de un código QR, podrás revivir sus historias y preservar su legado por siempre.</p>
+                    <p>En <strong>"Vivir en Memoria"</strong>, nos especializamos en crear páginas conmemorativas únicas y personalizadas para rendir tributo a tus seres queridos. A través de un simple escaneo de un código QR, podrás revivir sus historias, compartir sus memorias y mantener su legado vivo para siempre.</p>
                     <a href="#planes" class="btn btn-primary mt-2">Descubre más</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Sobre Nosotros -->
+
+    <!-- Características -->
+    <div class="container-fluid py-1">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Columna de texto (ahora a la izquierda) -->
+                <div class="col-lg-6 pt-5 pb-lg-5">
+                    <div class="feature-text bg-white rounded p-lg-5">
+                        <h6 class="text-uppercase text-primary">Características</h6>
+                        <h1 class="mb-4">Por qué elegirnos</h1>
+                        <div class="d-flex mb-4">
+                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
+                                <h5 class="text-secondary m-0">01</h5>
+                            </div>
+                            <div class="ml-4">
+                                <h5>Páginas únicas y personalizadas</h5>
+                                <p class="m-0">Crea un espacio digital único para honrar y recordar a tus seres queridos, con fotos, videos, y momentos especiales.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
+                                <h5 class="text-secondary m-0">02</h5>
+                            </div>
+                            <div class="ml-4">
+                                <h5>Escaneo con QR</h5>
+                                <p class="m-0">Acceso rápido y sencillo a la página con un código QR grabado en la placa conmemorativa.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
+                                <h5 class="text-secondary m-0">03</h5>
+                            </div>
+                            <div class="ml-4">
+                                <h5>Conexión a través de recuerdos</h5>
+                                <p class="m-0">Comparte momentos y mensajes con familiares y amigos, manteniendo vivo el recuerdo de tus seres queridos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna de imagen (ahora a la derecha) -->
+                <div class="col-lg-6" style="min-height: 500px;">
+                    <div class="position-relative h-100 rounded overflow-hidden">
+                        <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="Memoria">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Características End -->
 
 
 
@@ -919,8 +965,178 @@ $stmt_testimonio->close();
     <!-- Como funciona -->
 
 
-    <!-- Preguntas Frecuentes -->
+    <!-- Nuestro planes -->
+    <div id="planes" class="cards-2" style="background-color: #f4f4f4;">
+        <div class="container-fluid py-5">
+            <div class="row text-center">
+                <div class="col-lg-12">
+                    <h2 class="mb-4">Planes de Precios</h2>
+                    <p class="mb-5">
+                        Hemos creado planes de precios accesibles que se adaptan a diferentes necesidades y presupuestos. Cada uno de nuestros planes está diseñado para ofrecer una experiencia única y personalizada, permitiéndote rendir un homenaje especial y significativo a tus seres queridos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Row with pricing cards -->
+            <div class="row">
+                <!-- Plan Básico -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">PLAN BÁSICO</h4>
+                            <p class="card-subtitle text-center text-muted">Ideal para comenzar</p>
+                            <hr />
+                            <div class="text-center price">
+                                <span class="currency">S/</span><span class="value">150.00</span>
+                            </div>
+                            <hr />
+                            <ul class="list-unstyled li-space-lg">
+                                <li><i class="fas fa-check"></i> Placa QR</li>
+                                <li><i class="fas fa-check"></i> Biografía</li>
+                                <li><i class="fas fa-check"></i> 10 Fotos</li>
+                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (2 minutos)</li>
+                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                            </ul>
+                            <div class="text-center">
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan Standard -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">PLAN STANDARD</h4>
+                            <p class="card-subtitle text-center text-muted">Excelente para necesidades intermedias</p>
+                            <hr />
+                            <div class="text-center price">
+                                <span class="currency">S/</span><span class="value">199.00</span>
+                            </div>
+                            <hr />
+                            <ul class="list-unstyled li-space-lg">
+                                <li><i class="fas fa-check"></i> Placa QR</li>
+                                <li><i class="fas fa-check"></i> Biografía</li>
+                                <li><i class="fas fa-check"></i> 15 Fotos</li>
+                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
+                                <li><i class="fas fa-check"></i> 1 Collar o Llavero QR</li>
+                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (5 minutos)</li>
+                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                            </ul>
+                            <div class="text-center">
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="label text-center">
+                            <p class="best-value">Mejor Valor</p>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">PLAN PREMIUM</h4>
+                            <p class="card-subtitle text-center text-muted">El paquete completo para quienes desean lo mejor</p>
+                            <hr />
+                            <div class="text-center price">
+                                <span class="currency">S/</span><span class="value">299.00</span>
+                            </div>
+                            <hr />
+                            <ul class="list-unstyled li-space-lg">
+                                <li><i class="fas fa-check"></i> Placa QR</li>
+                                <li><i class="fas fa-check"></i> Biografía</li>
+                                <li><i class="fas fa-check"></i> 20 Fotos</li>
+                                <li><i class="fas fa-check"></i> Imagen Familiar de Portada</li>
+                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
+                                <li><i class="fas fa-check"></i> 2 Collares o Llaveros QR</li>
+                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (10 minutos)</li>
+                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                            </ul>
+                            <div class="text-center">
+                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of row -->
+        </div>
+    </div>
+    <!-- Nuestro planes -->
+
+    <!-- Appointment Start -->
+    <div class="container-fluid py-5" id="registrar">
+        <div class="container py-5">
+            <div class="bg-appointment rounded">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-lg-6 py-5">
+                        <div class="rounded p-5 my-5" style="background: rgba(55, 55, 63, .7);">
+                            <h1 class="text-center text-white mb-4">Llena el siguiente formulario para registrar tu información</h1>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control border-0 p-4" placeholder="Numero de Documento de Identidad" id="txt_documento" required="required" onkeypress="return soloNumeros(event)" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" placeholder="Nombre Completo" id="txt_nombre" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control border-0 p-4" placeholder="Numero de Celular" id="txt_celular" required="required" />
+                            </div>
+
+                            <div class="form-group">
+                                <select class="custom-select border-0 px-4" id="select_departamento" onchange="Cargar_Select_Provincia()" style="height: 47px;">
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="custom-select border-0 px-4" id="select_provincia" onchange="Cargar_Select_Distrito()" style="height: 47px;">
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="custom-select border-0 px-4" id="select_distrito" style="height: 47px;">
+
+                                </select>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" onclick=" Registrar_Cliente();" type="submit">Registrar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment End -->
+
+    <!-- Action Start -->
     <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="bg-action rounded" style="height: 500px; background: linear-gradient(to right, #3a6186, #89253e);">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <h1 class="text-white mb-4">Preserva los recuerdos más preciados</h1>
+                        <p class="text-white mb-4">Crea un homenaje único para tus seres queridos con páginas conmemorativas personalizadas.</p>
+                        <a class="btn btn-primary py-3 px-5 mt-2" href="#">Comienza ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action End -->
+
+    <!-- Preguntas Frecuentes -->
+    <div class="container-fluid py-5" id="preguntas">
         <div class="container py-5">
             <h2 class="text-center text-primary mb-4">Preguntas Frecuentes</h2>
             <div class="row">
@@ -1064,232 +1280,7 @@ $stmt_testimonio->close();
     </div>
     <!-- Preguntas Frecuentes -->
 
-
-    <!-- Nuestro planes -->
-    <div id="planes" class="cards-2" style="background-color: #f4f4f4;">
-        <div class="container-fluid py-5">
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <h2 class="mb-4">Planes de Precios</h2>
-                    <p class="mb-5">
-                        Hemos creado planes de precios accesibles que se adaptan a diferentes necesidades y presupuestos. Cada uno de nuestros planes está diseñado para ofrecer una experiencia única y personalizada, permitiéndote rendir un homenaje especial y significativo a tus seres queridos.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Row with pricing cards -->
-            <div class="row">
-                <!-- Plan Básico -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">PLAN BÁSICO</h4>
-                            <p class="card-subtitle text-center text-muted">Ideal para comenzar</p>
-                            <hr />
-                            <div class="text-center price">
-                                <span class="currency">S/</span><span class="value">150.00</span>
-                            </div>
-                            <hr />
-                            <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 10 Fotos</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (2 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
-                            </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plan Standard -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">PLAN STANDARD</h4>
-                            <p class="card-subtitle text-center text-muted">Excelente para necesidades intermedias</p>
-                            <hr />
-                            <div class="text-center price">
-                                <span class="currency">S/</span><span class="value">199.00</span>
-                            </div>
-                            <hr />
-                            <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 15 Fotos</li>
-                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
-                                <li><i class="fas fa-check"></i> 1 Collar o Llavero QR</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (5 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
-                            </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plan Premium -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <div class="label text-center">
-                            <p class="best-value">Mejor Valor</p>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title text-center">PLAN PREMIUM</h4>
-                            <p class="card-subtitle text-center text-muted">El paquete completo para quienes desean lo mejor</p>
-                            <hr />
-                            <div class="text-center price">
-                                <span class="currency">S/</span><span class="value">299.00</span>
-                            </div>
-                            <hr />
-                            <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 20 Fotos</li>
-                                <li><i class="fas fa-check"></i> Imagen Familiar de Portada</li>
-                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
-                                <li><i class="fas fa-check"></i> 2 Collares o Llaveros QR</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (10 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
-                            </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End of row -->
-        </div>
-    </div>
-    <!-- Nuestro planes -->
-
-
-
-
-
-
-    <!-- Appointment Start -->
-    <div class="container-fluid py-5" id="registrar">
-        <div class="container py-5">
-            <div class="bg-appointment rounded">
-                <div class="row h-100 align-items-center justify-content-center">
-                    <div class="col-lg-6 py-5">
-                        <div class="rounded p-5 my-5" style="background: rgba(55, 55, 63, .7);">
-                            <h1 class="text-center text-white mb-4">Llena el siguiente formulario para registrar tu información</h1>
-
-                            <div class="form-group">
-                                <input type="number" class="form-control border-0 p-4" placeholder="Numero de Documento de Identidad" id="txt_documento" required="required" onkeypress="return soloNumeros(event)" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 p-4" placeholder="Nombre Completo" id="txt_nombre" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="number" class="form-control border-0 p-4" placeholder="Numero de Celular" id="txt_celular" required="required" />
-                            </div>
-
-                            <div class="form-group">
-                                <select class="custom-select border-0 px-4" id="select_departamento" onchange="Cargar_Select_Provincia()" style="height: 47px;">
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <select class="custom-select border-0 px-4" id="select_provincia" onchange="Cargar_Select_Distrito()" style="height: 47px;">
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <select class="custom-select border-0 px-4" id="select_distrito" style="height: 47px;">
-
-                                </select>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" onclick=" Registrar_Cliente();" type="submit">Registrar</button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Appointment End -->
-
-
-    <!-- Features Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
-                    <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="Memoria">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="feature-text bg-white rounded p-lg-5">
-                        <h6 class="text-uppercase text-primary">Características</h6>
-                        <h1 class="mb-4">Por qué elegirnos</h1>
-                        <div class="d-flex mb-4">
-                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
-                                <h5 class="text-secondary m-0">01</h5>
-                            </div>
-                            <div class="ml-4">
-                                <h5>Páginas únicas y personalizadas</h5>
-                                <p class="m-0">Crea un espacio digital único para honrar y recordar a tus seres queridos, con fotos, videos, y momentos especiales.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex mb-4">
-                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
-                                <h5 class="text-secondary m-0">02</h5>
-                            </div>
-                            <div class="ml-4">
-                                <h5>Escaneo con QR</h5>
-                                <p class="m-0">Acceso rápido y sencillo a la página con un código QR grabado en la placa conmemorativa.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
-                                <h5 class="text-secondary m-0">03</h5>
-                            </div>
-                            <div class="ml-4">
-                                <h5>Conexión a través de recuerdos</h5>
-                                <p class="m-0">Comparte momentos y mensajes con familiares y amigos, manteniendo vivo el recuerdo de tus seres queridos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Features End -->
-
-
-    <!-- Action Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="bg-action rounded" style="height: 500px; background: linear-gradient(to right, #3a6186, #89253e);">
-                <div class="row h-100 align-items-center justify-content-center">
-                    <div class="col-lg-7 text-center">
-                        <h1 class="text-white mb-4">Preserva los recuerdos más preciados</h1>
-                        <p class="text-white mb-4">Crea un homenaje único para tus seres queridos con páginas conmemorativas personalizadas.</p>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="#">Comienza ahora</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Action End -->
-
+    <!-- Comentario -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row justify-content-center mb-5">
@@ -1379,41 +1370,33 @@ $stmt_testimonio->close();
 
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-white pt-5 px-sm-3 px-md-5" style="margin-top: 90px;">
-        <div class="row mt-5">
+        <div class="row justify-content-center mt-3">
             <div class="col-lg-4">
-                <div class="d-flex justify-content-lg-center p-4" style="background: rgba(256, 256, 256, .05);">
-                    <i class="fa fa-2x fa-map-marker-alt text-primary"></i>
-                    <div class="ml-3">
-                        <h5 class="text-white">Our Office</h5>
-                        <p class="m-0">123 Street, New York, USA</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="d-flex justify-content-lg-center p-4" style="background: rgba(256, 256, 256, .05);">
+                <div class="d-flex justify-content-center align-items-center p-4" style="background: rgba(255, 255, 255, 0.05);">
                     <i class="fa fa-2x fa-envelope-open text-primary"></i>
                     <div class="ml-3">
-                        <h5 class="text-white">Email Us</h5>
-                        <p class="m-0">info@example.com</p>
+                        <h5 class="text-white text-center">Email</h5>
+                        <p class="m-0 text-center">contacto@vivierenmemoria.com</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="d-flex justify-content-lg-center p-4" style="background: rgba(256, 256, 256, .05);">
+                <div class="d-flex justify-content-center align-items-center p-4" style="background: rgba(255, 255, 255, 0.05);">
                     <i class="fa fa-2x fa-phone-alt text-primary"></i>
                     <div class="ml-3">
-                        <h5 class="text-white">Call Us</h5>
-                        <p class="m-0">+012 345 6789</p>
+                        <h5 class="text-white text-center">Celular</h5>
+                        <p class="m-0 text-center">999 999 999</p>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
+            <div class="col-lg-5 col-md-6 mb-5">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">Justice</h1>
+                    <h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">Vivir en Memoria</h1>
                 </a>
-                <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
+                <p>Cada recuerdo es una historia, y queremos ayudarte a contar la tuya de la manera más significativa.</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1422,44 +1405,27 @@ $stmt_testimonio->close();
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="font-weight-semi-bold text-primary mb-4">Popular Links</h4>
+                <h4 class="font-weight-semi-bold text-primary mb-4">Enlaces Rápidos</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Attorney</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                    <a class="text-white mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
+                    <a class="text-white mb-2" href="#nosotros"><i class="fa fa-angle-right mr-2"></i>Sobre Nosotros</a>
+                    <a class="text-white mb-2" href="#servicios"><i class="fa fa-angle-right mr-2"></i>Servicios</a>
+                    <a class="text-white mb-2" href="#memoriales"><i class="fa fa-angle-right mr-2"></i>Memoriales</a>
+                    <a class="text-white" href="#planes"><i class="fa fa-angle-right mr-2"></i>Planes</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="font-weight-semi-bold text-primary mb-4">Quick Links</h4>
+                <h4 class="font-weight-semi-bold text-primary mb-4">Preguntas y Políticas</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>FAQs</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Site Map</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="font-weight-semi-bold text-primary mb-4">Newsletter</h4>
-                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum.</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-0" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">Sign Up</button>
-                        </div>
-                    </div>
+                    <a class="text-white mb-2" href="#preguntas"><i class="fa fa-angle-right mr-2"></i>FAQs</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Términos</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacidad</a>
                 </div>
             </div>
         </div>
         <div class="row p-4 mt-5 mx-0" style="background: rgba(256, 256, 256, .05);">
-            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.</p>
-            </div>
-            <div class="col-md-6 text-center text-md-right">
-                <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://htmlcodex.com">HTML Codex</a></p>
+            <div class="col-md-12 text-center text-md-center mb-3 mb-md-0">
+                <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="index.php">Vivir en Memoria</a>. Todos los Derechos reservados.</p>
             </div>
         </div>
     </div>
