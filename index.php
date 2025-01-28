@@ -688,20 +688,20 @@ $stmt_testimonio->close();
 
 
     <!-- Inicio -->
-    <div class="container-fluid p-0 mb-1 pb-5">
+    <div class="container-fluid p-0 mb-1 pb-5" data-aos="fade-up">
         <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="img/carousel-1.jpg" style="object-fit: cover;">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3 text-center" style="max-width: 900px; background: rgba(0, 0, 0, 0.6); border-radius: 15px;">
-                            <h4 class="text-white text-uppercase mb-3" style="letter-spacing: 3px; font-weight: bold;">VIVIR EN MEMORIA</h4>
-                            <h2 class="display-3 text-white mb-4" style="font-weight: bold;">Preserva la memoria de tus seres queridos</h2>
-                            <p class="text-white mb-4" style="font-size: 1.2rem;">
+                    <img class="position-absolute w-100 h-100" src="img/carousel-1.jpg" style="object-fit: cover;" data-aos="zoom-in">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-3 text-center" style="max-width: 900px; background: rgba(0, 0, 0, 0.6); border-radius: 15px;" data-aos="fade-down" data-aos-delay="400">
+                            <h4 class="text-white text-uppercase mb-3" style="letter-spacing: 3px; font-weight: bold;" data-aos="fade-right">VIVIR EN MEMORIA</h4>
+                            <h2 class="display-3 text-white mb-4" style="font-weight: bold;" data-aos="fade-left" data-aos-delay="600">Preserva la memoria de tus seres queridos</h2>
+                            <p class="text-white mb-4" style="font-size: 1.2rem;" data-aos="fade-up" data-aos-delay="800">
                                 Crea un espacio único donde familiares y amigos puedan recordar, compartir momentos especiales y honrar la vida de tus seres queridos con un memorial digital.
                             </p>
-                            <a href="#servicios" class="btn btn-primary py-3 px-5 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;">Explorar Servicios</a>
-                            <a href="#registrar" class="btn btn-outline-light py-3 px-5 ml-3 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;">Crear Memorial</a>
+                            <a href="#servicios" class="btn btn-primary py-3 px-5 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;" data-aos="flip-up" data-aos-delay="1000">Explorar Servicios</a>
+                            <a href="#registrar" class="btn btn-outline-light py-3 px-5 ml-3 text-uppercase" style="font-size: 1rem; font-weight: bold; border-radius: 30px;" data-aos="flip-up" data-aos-delay="1200">Crear Memorial</a>
                         </div>
                     </div>
                 </div>
@@ -709,6 +709,7 @@ $stmt_testimonio->close();
         </div>
     </div>
     <!-- Inicio -->
+
 
     <!-- Sobre Nosotros -->
     <div class="container-fluid py-1" id="nosotros">
@@ -1289,32 +1290,31 @@ $stmt_testimonio->close();
     <!-- Preguntas Frecuentes -->
 
     <!-- Comentario -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
+    <div class="container-fluid py-5" data-aos="fade-up">
+        <div class="container py-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="row justify-content-center mb-5" data-aos="fade-down" data-aos-delay="400">
                 <div class="col-12">
-                    <h2 class="text-center mb-4">¡Queremos saber tu opinión!</h2>
-                    <p class="text-center mb-4">Déjanos un comentario sobre qué te ha parecido nuestra página y servicio. ¡Tu opinión es muy importante para nosotros!</p>
+                    <h2 class="text-center mb-4" data-aos="fade-right">¡Queremos saber tu opinión!</h2>
+                    <p class="text-center mb-4" data-aos="fade-left" data-aos-delay="200">Déjanos un comentario sobre qué te ha parecido nuestra página y servicio. ¡Tu opinión es muy importante para nosotros!</p>
 
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
                         <label for="nombre">Tu Nombre</label>
                         <input type="text" class="form-control" id="name" name="nombre" required placeholder="Escribe tu nombre">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="600">
                         <label for="mensaje">Tu Mensaje</label>
                         <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Escribe tu mensaje"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block mt-3" onclick="RegistrarTestimonio();">Enviar Mensaje</button>
-
+                    <button type="submit" class="btn btn-primary btn-block mt-3" onclick="RegistrarTestimonio();" data-aos="zoom-in" data-aos-delay="800">Enviar Mensaje</button>
                 </div>
             </div>
 
             <!-- Sección de Testimonios -->
-            <div class="text-center pb-5">
+            <div class="text-center pb-5" data-aos="fade-up" data-aos-delay="1000">
                 <h6 class="text-uppercase">Testimonios</h6>
                 <h1 class="mb-5">¿ Qué dicen nuestros Clientes ?</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel" data-wow-delay="0.1s">
+            <div class="owl-carousel testimonial-carousel" data-wow-delay="0.1s" data-aos="fade-up" data-aos-delay="1200">
                 <?php
                 // Consulta para obtener los testimonios
                 $sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
@@ -1333,7 +1333,7 @@ $stmt_testimonio->close();
                     // Recorrer todos los testimonios
                     while ($testimonio = $result_testimonio->fetch_assoc()) {
                 ?>
-                        <div class="testimonial-item">
+                        <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="1400">
                             <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
                                 <?php echo htmlspecialchars($testimonio['comentario']); ?>
                             </div>
@@ -1349,7 +1349,7 @@ $stmt_testimonio->close();
                     }
                 } else {
                     ?>
-                    <div class="testimonial-item">
+                    <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="1400">
                         <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
                             No se encontraron testimonios. ¡Sé el primero en compartir tu experiencia!
                         </div>
@@ -1369,6 +1369,7 @@ $stmt_testimonio->close();
             </div>
         </div>
     </div>
+
 
 
 
