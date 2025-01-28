@@ -796,7 +796,7 @@ function Registrar_Comentario() {
   let fechaComentario = new Date().toLocaleDateString("es-PE"); // Obtener fecha en formato español
 
   // Verificación básica antes de la solicitud AJAX
-  if (name.length == 0 || telefono.length == 0 || message.length == 0) {
+  if (name.length == 0 || message.length == 0) {
     Swal.fire({
       title: "Advertencia",
       text: "Debe completar todos los campos",
