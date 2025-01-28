@@ -152,8 +152,18 @@ $conn->close();
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
 
   <style>
+    .font-secondary {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .font-secondary {
+      font-family: "Great Vibes", cursive;
+    }
+
     /* Fondo del popup */
     .popup-fondo {
       display: flex;
@@ -343,7 +353,7 @@ $conn->close();
 
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-        <h2><?php echo ($difunto['nombre']) ?></h2>
+        <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?php echo ($difunto['nombre']) ?></h1>
         <h6><strong>ETERNAMENTE EN NUESTROS CORAZONES</strong></h6>
         <p>
           <span class="typed" data-typed-items="Fecha de Nacimiento: <?php echo $fechaNacimientoFormateada ?>, Fecha de Fallecimiento: <?php echo $fechaFallecimientoFormateada ?>"></span>
@@ -428,48 +438,48 @@ $conn->close();
         </div><!-- End Section Title -->
 
         <div class="container">
-  <div class="row">
-    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-      <h3 class="resume-title">Fechas Importantes y Conmemorativas</h3>
-      <div class="resume-item pb-0">
-        <ul>
-          <?php
-          if (!empty($resumenes)) {
-            foreach ($resumenes as $resumen) {
-              if (!empty($resumen['fecha_import'])) {
-                echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
-              }
-            }
-          } else {
-            echo "<h1>No hay datos para este difunto</h1>";
-          }
-          ?>
-        </ul>
-      </div><!-- End Resume Item -->
-    </div>
+          <div class="row">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="resume-title">Fechas Importantes y Conmemorativas</h3>
+              <div class="resume-item pb-0">
+                <ul>
+                  <?php
+                  if (!empty($resumenes)) {
+                    foreach ($resumenes as $resumen) {
+                      if (!empty($resumen['fecha_import'])) {
+                        echo "<li>" . htmlspecialchars($resumen['fecha_import']) . "</li>";
+                      }
+                    }
+                  } else {
+                    echo "<h1>No hay datos para este difunto</h1>";
+                  }
+                  ?>
+                </ul>
+              </div><!-- End Resume Item -->
+            </div>
 
-    <?php if ($difunto['plan'] !== "STANDARD") { ?>
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="resume-title">Hobbies</h3>
-        <div class="resume-item">
-          <ul>
-            <?php
-            if (!empty($resumenes)) {
-              foreach ($resumenes as $resumen) {
-                if (!empty($resumen['hobbies'])) {
-                  echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
-                }
-              }
-            } else {
-              echo "<h1>No hay datos para este difunto</h1>";
-            }
-            ?>
-          </ul>
-        </div><!-- End Resume Item -->
-      </div>
-    <?php } ?>
-  </div>
-</div>
+            <?php if ($difunto['plan'] !== "STANDARD") { ?>
+              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="resume-title">Hobbies</h3>
+                <div class="resume-item">
+                  <ul>
+                    <?php
+                    if (!empty($resumenes)) {
+                      foreach ($resumenes as $resumen) {
+                        if (!empty($resumen['hobbies'])) {
+                          echo "<li>" . htmlspecialchars($resumen['hobbies']) . "</li>";
+                        }
+                      }
+                    } else {
+                      echo "<h1>No hay datos para este difunto</h1>";
+                    }
+                    ?>
+                  </ul>
+                </div><!-- End Resume Item -->
+              </div>
+            <?php } ?>
+          </div>
+        </div>
 
 
       </section><!-- /Resume Section -->
@@ -597,90 +607,114 @@ $conn->close();
 
     <!-- Comentarios Section -->
     <section id="testimonials" class="testimonials section accent-background">
-      <img src="assets/img/rosas.jpg" class="testimonials-bg" alt="" />
+    <img src="assets/img/rosas.jpg" class="testimonials-bg" alt="" />
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- Botón para abrir el modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comentariosModal">
+            Ver todos los registros
+        </button>
+
         <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": false,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": 1,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-            <?php if (!empty($comentarios)) : ?>
-              <?php foreach ($comentarios as $comentario) : ?>
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <!-- Nombre del comentarista -->
-                    <h3 style="text-align: center;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h3>
-                    <!-- Número de celular -->
-                    <h4 style="text-align: center;"><?php echo htmlspecialchars($comentario['numero_celular']); ?></h4>
-                    <p style="text-align: center;">
-                      <i class="bi bi-quote quote-icon-left"></i>
-                      <span><?php echo htmlspecialchars($comentario['mensaje']); ?></span>
-                      <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                    <!-- Fecha del comentario -->
-                    <?php
-                    // Crear objeto DateTime
-                    $fechaComentario = new DateTime($comentario['fecha_comentario']);
-                    // Obtener el mes en formato numérico (1 a 12)
-                    $mesNumero = $fechaComentario->format('m');
-                    // Crear un arreglo con los meses en español
-                    $mesesEnEspañol = [
-                      '01' => 'enero',
-                      '02' => 'febrero',
-                      '03' => 'marzo',
-                      '04' => 'abril',
-                      '05' => 'mayo',
-                      '06' => 'junio',
-                      '07' => 'julio',
-                      '08' => 'agosto',
-                      '09' => 'septiembre',
-                      '10' => 'octubre',
-                      '11' => 'noviembre',
-                      '12' => 'diciembre'
-                    ];
-                    // Obtener el nombre del mes en español
-                    $mesEnEspañol = $mesesEnEspañol[$mesNumero];
-                    // Formatear la fecha
-                    $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
-                    ?>
-                    <!-- Mostrar fecha -->
-                    <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
-                      <strong>Fecha del comentario:</strong> <?php echo $fechaFormateada; ?>
-                    </p>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-            <?php else : ?>
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <h3 style="text-align: center;">No hay comentarios</h3>
-                  <h4 style="text-align: center;">Descanza en Paz</h4>
-                  <p style="text-align: center;">
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>No hay comentarios para este difunto.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            <?php endif; ?>
-          </div>
-          <div class="swiper-pagination"></div>
+            <script type="application/json" class="swiper-config">
+                {
+                    "loop": false,
+                    "speed": 600,
+                    "autoplay": {
+                        "delay": 5000
+                    },
+                    "slidesPerView": 1,
+                    "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                    }
+                }
+            </script>
+            <div class="swiper-wrapper">
+                <?php if (!empty($comentarios)) : ?>
+                    <?php foreach ($comentarios as $comentario) : ?>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <h3 style="text-align: center;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h3>
+                                <h4 style="text-align: center;"><?php echo htmlspecialchars($comentario['numero_celular']); ?></h4>
+                                <p style="text-align: center;">
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span><?php echo htmlspecialchars($comentario['mensaje']); ?></span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                                <?php
+                                $fechaComentario = new DateTime($comentario['fecha_comentario']);
+                                $mesNumero = $fechaComentario->format('m');
+                                $mesesEnEspañol = [
+                                    '01' => 'enero', '02' => 'febrero', '03' => 'marzo',
+                                    '04' => 'abril', '05' => 'mayo', '06' => 'junio',
+                                    '07' => 'julio', '08' => 'agosto', '09' => 'septiembre',
+                                    '10' => 'octubre', '11' => 'noviembre', '12' => 'diciembre'
+                                ];
+                                $mesEnEspañol = $mesesEnEspañol[$mesNumero];
+                                $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
+                                ?>
+                                <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
+                                    <strong>Fecha del comentario:</strong> <?php echo $fechaFormateada; ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3 style="text-align: center;">No hay comentarios</h3>
+                            <h4 style="text-align: center;">Descanza en Paz</h4>
+                            <p style="text-align: center;">
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>No hay comentarios para este difunto.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-      </div>
-    </section><br><br>
+    </div>
+</section>
+
+<!-- Modal de comentarius -->
+<div class="modal fade" id="comentariosModal" tabindex="-1" aria-labelledby="comentariosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f7f7f7; color: #333; padding: 15px; border-bottom: 1px solid #ddd;">
+                <img src="assets/img/logo.png" alt="Logo" style="max-width: 40px; height: auto; margin-right: 10px;">
+                <h5 class="modal-title" id="comentariosModalLabel" style="font-size: 1.2rem; font-weight: bold; flex: 1;">Comentarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto; padding: 20px;">
+                <?php if (!empty($comentarios)) : ?>
+                    <?php foreach ($comentarios as $comentario) : ?>
+                        <div class="modal-item" style="margin-bottom: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); word-wrap: break-word; overflow-wrap: break-word;">
+                            <h5 style="font-size: 1rem; font-weight: bold;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h5>
+                            <p style="font-size: 0.9rem; color: #555;"><strong>Celular:</strong> <?php echo htmlspecialchars($comentario['numero_celular']); ?></p>
+                            <p style="font-size: 0.9rem; color: #555;">
+                                <i class="bi bi-quote quote-icon-left"></i> <?php echo htmlspecialchars($comentario['mensaje']); ?> <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                            <?php
+                            $fechaComentario = new DateTime($comentario['fecha_comentario']);
+                            $mesNumero = $fechaComentario->format('m');
+                            $mesEnEspañol = $mesesEnEspañol[$mesNumero];
+                            $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
+                            ?>
+                            <p style="font-size: 0.85rem; color: #888; margin-top: 10px;"><strong>Fecha:</strong> <?php echo $fechaFormateada; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p style="font-size: 1rem; color: #555;">No hay comentarios disponibles.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+
 
 
 
@@ -692,7 +726,8 @@ $conn->close();
 
     <!-- Maps -->
     <section class="col-md-12" style="margin: 0; padding: 0">
-      <?//php echo ($difunto['ubicacion_link']) ?>
+      <? //php echo ($difunto['ubicacion_link']) 
+      ?>
 
       <iframe src="<?php echo ($difunto['ubicacion_link']) ?>" width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>

@@ -839,24 +839,41 @@ function Registrar_Comentario() {
 
           // Agregar el nuevo comentario al slider
           const newComment = `
-                  <div class="swiper-slide">
-                      <div class="testimonial-item">
-                          <h3>${name}</h3>
-                          <h4>${telefono}</h4>  <!-- Mostrar teléfono -->
-                          <p>
-                              <i class="bi bi-quote quote-icon-left"></i>
-                              <span>${message}</span>
-                              <i class="bi bi-quote quote-icon-right"></i>
-                          </p>
-                          <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
-                              <strong>Fecha del comentario:</strong> ${fechaComentario}
-                          </p>
-                      </div>
-                  </div>
-              `;
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>${name}</h3>
+                <h4>${telefono}</h4>  <!-- Mostrar teléfono -->
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>${message}</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
+                  <strong>Fecha del comentario:</strong> ${fechaComentario}
+                </p>
+              </div>
+            </div>
+          `;
 
-          // Insertar el nuevo comentario al principio de la lista
+          // Insertar el nuevo comentario al principio de la lista en el slider
           $(".swiper-wrapper").prepend(newComment);
+
+          // Agregar el nuevo comentario al modal
+          const newCommentModal = `
+            <div class="modal-item" style="margin-bottom: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); word-wrap: break-word; overflow-wrap: break-word;">
+              <h5 style="font-size: 1rem; font-weight: bold;">${name}</h5>
+              <p style="font-size: 0.9rem; color: #555;"><strong>Celular:</strong> ${telefono}</p>
+              <p style="font-size: 0.9rem; color: #555;">
+                <i class="bi bi-quote quote-icon-left"></i> ${message} <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+              <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">
+                <strong>Fecha:</strong> ${fechaComentario}
+              </p>
+            </div>
+          `;
+
+          // Insertar el nuevo comentario en el modal
+          $(".modal-body").prepend(newCommentModal);
 
           // Recargar la instancia de Swiper después de agregar el comentario
           var swiper = new Swiper(".swiper.init-swiper", {
@@ -897,6 +914,7 @@ function Registrar_Comentario() {
       });
     });
 }
+
 
     // Listado de frases para popup
     const frases = [
