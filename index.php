@@ -51,6 +51,10 @@ $stmt_testimonio->close();
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
+    <!-- AOS Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -711,22 +715,25 @@ $stmt_testimonio->close();
         <div class="container py-5">
             <div class="row align-items-center">
                 <!-- Imagen -->
-                <div class="col-lg-5">
+                <div class="col-lg-5" data-aos="fade-right">
                     <img class="img-fluid rounded" src="img/about.jpg" alt="Imagen conmemorativa">
                 </div>
 
                 <!-- Texto y detalles -->
-                <div class="col-lg-7 mt-4 mt-lg-0">
+                <div class="col-lg-7 mt-4 mt-lg-0" data-aos="fade-left">
                     <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">VIVIR EN MEMORIA</h2>
-                    <h6 class="text-uppercase">Bienvenidos</h6>
-                    <h1 class="mb-4">Honra y preserva los recuerdos de tus seres queridos</h1>
-                    <p>En <strong>"Vivir en Memoria"</strong>, nos especializamos en crear páginas conmemorativas únicas y personalizadas para rendir tributo a tus seres queridos. A través de un simple escaneo de un código QR, podrás revivir sus historias, compartir sus memorias y mantener su legado vivo para siempre.</p>
-                    <a href="#planes" class="btn btn-primary mt-2">Descubre más</a>
+                    <h6 class="text-uppercase" data-aos="fade-up" data-aos-delay="200">Bienvenidos</h6>
+                    <h1 class="mb-4" data-aos="fade-up" data-aos-delay="400">Honra y preserva los recuerdos de tus seres queridos</h1>
+                    <p data-aos="fade-up" data-aos-delay="600">
+                        En <strong>"Vivir en Memoria"</strong>, nos especializamos en crear páginas conmemorativas únicas y personalizadas para rendir tributo a tus seres queridos. A través de un simple escaneo de un código QR, podrás revivir sus historias, compartir sus memorias y mantener su legado vivo para siempre.
+                    </p>
+                    <a href="#planes" class="btn btn-primary mt-2" data-aos="zoom-in" data-aos-delay="800">Descubre más</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Sobre Nosotros -->
+
 
     <!-- Características -->
     <div class="container-fluid py-1">
@@ -1457,6 +1464,13 @@ $stmt_testimonio->close();
 
     <script src="adm/js/registrar.js?rev=<?php echo time(); ?>"></script>
     <script src="adm/js/comentarios.js?rev=<?php echo time(); ?>"></script>
+
+    <script>
+        AOS.init({
+            duration: 1200, // Duración de la animación en milisegundos
+            once: true, // Ejecutar la animación solo una vez al entrar
+        });
+    </script>
 
     <script>
         Cargar_Select_Departamento();
