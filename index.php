@@ -631,7 +631,7 @@ $stmt_testimonio->close();
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
                 <a href="index.php" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <img src="ruta/a/tu/imagen.jpg" alt="Justice" class="img-fluid">
+                    <img src="profile/assets/img/logo/logo_blanco.png" alt="Justice" class="img-fluid" style="max-width: 70%;">
                 </a>
             </div>
             <div class="col-lg-9">
