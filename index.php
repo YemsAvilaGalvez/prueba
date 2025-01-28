@@ -734,13 +734,12 @@ $stmt_testimonio->close();
     </div>
     <!-- Sobre Nosotros -->
 
-
     <!-- Características -->
     <div class="container-fluid py-1">
         <div class="container py-5">
             <div class="row">
                 <!-- Columna de texto (ahora a la izquierda) -->
-                <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="col-lg-6 pt-5 pb-lg-5" data-aos="fade-right" data-aos-duration="1000">
                     <div class="feature-text bg-white rounded p-lg-5">
                         <h6 class="text-uppercase text-primary">Características</h6>
                         <h1 class="mb-4">Por qué elegirnos</h1>
@@ -775,7 +774,7 @@ $stmt_testimonio->close();
                 </div>
 
                 <!-- Columna de imagen (ahora a la derecha) -->
-                <div class="col-lg-6" style="min-height: 500px;">
+                <div class="col-lg-6" style="min-height: 500px;" data-aos="fade-left" data-aos-duration="1000">
                     <div class="position-relative h-100 rounded overflow-hidden">
                         <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="Memoria">
                     </div>
@@ -786,25 +785,22 @@ $stmt_testimonio->close();
     <!-- Características End -->
 
 
-
-
     <!-- Nuestros Servicios -->
     <div class="container-fluid py-5" style="background: #F4F4F4;" id="servicios">
         <div class="container py-5">
             <div class="row">
                 <!-- Título y descripción -->
-                <div class="col-lg-3">
+                <div class="col-lg-3" data-aos="fade-up" data-aos-duration="1200">
                     <h6 class="text-uppercase text-primary">Servicios</h6>
                     <h1 class="mb-4">Lo que ofrecemos</h1>
                     <p>Te ayudamos a preservar los recuerdos más valiosos de tus seres queridos en un espacio único, interactivo y accesible. Conoce nuestras funciones.</p>
-
                 </div>
 
                 <!-- Carrusel de servicios -->
                 <div class="col-lg-9 pt-5 pt-lg-0">
                     <div class="owl-carousel service-carousel position-relative">
                         <!-- Servicio: Perfil del Ser Querido -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="zoom-in" data-aos-duration="1000">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-user"></i>
                             </div>
@@ -813,7 +809,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Video Conmemorativo -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="fade-right" data-aos-duration="1100">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fab fa-youtube"></i>
                             </div>
@@ -822,7 +818,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Ubicación en Google Maps -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="fade-left" data-aos-duration="1100">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-map-marker-alt"></i>
                             </div>
@@ -831,7 +827,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Canción Favorita -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="flip-up" data-aos-duration="1000">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-music"></i>
                             </div>
@@ -840,7 +836,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Galería de Fotos -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="flip-left" data-aos-duration="900">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-camera"></i>
                             </div>
@@ -849,7 +845,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Momentos y Hobbies -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="zoom-out" data-aos-duration="1200">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-heart"></i>
                             </div>
@@ -858,7 +854,7 @@ $stmt_testimonio->close();
                         </div>
 
                         <!-- Servicio: Condolencias -->
-                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm">
+                        <div class="d-flex flex-column align-items-center text-center bg-white rounded p-4 shadow-sm" data-aos="fade-up" data-aos-duration="1300">
                             <div class="icon-box bg-secondary text-primary d-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 60px; height: 60px;">
                                 <i class="fa fa-2x fa-comment"></i>
                             </div>
@@ -873,10 +869,11 @@ $stmt_testimonio->close();
     <!-- Nuestros Servicios -->
 
 
+
     <!-- Memoriales de Ejemplo -->
     <div class="container py-5" id="memoriales">
         <!-- Encabezado -->
-        <div class="text-center mb-5">
+        <div class="text-center mb-5" data-aos="fade-down" data-aos-duration="1000">
             <h6 class="text-uppercase text-primary">Explorar</h6>
             <h1 class="mb-4">Nuestros Memoriales</h1>
             <p>Descubre y honra la vida de nuestros seres queridos a través de sus memoriales interactivos. Cada página cuenta una historia única.</p>
@@ -884,9 +881,9 @@ $stmt_testimonio->close();
         <!-- Tarjetas de Memoriales -->
         <div class="row">
             <!-- Plan Básico -->
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-right" data-aos-duration="1000">
                 <div class="card shadow-sm border-light">
-                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block" alt="Plan Básico">
+                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block mt-4" alt="Plan Básico" style="width: 120px;">
                     <div class="card-body text-center">
                         <h5 class="card-title">Plan Básico</h5>
                         <p class="card-text">Un plan ideal para quienes buscan un memorial sencillo pero completo.</p>
@@ -896,9 +893,9 @@ $stmt_testimonio->close();
                 </div>
             </div>
             <!-- Plan Standard -->
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                 <div class="card shadow-sm border-light">
-                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block" alt="Plan Standard">
+                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block mt-4" alt="Plan Standard" style="width: 120px;">
                     <div class="card-body text-center">
                         <h5 class="card-title">Plan Standard</h5>
                         <p class="card-text">Un plan intermedio con características adicionales para un memorial más completo.</p>
@@ -908,9 +905,9 @@ $stmt_testimonio->close();
                 </div>
             </div>
             <!-- Plan Premium -->
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-left" data-aos-duration="1000">
                 <div class="card shadow-sm border-light">
-                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block" alt="Plan Premium">
+                    <img src="profile/assets/img/logo/logo_circular.png" class="card-img-top rounded-circle mx-auto d-block mt-4" alt="Plan Premium" style="width: 120px;">
                     <div class="card-body text-center">
                         <h5 class="card-title">Plan Premium</h5>
                         <p class="card-text">El plan más completo para un memorial único, con todas las características adicionales.</p>
@@ -924,17 +921,19 @@ $stmt_testimonio->close();
     <!-- Memoriales de Ejemplo -->
 
 
-    <!-- Como funciona -->
+    <!-- Como Funciona -->
     <div class="container py-5">
-        <div class="text-center mb-5">
+        <!-- Encabezado -->
+        <div class="text-center mb-5" data-aos="fade-down" data-aos-duration="1000">
             <h6 class="text-uppercase text-primary">¿Cómo Funciona?</h6>
             <h1 class="mb-4">El Proceso Paso a Paso</h1>
             <p>Te mostramos cómo crear y personalizar un memorial para honrar a tus seres queridos, todo en simples pasos.</p>
         </div>
 
-        <!-- Paso 1 -->
+        <!-- Pasos del Proceso -->
         <div class="row text-center mb-4">
-            <div class="col-md-4">
+            <!-- Paso 1 -->
+            <div class="col-md-4" data-aos="fade-right" data-aos-duration="1000">
                 <div class="icon mb-3">
                     <i class="fas fa-book-open fa-3x text-primary"></i>
                 </div>
@@ -943,7 +942,7 @@ $stmt_testimonio->close();
             </div>
 
             <!-- Paso 2 -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
                 <div class="icon mb-3">
                     <i class="fas fa-qrcode fa-3x text-primary"></i>
                 </div>
@@ -952,45 +951,46 @@ $stmt_testimonio->close();
             </div>
 
             <!-- Paso 3 -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-left" data-aos-duration="1000">
                 <div class="icon mb-3">
                     <i class="fas fa-cogs fa-3x text-primary"></i>
                 </div>
-                <h4>Envio de la placa QR y accesorios.</h4>
-                <p>El código QR es enviado al destinatario para la instalacion en la lápida.</p>
+                <h4>Envío de la Placa QR y Accesorios</h4>
+                <p>El código QR es enviado al destinatario para la instalación en la lápida.</p>
             </div>
         </div>
 
-        <!-- Ejemplo visual -->
-        <div class="text-center mt-5">
+        <!-- Ejemplo Visual -->
+        <div class="text-center mt-5" data-aos="zoom-in" data-aos-duration="1000">
             <h4>Ejemplo Visual</h4>
             <p>Así es cómo se ve un memorial interactivo con el código QR y la página de recuerdos.</p>
-            <!-- Aquí puedes poner una imagen o video de ejemplo -->
-            <img src="profile/assets/img/logo/logo_circular.png" width="250px" class="img-fluid" alt="Ejemplo visual">
+            <img src="profile/assets/img/logo/logo_circular.png" width="250px" class="img-fluid shadow rounded-circle" alt="Ejemplo visual">
         </div>
     </div>
-    <!-- Como funciona -->
+    <!-- Como Funciona -->
 
 
-    <!-- Nuestro planes -->
+    <!-- Nuestro Planes -->
     <div id="planes" class="cards-2" style="background-color: #f4f4f4;">
         <div class="container-fluid py-5">
-            <div class="row text-center">
+            <!-- Encabezado -->
+            <div class="row text-center mb-5" data-aos="fade-down" data-aos-duration="1000">
                 <div class="col-lg-12">
+                    <h6 class="text-uppercase text-primary">Conoce Nuestros Planes</h6>
                     <h2 class="mb-4">Planes de Precios</h2>
-                    <p class="mb-5">
-                        Hemos creado planes de precios accesibles que se adaptan a diferentes necesidades y presupuestos. Cada uno de nuestros planes está diseñado para ofrecer una experiencia única y personalizada, permitiéndote rendir un homenaje especial y significativo a tus seres queridos.
+                    <p class="mb-4">
+                        Hemos creado planes accesibles que se adaptan a diferentes necesidades y presupuestos. Cada uno está diseñado para ofrecer una experiencia única y personalizada, rindiendo un homenaje especial a tus seres queridos.
                     </p>
                 </div>
             </div>
 
-            <!-- Row with pricing cards -->
+            <!-- Cards de Precios -->
             <div class="row">
                 <!-- Plan Básico -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
+                <div class="col-lg-4 mb-4" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="card shadow border-0">
                         <div class="card-body">
-                            <h4 class="card-title text-center">PLAN BÁSICO</h4>
+                            <h4 class="card-title text-center text-primary">PLAN BÁSICO</h4>
                             <p class="card-subtitle text-center text-muted">Ideal para comenzar</p>
                             <hr />
                             <div class="text-center price">
@@ -998,25 +998,25 @@ $stmt_testimonio->close();
                             </div>
                             <hr />
                             <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 10 Fotos</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (2 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                                <li><i class="fas fa-check text-success"></i> Placa QR</li>
+                                <li><i class="fas fa-check text-success"></i> Biografía</li>
+                                <li><i class="fas fa-check text-success"></i> 10 Fotos</li>
+                                <li><i class="fas fa-check text-success"></i> 1 Video Personalizado (2 minutos)</li>
+                                <li><i class="fas fa-check text-success"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check text-success"></i> Ubicación del Cementerio</li>
                             </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            <div class="text-center mt-4">
+                                <a class="btn btn-primary btn-block" href="#registrar">Solicitar</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Plan Standard -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="card shadow border-0">
                         <div class="card-body">
-                            <h4 class="card-title text-center">PLAN STANDARD</h4>
+                            <h4 class="card-title text-center text-primary">PLAN STANDARD</h4>
                             <p class="card-subtitle text-center text-muted">Excelente para necesidades intermedias</p>
                             <hr />
                             <div class="text-center price">
@@ -1024,58 +1024,59 @@ $stmt_testimonio->close();
                             </div>
                             <hr />
                             <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 15 Fotos</li>
-                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
-                                <li><i class="fas fa-check"></i> 1 Collar o Llavero QR</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (5 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                                <li><i class="fas fa-check text-success"></i> Placa QR</li>
+                                <li><i class="fas fa-check text-success"></i> Biografía</li>
+                                <li><i class="fas fa-check text-success"></i> 15 Fotos</li>
+                                <li><i class="fas fa-check text-success"></i> Canción Favorita</li>
+                                <li><i class="fas fa-check text-success"></i> 1 Collar o Llavero QR</li>
+                                <li><i class="fas fa-check text-success"></i> 1 Video Personalizado (5 minutos)</li>
+                                <li><i class="fas fa-check text-success"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check text-success"></i> Ubicación del Cementerio</li>
                             </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            <div class="text-center mt-4">
+                                <a class="btn btn-primary btn-block" href="#registrar">Solicitar</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Plan Premium -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
+                <div class="col-lg-4 mb-4" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="card shadow border-0">
                         <div class="label text-center">
-                            <p class="best-value">Mejor Valor</p>
+                            <p class="best-value text-light bg-primary px-2 py-1 rounded">Mejor Valor</p>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title text-center">PLAN PREMIUM</h4>
-                            <p class="card-subtitle text-center text-muted">El paquete completo para quienes desean lo mejor</p>
+                            <h4 class="card-title text-center text-primary">PLAN PREMIUM</h4>
+                            <p class="card-subtitle text-center text-muted">Para quienes desean lo mejor</p>
                             <hr />
                             <div class="text-center price">
                                 <span class="currency">S/</span><span class="value">299.00</span>
                             </div>
                             <hr />
                             <ul class="list-unstyled li-space-lg">
-                                <li><i class="fas fa-check"></i> Placa QR</li>
-                                <li><i class="fas fa-check"></i> Biografía</li>
-                                <li><i class="fas fa-check"></i> 20 Fotos</li>
-                                <li><i class="fas fa-check"></i> Imagen Familiar de Portada</li>
-                                <li><i class="fas fa-check"></i> Canción Favorita del Difunto</li>
-                                <li><i class="fas fa-check"></i> 2 Collares o Llaveros QR</li>
-                                <li><i class="fas fa-check"></i> 1 Video Personalizado en YouTube (10 minutos)</li>
-                                <li><i class="fas fa-check"></i> Sección de Condolencia</li>
-                                <li><i class="fas fa-check"></i> Ubicación de Cementerio</li>
+                                <li><i class="fas fa-check text-success"></i> Placa QR</li>
+                                <li><i class="fas fa-check text-success"></i> Biografía</li>
+                                <li><i class="fas fa-check text-success"></i> 20 Fotos</li>
+                                <li><i class="fas fa-check text-success"></i> Imagen Familiar de Portada</li>
+                                <li><i class="fas fa-check text-success"></i> Canción Favorita</li>
+                                <li><i class="fas fa-check text-success"></i> 2 Collares o Llaveros QR</li>
+                                <li><i class="fas fa-check text-success"></i> 1 Video Personalizado (10 minutos)</li>
+                                <li><i class="fas fa-check text-success"></i> Sección de Condolencia</li>
+                                <li><i class="fas fa-check text-success"></i> Ubicación del Cementerio</li>
                             </ul>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="#registrar">SOLICITAR</a>
+                            <div class="text-center mt-4">
+                                <a class="btn btn-primary btn-block" href="#registrar">Solicitar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End of row -->
+            <!-- Fin de Row -->
         </div>
     </div>
-    <!-- Nuestro planes -->
+    <!-- Fin de Nuestro Planes -->
+
 
     <!-- Appointment Start -->
     <div class="container-fluid py-5" id="registrar">
