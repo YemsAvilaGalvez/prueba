@@ -1,6 +1,8 @@
 <?php
-require_once  'adm/model/model_conexion.php';
-
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'prueba_final_v2';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
