@@ -1,8 +1,6 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'pruedif';
+require_once  'adm/model/model_conexion.php';
+
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
