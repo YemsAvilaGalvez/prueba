@@ -42,11 +42,23 @@ function Listar_Difunto() {
         data: "plan",
         render: function (data, type, row) {
           if (data === "PREMIUM") {
-            return "<span class='badge' style='background-color: #FFC300; color: #000; font-weight: bold;'>" + data + "</span>";
+            return (
+              "<span class='badge' style='background-color: #FFC300; color: #000; font-weight: bold;'>" +
+              data +
+              "</span>"
+            );
           } else if (data === "STANDARD") {
-            return "<span class='badge' style='background-color: #A8A9AD; color: #000; font-weight: bold;'>" + data + "</span>";
+            return (
+              "<span class='badge' style='background-color: #A8A9AD; color: #000; font-weight: bold;'>" +
+              data +
+              "</span>"
+            );
           } else {
-            return "<span class='badge' style='background-color: #B87333; color: #000; font-weight: bold;'>" + data + "</span>";
+            return (
+              "<span class='badge' style='background-color: #B87333; color: #000; font-weight: bold;'>" +
+              data +
+              "</span>"
+            );
           }
         },
       },
@@ -131,8 +143,7 @@ $("#tabla_difunto").on("click", ".audio", function () {
 
   document.getElementById("idDifuntoAudio").value = data.id_difunto;
   document.getElementById("idDifuntoAudioActual").value = data.cancion_link;
-  document.getElementById("aud-preview").src =
-    "../" + data.cancion_link;
+  document.getElementById("aud-preview").src = "../" + data.cancion_link;
 });
 
 /** ABRIR MODAL EDITAR */
@@ -201,8 +212,8 @@ function Registrar_Difunto() {
   let fechaNacimiento = document.getElementById("date_nacimiento").value;
   let fechaFallecimiento = document.getElementById("date_fallecimiento").value;
   let biografia = document.getElementById("txt_biografia").value;
-  let foto = document.getElementById("file_foto").value;
-  let portada = document.getElementById("file_foto_portada").value;
+  let foto = document.getElementById("file_foto").files;
+  let portada = document.getElementById("file_foto_portada").files;
   let videoLink = document.getElementById("txt_video").value;
   let ubicacionLink = document.getElementById("txt_ubicacion").value;
   let audio = document.getElementById("txt_cancion").value;
@@ -249,15 +260,12 @@ function Registrar_Difunto() {
     .split("T")[0];
 
   // Calcular fecha_fin dependiendo del plan usando la fecha de registro (fecha actual)
-  let fechaRegistro = new Date(); // Fecha actual
-  let fechaFin = new Date(fechaRegistro); // Copiar fecha actual
-
-  // Agregar un año automáticamente sin necesidad de condicionales
+  let fechaRegistro = new Date();
+  let fechaFin = new Date(fechaRegistro);
   fechaFin.setFullYear(fechaFin.getFullYear() + 1);
-
   let formattedFechaFin = fechaFin.toISOString().split("T")[0];
 
-  /**AUDIO */
+  /** AUDIO */
   let extensionau = audio.split(".").pop();
   let nombreAudio = "";
   let a = new Date();
@@ -277,111 +285,179 @@ function Registrar_Difunto() {
       extensionau;
   }
 
-  /**FOTO */
-  let extension = foto.split(".").pop();
-  let nombreFoto = "";
-  let f = new Date();
-  if (foto.length) {
-    nombreFoto =
-      "DIF-" +
-      f.getDate() +
-      "" +
-      (f.getMonth() + 1) +
-      "" +
-      f.getFullYear() +
-      "" +
-      f.getHours() +
-      "" +
-      f.getMilliseconds() +
-      "." +
-      extension;
-  }
-
-  /**FOTO PORTADA*/
-  let extensionPortada = portada.split(".").pop();
-  let nombreFotoPortada = "";
-  let p = new Date();
-  if (portada.length) {
-    nombreFotoPortada =
-      "PORT-" +
-      p.getDate() +
-      "" +
-      (p.getMonth() + 1) +
-      "" +
-      p.getFullYear() +
-      "" +
-      p.getHours() +
-      "" +
-      p.getMilliseconds() +
-      "." +
-      extensionPortada;
-  }
-
   let formData = new FormData();
-  let fotoObject = $("#file_foto")[0].files[0];
-  let audioObject = $("#txt_cancion")[0].files[0];
-  let portadaObject = $("#file_foto_portada")[0].files[0];
+  let imagenProcesada = 0;
 
-  formData.append("documentoCliente", documentoCliente);
-  formData.append("nombre", nombre);
-  formData.append("fechaNacimiento", formattedFechaNacimiento);
-  formData.append("fechaFallecimiento", formattedFechaFallecimiento);
-  formData.append("biografia", biografia);
-  formData.append("nombreFoto", nombreFoto);
-  formData.append("foto", fotoObject);
-  formData.append("nombreFotoPortada", nombreFotoPortada);
-  formData.append("portada", portadaObject);
-  formData.append("videoLink", videoLink);
-  formData.append("ubicacionLink", ubicacionLink);
-  formData.append("nombreAudio", nombreAudio);
-  formData.append("audio", audioObject);
-  formData.append("plan", plan);
-  formData.append("fechaFin", formattedFechaFin);
+  // Procesar foto
+  if (foto.length) {
+    let reader = new FileReader();
+    reader.readAsDataURL(foto[0]);
+    reader.onload = function (event) {
+      let img = new Image();
+      img.src = event.target.result;
 
-  $.ajax({
-    url: "../controller/difunto/controlador_registrar_difunto.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      if (resp > 0) {
-        if (resp == 1) {
-          LimpiarModalDifunto();
-          Swal.fire(
-            "Mensaje de Confirmacion",
-            "Difunto registrado correctamente",
-            "success"
-          ).then((value) => {
-            $("#modal_registro_difunto").modal("hide");
+      img.onload = function () {
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+
+        let maxWidth = 800;
+        let maxHeight = 800;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(
+          function (blob) {
+            let extension = "webp";
+            let nombreFoto = "DIF-" + new Date().getTime() + "." + extension;
+            formData.append("foto", blob, nombreFoto);
+            formData.append("nombreFoto", nombreFoto);
+
+            imagenProcesada++;
+
+            // Enviar formulario solo si ambas imágenes han sido procesadas
+            if (imagenProcesada === 2) {
+              enviarFormularioAjax(formData);
+            }
+          },
+          "image/webp",
+          0.7
+        ); // 70% de calidad
+      };
+    };
+  }
+
+  // Procesar foto de portada
+  if (portada.length) {
+    let readerPortada = new FileReader();
+    readerPortada.readAsDataURL(portada[0]);
+    readerPortada.onload = function (event) {
+      let imgPortada = new Image();
+      imgPortada.src = event.target.result;
+
+      imgPortada.onload = function () {
+        let canvasPortada = document.createElement("canvas");
+        let ctxPortada = canvasPortada.getContext("2d");
+
+        let maxWidth = 800;
+        let maxHeight = 800;
+        let width = imgPortada.width;
+        let height = imgPortada.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvasPortada.width = width;
+        canvasPortada.height = height;
+        ctxPortada.drawImage(imgPortada, 0, 0, width, height);
+
+        canvasPortada.toBlob(
+          function (blob) {
+            let extensionPortada = "webp";
+            let nombreFotoPortada =
+              "PORT-" + new Date().getTime() + "." + extensionPortada;
+            formData.append("portada", blob, nombreFotoPortada);
+            formData.append("nombreFotoPortada", nombreFotoPortada);
+
+            imagenProcesada++;
+
+            // Enviar formulario solo si ambas imágenes han sido procesadas
+            if (imagenProcesada === 2) {
+              enviarFormularioAjax(formData);
+            }
+          },
+          "image/webp",
+          0.7
+        );
+      };
+    };
+  }
+
+  /** Función para enviar formulario */
+  function enviarFormularioAjax(formData) {
+    let audioObject = $("#txt_cancion")[0].files[0];
+
+    formData.append("documentoCliente", documentoCliente);
+    formData.append("nombre", nombre);
+    formData.append("fechaNacimiento", formattedFechaNacimiento);
+    formData.append("fechaFallecimiento", formattedFechaFallecimiento);
+    formData.append("biografia", biografia);
+    formData.append("nombreAudio", nombreAudio);
+    formData.append("audio", audioObject);
+    formData.append("plan", plan);
+    formData.append("fechaFin", formattedFechaFin);
+    formData.append("videoLink", videoLink);
+    formData.append("ubicacionLink", ubicacionLink);
+
+    $.ajax({
+      url: "../controller/difunto/controlador_registrar_difunto.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (resp) {
+        if (resp > 0) {
+          if (resp == 1) {
             LimpiarModalDifunto();
-            tbl_difunto.ajax.reload();
-          });
+            Swal.fire(
+              "Mensaje de Confirmacion",
+              "Difunto registrado correctamente",
+              "success"
+            ).then((value) => {
+              $("#modal_registro_difunto").modal("hide");
+              LimpiarModalDifunto();
+              tbl_difunto.ajax.reload();
+            });
+          } else {
+            Swal.fire(
+              "Mensaje de Advertencia",
+              "El Difunto ya se encuentra registrado",
+              "warning"
+            );
+          }
         } else {
           Swal.fire(
             "Mensaje de Advertencia",
-            "El Difunto ya se encuentra registrado",
-            "warning"
+            "Error al registrar Difunto",
+            "error"
           );
         }
-      } else {
-        Swal.fire(
-          "Mensaje de Advertencia",
-          "Error al registrar Difunto",
-          "error"
-        );
-      }
-    },
-  });
+      },
+    });
+  }
 }
 
 /** EDITAR FOTO */
 function EditarFoto() {
   let idDifunto = document.getElementById("idDifuntoFoto").value;
-  let foto = document.getElementById("file_foto_editar").value;
+  let foto = document.getElementById("file_foto_editar").files; // Usamos .files para acceder al archivo seleccionado
   let fotoActual = document.getElementById("idDifuntoFotoActual").value;
 
-  if (foto.length == 0) {
+  if (foto.length === 0) {
     return Swal.fire(
       "Mensaje de Advertencia",
       "Seleccione una foto",
@@ -389,118 +465,198 @@ function EditarFoto() {
     );
   }
 
-  let extension = foto.split(".").pop();
-  let nombreFoto = "";
-  let f = new Date();
-  if (foto.length > 0) {
-    nombreFoto =
-      "DIF-" +
-      f.getDate() +
-      "" +
-      (f.getMonth() + 1) +
-      "" +
-      f.getFullYear() +
-      "" +
-      f.getHours() +
-      "" +
-      f.getMilliseconds() +
-      "." +
-      extension;
+  let formData = new FormData();
+  let imagenProcesada = 0;
+
+  // Procesar foto
+  if (foto.length) {
+    let reader = new FileReader();
+    reader.readAsDataURL(foto[0]); // Leemos el primer archivo de la selección
+
+    reader.onload = function (event) {
+      let img = new Image();
+      img.src = event.target.result;
+
+      img.onload = function () {
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+
+        let maxWidth = 800;
+        let maxHeight = 800;
+        let width = img.width;
+        let height = img.height;
+
+        // Redimensionamos la imagen para que no exceda el tamaño máximo
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Convertimos la imagen redimensionada a un blob
+        canvas.toBlob(
+          function (blob) {
+            let extension = "webp";
+            let nombreFoto = "DIF-" + new Date().getTime() + "." + extension;
+            formData.append("foto", blob, nombreFoto);
+            formData.append("nombreFoto", nombreFoto);
+
+            imagenProcesada++;
+
+            // Enviar formulario solo si la imagen ha sido procesada
+            if (imagenProcesada === 1) {
+              enviarFormularioAjax(formData); // Enviar formulario solo cuando se haya procesado la imagen
+            }
+          },
+          "image/webp",
+          0.7
+        ); // 70% de calidad
+      };
+    };
   }
 
-  let formData = new FormData();
-  let fotoObject = $("#file_foto_editar")[0].files[0];
+  /** Función para enviar formulario */
+  function enviarFormularioAjax(formData) {
+    formData.append("idDifunto", idDifunto);
+    formData.append("fotoActual", fotoActual);
 
-  formData.append("idDifunto", idDifunto);
-  formData.append("fotoActual", fotoActual);
-  formData.append("nombreFoto", nombreFoto);
-  formData.append("foto", fotoObject);
-
-  $.ajax({
-    url: "../controller/difunto/controlador_editar_foto.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      if (resp > 0) {
-        Swal.fire(
-          "Mensaje de Confirmacion",
-          "Foto editada correctamente",
-          "success"
-        ).then((value) => {
-          $("#modal_editar_foto").modal("hide");
-          tbl_difunto.ajax.reload();
-        });
-      } else {
-        Swal.fire("Mensaje de Error", "Error al editar foto", "error");
-      }
-    },
-  });
+    $.ajax({
+      url: "../controller/difunto/controlador_editar_foto.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (resp) {
+        if (resp > 0) {
+          Swal.fire(
+            "Mensaje de Confirmacion",
+            "Foto editada correctamente",
+            "success"
+          ).then((value) => {
+            $("#modal_editar_foto").modal("hide");
+            tbl_difunto.ajax.reload(); // Recarga la tabla para mostrar los cambios
+          });
+        } else {
+          Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+        }
+      },
+    });
+  }
 }
 
 /** EDITAR PORTADA */
 function EditarPortada() {
   let idDifuntoPortada = document.getElementById("idDifuntoPortada").value;
-  let portada = document.getElementById("file_Portada_editar").value;
+  let portada = document.getElementById("file_Portada_editar").files; // Usamos .files para obtener el archivo
   let portadaActual = document.getElementById("idDifuntoPortadaActual").value;
 
-  if (portada.length == 0) {
+  if (portada.length === 0) {
     return Swal.fire(
       "Mensaje de Advertencia",
-      "Seleccione una foto",
+      "Seleccione una portada",
       "warning"
     );
   }
 
-  /**FOTO PORTADA*/
-  let extensionPortada = portada.split(".").pop();
-  let nombreFotoPortada = "";
-  let p = new Date();
-  if (portada.length) {
-    nombreFotoPortada =
-      "PORT-" +
-      p.getDate() +
-      "" +
-      (p.getMonth() + 1) +
-      "" +
-      p.getFullYear() +
-      "" +
-      p.getHours() +
-      "" +
-      p.getMilliseconds() +
-      "." +
-      extensionPortada;
+  let formData = new FormData();
+  let imagenProcesada = 0;
+
+  // Procesar foto de portada
+  if (portada.length > 0) {
+    let readerPortada = new FileReader();
+    readerPortada.readAsDataURL(portada[0]); // Leer el archivo seleccionado
+
+    readerPortada.onload = function (event) {
+      let imgPortada = new Image();
+      imgPortada.src = event.target.result;
+
+      imgPortada.onload = function () {
+        let canvasPortada = document.createElement("canvas");
+        let ctxPortada = canvasPortada.getContext("2d");
+
+        let maxWidth = 800;
+        let maxHeight = 800;
+        let width = imgPortada.width;
+        let height = imgPortada.height;
+
+        // Redimensionar la imagen para que no exceda los límites establecidos
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvasPortada.width = width;
+        canvasPortada.height = height;
+        ctxPortada.drawImage(imgPortada, 0, 0, width, height);
+
+        // Convertir la imagen redimensionada a un blob
+        canvasPortada.toBlob(
+          function (blob) {
+            let extensionPortada = "webp"; // Usamos el formato webp para menor peso
+            let nombreFotoPortada =
+              "PORT-" + new Date().getTime() + "." + extensionPortada;
+            formData.append("portada", blob, nombreFotoPortada);
+            formData.append("nombreFotoPortada", nombreFotoPortada);
+
+            imagenProcesada++; // Incrementamos el contador de imágenes procesadas
+
+            // Enviar formulario solo después de procesar la imagen
+            if (imagenProcesada === 1) {
+              enviarFormularioAjax(formData); // Solo enviamos si la imagen está lista
+            }
+          },
+          "image/webp",
+          0.7 // Calidad de la imagen al 70%
+        );
+      };
+    };
   }
 
-  let formData = new FormData();
-  let portadaObject = $("#file_Portada_editar")[0].files[0];
-  formData.append("idDifuntoPortada", idDifuntoPortada);
-  formData.append("portadaActual", portadaActual);
-  formData.append("nombreFotoPortada", nombreFotoPortada);
-  formData.append("portada", portadaObject);
+  /** Función para enviar formulario */
+  function enviarFormularioAjax(formData) {
+    formData.append("idDifuntoPortada", idDifuntoPortada);
+    formData.append("portadaActual", portadaActual);
 
-  $.ajax({
-    url: "../controller/difunto/controlador_editar_portada.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      if (resp > 0) {
-        Swal.fire(
-          "Mensaje de Confirmacion",
-          "Portada editada correctamente",
-          "success"
-        ).then((value) => {
-          $("#modal_editar_portada").modal("hide");
-          tbl_difunto.ajax.reload();
-        });
-      } else {
-        Swal.fire("Mensaje de Error", "Error al editar Portada", "error");
-      }
-    },
-  });
+    // Enviar los datos al servidor usando AJAX
+    $.ajax({
+      url: "../controller/difunto/controlador_editar_portada.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (resp) {
+        if (resp > 0) {
+          Swal.fire(
+            "Mensaje de Confirmacion",
+            "Portada editada correctamente",
+            "success"
+          ).then((value) => {
+            $("#modal_editar_portada").modal("hide");
+            tbl_difunto.ajax.reload(); // Recarga la tabla para mostrar los cambios
+          });
+        } else {
+          Swal.fire("Mensaje de Error", "Error al editar Portada", "error");
+        }
+      },
+    });
+  }
 }
 
 /** EDITAR AUDIO */
@@ -915,59 +1071,55 @@ function Registrar_Comentario() {
     });
 }
 
+// Listado de frases para popup
+const frases = [
+  "Tu luz nunca se apagará en nuestros corazones.",
+  "Aunque no podamos verte, te sentimos en cada momento.",
+  "Fuiste una bendición en vida y lo seguirás siendo en la eternidad.",
+  "El cielo ganó un ángel, pero aquí siempre te extrañaremos.",
+  "Tu recuerdo será el refugio donde encontraremos consuelo.",
+  "Nos dejaste físicamente, pero tu amor siempre nos acompañará.",
+  "La vida nos separó, pero el amor nos mantendrá unidos.",
+  "Eternamente agradecidos por los momentos que compartimos contigo.",
+  "Tu ausencia duele, pero tu memoria nos llena de paz.",
+  "Descansa en paz, siempre serás nuestro ejemplo de amor y fortaleza.",
+  "En el silencio, encontramos tu voz guiándonos.",
+  "Te llevamos en el alma, donde siempre vivirás.",
+  "Aunque te hayas ido, dejaste huellas imborrables en nuestras vidas.",
+  "Nunca te diremos adiós, porque siempre estarás con nosotros.",
+  "La muerte no borra el amor, solo lo transforma en eternidad.",
+  "Viviste con amor, partiste en paz, y siempre te recordaremos.",
+  "Gracias por los recuerdos, risas y amor que dejaste en nuestro camino.",
+  "Tu partida no es el final, es el comienzo de un amor eterno.",
+  "La eternidad te recibe, pero aquí tu amor sigue latiendo.",
+  "Nos duele tu ausencia, pero agradecemos haber tenido tu presencia.",
+  "Fuiste nuestro pilar en vida, y ahora nuestra estrella en el cielo.",
+  "Cada lágrima es un reflejo del amor eterno que te tenemos.",
+  "Aunque tu partida nos rompe el corazón, tu legado nos da fuerzas.",
+  "Las memorias que creaste con nosotros serán eternas.",
+  "Te extrañaremos siempre, pero tu amor será nuestro refugio.",
+  "El amor que compartimos es inmortal, igual que tu esencia.",
+  "Tu risa, tu bondad y tu amor siempre estarán vivos en nuestras almas.",
+  "El tiempo no puede borrar el amor ni los recuerdos que compartimos.",
+  "Hoy el cielo celebra tu llegada, mientras aquí guardamos tu recuerdo.",
+  "No hay adiós, solo un hasta luego. Te llevamos en nuestros corazones.",
+];
 
-    // Listado de frases para popup
-    const frases = [
-      "Tu luz nunca se apagará en nuestros corazones.",
-      "Aunque no podamos verte, te sentimos en cada momento.",
-      "Fuiste una bendición en vida y lo seguirás siendo en la eternidad.",
-      "El cielo ganó un ángel, pero aquí siempre te extrañaremos.",
-      "Tu recuerdo será el refugio donde encontraremos consuelo.",
-      "Nos dejaste físicamente, pero tu amor siempre nos acompañará.",
-      "La vida nos separó, pero el amor nos mantendrá unidos.",
-      "Eternamente agradecidos por los momentos que compartimos contigo.",
-      "Tu ausencia duele, pero tu memoria nos llena de paz.",
-      "Descansa en paz, siempre serás nuestro ejemplo de amor y fortaleza.",
-      "En el silencio, encontramos tu voz guiándonos.",
-      "Te llevamos en el alma, donde siempre vivirás.",
-      "Aunque te hayas ido, dejaste huellas imborrables en nuestras vidas.",
-      "Nunca te diremos adiós, porque siempre estarás con nosotros.",
-      "La muerte no borra el amor, solo lo transforma en eternidad.",
-      "Viviste con amor, partiste en paz, y siempre te recordaremos.",
-      "Gracias por los recuerdos, risas y amor que dejaste en nuestro camino.",
-      "Tu partida no es el final, es el comienzo de un amor eterno.",
-      "La eternidad te recibe, pero aquí tu amor sigue latiendo.",
-      "Nos duele tu ausencia, pero agradecemos haber tenido tu presencia.",
-      "Fuiste nuestro pilar en vida, y ahora nuestra estrella en el cielo.",
-      "Cada lágrima es un reflejo del amor eterno que te tenemos.",
-      "Aunque tu partida nos rompe el corazón, tu legado nos da fuerzas.",
-      "Las memorias que creaste con nosotros serán eternas.",
-      "Te extrañaremos siempre, pero tu amor será nuestro refugio.",
-      "El amor que compartimos es inmortal, igual que tu esencia.",
-      "Tu risa, tu bondad y tu amor siempre estarán vivos en nuestras almas.",
-      "El tiempo no puede borrar el amor ni los recuerdos que compartimos.",
-      "Hoy el cielo celebra tu llegada, mientras aquí guardamos tu recuerdo.",
-      "No hay adiós, solo un hasta luego. Te llevamos en nuestros corazones."
-    ];
+// Seleccionar una frase aleatoria
+const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
 
-    // Seleccionar una frase aleatoria
-    const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+// Mostrar la frase en el elemento con id "frase"
+document.getElementById("frase").innerText = fraseAleatoria;
 
-    // Mostrar la frase en el elemento con id "frase"
-    document.getElementById('frase').innerText = fraseAleatoria;
+const btnCerrar = document.getElementById("btnCerrar");
+const popup = document.getElementById("popup");
 
+// Ocultar el popup al hacer clic en el botón de cierre
+btnCerrar.addEventListener("click", () => {
+  popup.style.display = "none"; // Oculta el popup
+});
 
-  
-    const btnCerrar = document.getElementById("btnCerrar");
-    const popup = document.getElementById("popup");
-
-    // Ocultar el popup al hacer clic en el botón de cierre
-    btnCerrar.addEventListener("click", () => {
-      popup.style.display = "none"; // Oculta el popup
-    });
-
-    // Mostrar automáticamente el popup al cargar la página
-    window.addEventListener("load", () => {
-      popup.style.display = "flex"; // Asegura que el popup esté visible
-    });
-  
+// Mostrar automáticamente el popup al cargar la página
+window.addEventListener("load", () => {
+  popup.style.display = "flex"; // Asegura que el popup esté visible
+});

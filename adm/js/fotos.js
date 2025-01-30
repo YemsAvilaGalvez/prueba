@@ -219,16 +219,14 @@ function enviarFormulario(formData) {
   });
 }
 
-
-
-
 /** EDITAR FOTO */
 function EditarFoto() {
   let idImangen = document.getElementById("idImangen").value;
-  let foto = document.getElementById("file_foto_editar").value;
+  let fileInput = document.getElementById("file_foto_editar");
+  let foto = fileInput.files[0]; // Obtener el archivo seleccionado
   let fotoActual = document.getElementById("idDifuntoFotoActual").value;
 
-  if (foto.length == 0) {
+  if (!foto) {
     return Swal.fire(
       "Mensaje de Advertencia",
       "Seleccione una foto",
@@ -236,54 +234,84 @@ function EditarFoto() {
     );
   }
 
-  let extension = foto.split(".").pop();
-  let nombreFoto = "";
-  let f = new Date();
-  if (foto.length > 0) {
-    nombreFoto =
-      "DIF-" +
-      f.getDate() +
-      "" +
-      (f.getMonth() + 1) +
-      "" +
-      f.getFullYear() +
-      "" +
-      f.getHours() +
-      "" +
-      f.getMilliseconds() +
-      "." +
-      extension;
-  }
-
   let formData = new FormData();
-  let fotoObject = $("#file_foto_editar")[0].files[0];
 
-  formData.append("idImangen", idImangen);
-  formData.append("fotoActual", fotoActual);
-  formData.append("nombreFoto", nombreFoto);
-  formData.append("foto", fotoObject);
+  let reader = new FileReader();
+  reader.readAsDataURL(foto);
 
-  $.ajax({
-    url: "../controller/foto/controlador_editar_foto.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      if (resp > 0) {
-        Swal.fire(
-          "Mensaje de Confirmacion",
-          "Foto editada correctamente",
-          "success"
-        ).then((value) => {
-          $("#modal_editar_foto").modal("hide");
-          tbl_imagen.ajax.reload();
-        });
+  reader.onload = function (event) {
+    let img = new Image();
+    img.src = event.target.result;
+
+    img.onload = function () {
+      let canvas = document.createElement("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let maxWidth = 800;
+      let maxHeight = 800;
+      let width = img.width;
+      let height = img.height;
+
+      // Redimensionamos la imagen manteniendo la proporción
+      if (width > height) {
+        if (width > maxWidth) {
+          height *= maxWidth / width;
+          width = maxWidth;
+        }
       } else {
-        Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+        if (height > maxHeight) {
+          width *= maxHeight / height;
+          height = maxHeight;
+        }
       }
-    },
-  });
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Convertimos la imagen redimensionada a un blob
+      canvas.toBlob(
+        function (blob) {
+          let nombreFoto = "DIF-" + new Date().getTime() + ".webp";
+          formData.append("foto", blob, nombreFoto);
+          formData.append("nombreFoto", nombreFoto);
+
+          // Enviar formulario después de procesar la imagen
+          enviarFormularioAjax(formData);
+        },
+        "image/webp",
+        0.7
+      ); // Calidad 70%
+    };
+  };
+
+  /** Función para enviar formulario */
+  function enviarFormularioAjax(formData) {
+    formData.append("idImangen", idImangen);
+    formData.append("fotoActual", fotoActual);
+
+    $.ajax({
+      url: "../controller/foto/controlador_editar_foto.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (resp) {
+        if (resp > 0) {
+          Swal.fire(
+            "Mensaje de Confirmación",
+            "Foto editada correctamente",
+            "success"
+          ).then(() => {
+            $("#modal_editar_foto").modal("hide");
+            tbl_imagen.ajax.reload(); // Recargar la tabla para reflejar cambios
+          });
+        } else {
+          Swal.fire("Mensaje de Error", "Error al editar foto", "error");
+        }
+      },
+    });
+  }
 }
 
 /** LIMPIAR MODAL */
