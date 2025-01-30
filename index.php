@@ -4,29 +4,33 @@ $user = 'root';
 $password = '';
 $dbname = 'prueba_final_v2';
 
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+try {
+    // Crear conexión con PDO
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Modo de errores
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Resultado como array asociativo
+        PDO::ATTR_EMULATE_PREPARES => false, // Evitar emulación de consultas preparadas
+    ]);
 
-$sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
-$stmt_testimonio = $conn->prepare($sql_testimonio);
+    // Preparar y ejecutar la consulta
+    $sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
+    $stmt = $pdo->prepare($sql_testimonio);
+    $stmt->execute();
 
-if ($stmt_testimonio === false) {
-    die('Error en la preparación de la consulta: ' . $conn->error);
-}
+    // Obtener los resultados
+    $testimonios = $stmt->fetchAll();
 
-$stmt_testimonio->execute();
-$result_testimonio = $stmt_testimonio->get_result();
-
-if ($result_testimonio->num_rows > 0) {
-    while ($testimonio = $result_testimonio->fetch_assoc()) {
+    // Mostrar resultados (esto depende de cómo quieras usarlos)
+    foreach ($testimonios as $testimonio) {
+        echo "Nombre: {$testimonio['nombre']} - Comentario: {$testimonio['comentario']} - Fecha: {$testimonio['fechates']}<br>";
     }
+
+} catch (PDOException $e) {
+    die("Error en la conexión: " . $e->getMessage());
 }
-
-$stmt_testimonio->close();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -625,13 +629,14 @@ $stmt_testimonio->close();
     /* end of min-width width 1200px */
 </style>
 
+
 <body>
     <!-- Header-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
                 <a href="index.php" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <img src="profile/assets/img/logo/logo_horizontal.png" width="250px" alt="Justice" class="img-fluid">
+                    <img src="profile/assets/img/logo/logo_blanco.png" width="250px" alt="Justice" class="img-fluid">
                 </a>
             </div>
             <div class="col-lg-9">
@@ -1289,86 +1294,65 @@ $stmt_testimonio->close();
     </div>
     <!-- Preguntas Frecuentes -->
 
-    <!-- Comentario -->
-    <div class="container-fluid py-5" data-aos="fade-up">
-        <div class="container py-5" data-aos="fade-up" data-aos-delay="200">
-            <div class="row justify-content-center mb-5" data-aos="fade-down" data-aos-delay="400">
-                <div class="col-12">
-                    <h2 class="text-center mb-4" data-aos="fade-right">¡Queremos saber tu opinión!</h2>
-                    <p class="text-center mb-4" data-aos="fade-left" data-aos-delay="200">Déjanos un comentario sobre qué te ha parecido nuestra página y servicio. ¡Tu opinión es muy importante para nosotros!</p>
+  <!-- Sección de Comentarios -->
+<div class="container-fluid py-5" data-aos="fade-up">
+    <div class="container py-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="row justify-content-center mb-5" data-aos="fade-down" data-aos-delay="400">
+            <div class="col-12">
+                <h2 class="text-center mb-4" data-aos="fade-right">¡Queremos saber tu opinión!</h2>
+                <p class="text-center mb-4" data-aos="fade-left" data-aos-delay="200">
+                    Déjanos un comentario sobre qué te ha parecido nuestra página y servicio. ¡Tu opinión es muy importante para nosotros!
+                </p>
 
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
-                        <label for="nombre">Tu Nombre</label>
-                        <input type="text" class="form-control" id="name" name="nombre" required placeholder="Escribe tu nombre">
-                    </div>
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="600">
-                        <label for="mensaje">Tu Mensaje</label>
-                        <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Escribe tu mensaje"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block mt-3" onclick="RegistrarTestimonio();" data-aos="zoom-in" data-aos-delay="800">Enviar Mensaje</button>
+                <div class="form-group" data-aos="fade-up" data-aos-delay="400">
+                    <label for="nombre">Tu Nombre</label>
+                    <input type="text" class="form-control" id="name" name="nombre" required placeholder="Escribe tu nombre">
                 </div>
+                <div class="form-group" data-aos="fade-up" data-aos-delay="600">
+                    <label for="mensaje">Tu Mensaje</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Escribe tu mensaje"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3" onclick="RegistrarTestimonio();" data-aos="zoom-in" data-aos-delay="800">Enviar Mensaje</button>
             </div>
+        </div>
 
-            <!-- Sección de Testimonios -->
-            <div class="text-center pb-5" data-aos="fade-up" data-aos-delay="1000">
-                <h6 class="text-uppercase">Testimonios</h6>
-                <h1 class="mb-5">¿ Qué dicen nuestros Clientes ?</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel" data-wow-delay="0.1s" data-aos="fade-up" data-aos-delay="1200">
-                <?php
-                // Consulta para obtener los testimonios
-                $sql_testimonio = "SELECT nombre, comentario, fechates FROM testimonio";
-                $stmt_testimonio = $conn->prepare($sql_testimonio);
-
-                // Verificar si la preparación fue exitosa
-                if ($stmt_testimonio === false) {
-                    die('Error en la preparación de la consulta: ' . $conn->error);
-                }
-
-                $stmt_testimonio->execute();
-                $result_testimonio = $stmt_testimonio->get_result();
-
-                // Verificar si hay testimonios
-                if ($result_testimonio->num_rows > 0) {
-                    // Recorrer todos los testimonios
-                    while ($testimonio = $result_testimonio->fetch_assoc()) {
-                ?>
-                        <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="1400">
-                            <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
-                                <?php echo htmlspecialchars($testimonio['comentario']); ?>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="img-fluid rounded-circle" src="profile/assets/img/logo/logo_circular.png" style="width: 80px; height: 80px;" alt="client image">
-                                <div class="pl-4">
-                                    <h5><?php echo htmlspecialchars($testimonio['nombre']); ?></h5>
-                                    <p class="m-0"><?php echo htmlspecialchars($testimonio['fechates']); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                } else {
-                    ?>
+        <!-- Sección de Testimonios -->
+        <div class="text-center pb-5" data-aos="fade-up" data-aos-delay="1000">
+            <h6 class="text-uppercase">Testimonios</h6>
+            <h1 class="mb-5">¿Qué dicen nuestros Clientes?</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel" data-wow-delay="0.1s" data-aos="fade-up" data-aos-delay="1200">
+            <?php if (!empty($testimonios)) : ?>
+                <?php foreach ($testimonios as $testimonio) : ?>
                     <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="1400">
                         <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
-                            No se encontraron testimonios. ¡Sé el primero en compartir tu experiencia!
+                            <?= htmlspecialchars($testimonio['comentario']); ?>
                         </div>
                         <div class="d-flex align-items-center pt-3">
                             <img class="img-fluid rounded-circle" src="profile/assets/img/logo/logo_circular.png" style="width: 80px; height: 80px;" alt="client image">
                             <div class="pl-4">
-                                <h5>Sin testimonios</h5>
-                                <p class="m-0"></p>
+                                <h5><?= htmlspecialchars($testimonio['nombre']); ?></h5>
+                                <p class="m-0"><?= htmlspecialchars($testimonio['fechates']); ?></p>
                             </div>
                         </div>
                     </div>
-                <?php
-                }
-                // Cerrar la conexión
-                $stmt_testimonio->close();
-                ?>
-            </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="1400">
+                    <div class="testimonial-text position-relative bg-secondary text-light rounded p-5 mb-4">
+                        No se encontraron testimonios. ¡Sé el primero en compartir tu experiencia!
+                    </div>
+                    <div class="d-flex align-items-center pt-3">
+                        <img class="img-fluid rounded-circle" src="profile/assets/img/logo/logo_circular.png" style="width: 80px; height: 80px;" alt="client image">
+                        <div class="pl-4">
+                            <h5>Sin testimonios</h5>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
+</div>
 
 
 

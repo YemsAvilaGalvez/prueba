@@ -103,51 +103,123 @@ function Cargar_Select_Difunto() {
 /** REGISTRAR IMAGEN */
 function Registrar_Foto() {
   let idDifunto = document.getElementById("select_id_difunto").value;
-  let fotos = document.getElementById("file_foto").files; // Obtener todos los archivos seleccionados
+  let fotos = document.getElementById("file_foto").files;
 
-if (fotos.length == 0) {
-    return Swal.fire("Mensaje de Advertencia", "Seleccione una o más imágenes", "warning");
+  if (fotos.length == 0) {
+    return Swal.fire(
+      "Mensaje de Advertencia",
+      "Seleccione una o más imágenes",
+      "warning"
+    );
+  }
+
+  let formData = new FormData();
+  formData.append("idDifunto", idDifunto);
+
+  let imagenProcesada = 0;
+
+  for (let i = 0; i < fotos.length; i++) {
+    let reader = new FileReader();
+    reader.readAsDataURL(fotos[i]);
+
+    reader.onload = function (event) {
+      let img = new Image();
+      img.src = event.target.result;
+
+      img.onload = function () {
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+
+        // Ajustar tamaño máximo (puedes cambiarlo según tu necesidad)
+        let maxWidth = 800; // Ancho máximo
+        let maxHeight = 800; // Alto máximo
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Convertir a formato WebP (más ligero que JPEG/PNG)
+        canvas.toBlob(
+          (blob) => {
+            let extension = "webp"; // Cambiamos a WebP
+            let nombreFoto = `DIF-${new Date().getTime()}-${i}.${extension}`;
+
+            formData.append("foto[]", blob, nombreFoto);
+            formData.append("nombreFoto[]", nombreFoto);
+
+            imagenProcesada++;
+
+            // Cuando todas las imágenes hayan sido procesadas, enviar AJAX
+            if (imagenProcesada === fotos.length) {
+              enviarFormulario(formData);
+            }
+          },
+          "image/webp",
+          0.7
+        ); // Calidad de 70%
+      };
+    };
+  }
 }
 
-let formData = new FormData();
-formData.append("idDifunto", idDifunto);
-for (let i = 0; i < fotos.length; i++) {
-    formData.append("foto[]", fotos[i]); // "foto[]" es el campo que usas en PHP
-    let extension = fotos[i].name.split(".").pop();
-    let nombreFoto = "DIF-" + new Date().getTime() + "-" + i + "." + extension;
-    formData.append("nombreFoto[]", nombreFoto); // Guardar los nombres de los archivos
-}
-
-$.ajax({
+// Función para enviar el FormData procesado
+function enviarFormulario(formData) {
+  $.ajax({
     url: "../controller/foto/controlador_registrar_foto.php",
     type: "POST",
     data: formData,
     contentType: false,
     processData: false,
     success: function (resp) {
-        if (resp > 0) {
-            if (resp == 1) {
-                LimpiarModalFotos();
-                Swal.fire("Mensaje de Confirmación", "Las imágenes se registraron correctamente", "success").then((value) => {
-                    $("#modal_registro_imagen").modal("hide");
-                    LimpiarModalFotos();
-                    tbl_imagen.ajax.reload();
-                });
-                
-            } else {
-                Swal.fire("Mensaje de Advertencia", "Error al registrar imágenes", "error");
-            }
-        } else {
+      //console.log("Respuesta del servidor:", resp); // Muestra la respuesta del servidor
+
+      // Asegúrate de que la respuesta sea un número entero
+      if (resp > 0) {
+        Swal.fire(
+          "Mensaje de Confirmación",
+          "Las imágenes se registraron correctamente",
+          "success"
+        ).then(() => {
+          $("#modal_registro_imagen").modal("hide");
           LimpiarModalFotos();
-          Swal.fire("Mensaje de Confirmación", "Las imágenes se registraron correctamente", "success").then((value) => {
-              $("#modal_registro_imagen").modal("hide");
-              LimpiarModalFotos();
-              tbl_imagen.ajax.reload();
-          });
-        }
+          tbl_imagen.ajax.reload();
+        });
+      } else {
+        /*
+        Swal.fire(
+          "Mensaje de Advertencia",
+          "Error al registrar imágenes",
+          "error"
+        );*/
+        Swal.fire(
+          "Mensaje de Confirmación",
+          "Las imágenes se registraron correctamente",
+          "success"
+        ).then(() => {
+          $("#modal_registro_imagen").modal("hide");
+          LimpiarModalFotos();
+          tbl_imagen.ajax.reload();
+        });
+      }
     },
-});
+  });
 }
+
+
 
 
 /** EDITAR FOTO */
@@ -265,4 +337,3 @@ function EliminarFoto(idFoto) {
     }
   });
 }
-

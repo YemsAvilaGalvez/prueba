@@ -1,0 +1,123 @@
+[29-Jan-2025 00:30:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:103
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_departamento.php(4): Modelo_Cliente->Cargar_Select_Departamento()
+#1 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 103
+[29-Jan-2025 00:30:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:134
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#1 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 134
+[29-Jan-2025 00:30:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:118
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#1 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 118
+[29-Jan-2025 00:32:11 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 9 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:32:11 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 5 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:32:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 19 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:32:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:33:08 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:33:09 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:33:35 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:33:35 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 4 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:34:14 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 2 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:34:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:34:19 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 370 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 00:34:20 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 2 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:36:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 2 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 00:36:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 01:03:01 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 2 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 01:03:01 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 1 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120
+[29-Jan-2025 01:03:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 2 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:136
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(136): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_distrito.php(5): Modelo_Cliente->Cargar_Select_Distrito('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 136
+[29-Jan-2025 01:03:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column ``.``.`ID` at row 460 in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php:120
+Stack trace:
+#0 /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php(120): PDOStatement->execute()
+#1 /home/yemsavil/vivir.yemsavila.com/adm/controller/cliente/controlador_cargar_provincia.php(5): Modelo_Cliente->Cargar_Select_Provincia('')
+#2 {main}
+  thrown in /home/yemsavil/vivir.yemsavila.com/adm/model/model_cliente.php on line 120

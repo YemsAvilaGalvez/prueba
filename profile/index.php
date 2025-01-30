@@ -1,117 +1,81 @@
 <?php
-// Conexión a la base de datos
+// Configuración de conexión a la base de datos con PDO
 $host = 'localhost';
 $user = 'root';
 $password = '';
 $dbname = 'prueba_final_v2';
 
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-  die("Conexión fallida: " . $conn->connect_error);
+try {
+  $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Manejo de errores con excepciones
+} catch (PDOException $e) {
+  die("Error de conexión: " . $e->getMessage());
 }
 
-// Obtener el id desde la URL y validarlo
+// Obtener y validar el ID desde la URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
   header("Location: 404.php");
   exit;
 }
 
-// Consultar el estado del elemento con el ID recibido
-$sql = "SELECT estado FROM difuntos WHERE id_difunto = ?";
+// Consultar el estado del difunto
+$sql = "SELECT estado FROM difuntos WHERE id_difunto = :id";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
-$resultado = $stmt->get_result();
+$fila = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($resultado->num_rows > 0) {
-  $fila = $resultado->fetch_assoc();
-  if ($fila['estado'] !== 'HABILITADO') {
-    header("Location: 404.php");
-    exit;
-  }
-} else {
+if (!$fila || $fila['estado'] !== 'HABILITADO') {
   header("Location: 404.php");
   exit;
 }
 
-// Consulta para obtener los datos del difunto
-$sql_difunto = "SELECT * FROM difuntos WHERE id_difunto = ?";
+// Obtener los datos del difunto
+$sql_difunto = "SELECT * FROM difuntos WHERE id_difunto = :id";
 $stmt_difunto = $conn->prepare($sql_difunto);
-$stmt_difunto->bind_param("i", $id);
+$stmt_difunto->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt_difunto->execute();
-$result_difunto = $stmt_difunto->get_result();
+$difunto = $stmt_difunto->fetch(PDO::FETCH_ASSOC);
 
-// Verificar si se encontró un registro del difunto
-if ($result_difunto->num_rows > 0) {
-  $difunto = $result_difunto->fetch_assoc();
-
-  // Convertir las fechas a objetos DateTime
-  $fechaNacimiento = DateTime::createFromFormat('Y-m-d', $difunto['fecha_nacimiento']);
-  $fechaFallecimiento = DateTime::createFromFormat('Y-m-d', $difunto['fecha_fallecimiento']);
-
-  // Convertir las fechas solo para que nos devuelva el año
-  $fechaNacimientoAño = DateTime::createFromFormat('Y-m-d', $difunto['fecha_nacimiento'])->format('Y');
-  $fechaFallecimientoAño = DateTime::createFromFormat('Y-m-d', $difunto['fecha_fallecimiento'])->format('Y');
-
-  // Mostrar las fechas en el formato "día-mes-año"
-  $fechaNacimientoFormateada = $fechaNacimiento->format('d-m-Y');
-  $fechaFallecimientoFormateada = $fechaFallecimiento->format('d-m-Y');
-
-  // Consulta para obtener los comentarios del difunto
-  $sql_comentarios = "SELECT * FROM comentarios WHERE id_difunto = ?";
-  $stmt_comentarios = $conn->prepare($sql_comentarios);
-  $stmt_comentarios->bind_param("i", $id);
-  $stmt_comentarios->execute();
-  $result_comentarios = $stmt_comentarios->get_result();
-
-  // Verificar si se encontraron comentarios
-  if ($result_comentarios->num_rows > 0) {
-    $comentarios = [];
-    while ($comentario = $result_comentarios->fetch_assoc()) {
-      $comentarios[] = $comentario;
-    }
-    // Aquí puedes trabajar con los comentarios
-  }
-
-  $stmt_comentarios->close();
-
-  // Consulta para obtener los resumen del difunto
-  $sql_resumen = "SELECT * FROM datospersonales WHERE id_difunto = ?";
-  $stmt_resumen = $conn->prepare($sql_resumen);
-  $stmt_resumen->bind_param("i", $id);
-  $stmt_resumen->execute();
-  $result_resumen = $stmt_resumen->get_result();
-
-  // Guardar los resultados en un array
-  $resumenes = [];
-  while ($resumen = $result_resumen->fetch_assoc()) {
-    $resumenes[] = $resumen;
-  }
-
-  $stmt_resumen->close();
-
-  // Consulta para obtener las fotos del difunto
-  $sql_foto = "SELECT * FROM fotosdifunto WHERE id_difunto = ?";
-  $stmt_foto = $conn->prepare($sql_foto);
-  $stmt_foto->bind_param("i", $id);
-  $stmt_foto->execute();
-  $result_foto = $stmt_foto->get_result();
-
-  if ($result_foto->num_rows > 0) {
-  } else {
-  }
-
-  $stmt_foto->close();
-} else {
+if (!$difunto) {
   header("Location: 404.php");
   exit;
 }
 
-$stmt_difunto->close();
+// Formatear fechas
+$fechaNacimiento = DateTime::createFromFormat('Y-m-d', $difunto['fecha_nacimiento']);
+$fechaFallecimiento = DateTime::createFromFormat('Y-m-d', $difunto['fecha_fallecimiento']);
+$fechaNacimientoAño = $fechaNacimiento->format('Y');
+$fechaFallecimientoAño = $fechaFallecimiento->format('Y');
+$fechaNacimientoFormateada = $fechaNacimiento->format('d-m-Y');
+$fechaFallecimientoFormateada = $fechaFallecimiento->format('d-m-Y');
 
-$conn->close();
+// Obtener comentarios del difunto
+$sql_comentarios = "SELECT * FROM comentarios WHERE id_difunto = :id";
+$stmt_comentarios = $conn->prepare($sql_comentarios);
+$stmt_comentarios->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_comentarios->execute();
+$comentarios = $stmt_comentarios->fetchAll(PDO::FETCH_ASSOC);
+
+// Obtener resumen del difunto
+$sql_resumen = "SELECT * FROM datospersonales WHERE id_difunto = :id";
+$stmt_resumen = $conn->prepare($sql_resumen);
+$stmt_resumen->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_resumen->execute();
+$resumenes = $stmt_resumen->fetchAll(PDO::FETCH_ASSOC);
+
+// Obtener fotos del difunto
+$sql_foto = "SELECT * FROM fotosdifunto WHERE id_difunto = :id";
+$stmt_foto = $conn->prepare($sql_foto);
+$stmt_foto->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_foto->execute();
+$fotos = $stmt_foto->fetchAll(PDO::FETCH_ASSOC);
+
+// Cerrar conexión PDO (opcional, se cierra automáticamente al final del script)
+$conn = null;
 ?>
+
 
 
 
@@ -153,9 +117,41 @@ $conn->close();
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      transition: .5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.2);
+    }
+
+    .gallery-item a {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: calc(50% - 30px);
+      left: calc(50% - 30px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #FFFFFF;
+      text-decoration: none;
+      transition: .5s;
+      opacity: 0;
+    }
+
+    .gallery-item:hover a {
+      opacity: 1;
+    }
+
     .font-secondary {
       font-family: 'Great Vibes', cursive;
     }
@@ -316,7 +312,9 @@ $conn->close();
   <!-- Popup -->
   <div class="popup-fondo" id="popup">
     <div class="popup-contenido">
-      <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="" />
+      <img src="../adm/<?php echo ($difunto['imagen_perfil']) ?>" class="img-fluid" alt="imagen_bd" />
+      <h3 class="font-secondary text-black"><?php echo ($difunto['nombre']) ?> <br> (<?php echo $fechaNacimientoAño ?> - <?php echo $fechaFallecimientoAño ?>)</h3>
+
       <h4 class="popup-frase" id="frase"></h4>
       <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
     </div>
@@ -348,35 +346,35 @@ $conn->close();
 
   <main class="main">
     <!-- Hero Section -->
-    <section id="home" class="hero section dark-background">
-      <img src="../adm/<?php echo ($difunto['imagen_portada']) ?>" class="img-fluid" alt="" />
+      <section id="home" class="hero section dark-background">
+        <img src="../adm/<?php echo ($difunto['imagen_portada']) ?>" class="img-fluid" alt="" />
 
 
-      <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-        <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?php echo ($difunto['nombre']) ?></h1>
-        <h6><strong>ETERNAMENTE EN NUESTROS CORAZONES</strong></h6>
-        <p>
-          <span class="typed" data-typed-items="Fecha de Nacimiento: <?php echo $fechaNacimientoFormateada ?>, Fecha de Fallecimiento: <?php echo $fechaFallecimientoFormateada ?>"></span>
-        </p>
+        <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+          <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4"><?php echo ($difunto['nombre']) ?></h1>
+          <h6><strong>ETERNAMENTE EN NUESTROS CORAZONES</strong></h6>
+          <p>
+            <span class="typed" data-typed-items="Fecha de Nacimiento: <?php echo $fechaNacimientoFormateada ?>, Fecha de Fallecimiento: <?php echo $fechaFallecimientoFormateada ?>"></span>
+          </p>
 
-        <div class="mt-4 d-flex gap-3">
-          <!-- Botón para copiar URL -->
-          <button class="btn btn-primary d-flex align-items-center" onclick="copiarEnlace()" style="background-color: #6c757d; border-color: #6c757d;">
-            <i class="fas fa-share-alt"></i>&nbsp;&nbsp;Compartir URL
-          </button>
+          <div class="mt-4 d-flex gap-3">
+            <!-- Botón para copiar URL -->
+            <button class="btn btn-primary d-flex align-items-center" onclick="copiarEnlace()" style="background-color: #6c757d; border-color: #6c757d;">
+              <i class="fas fa-share-alt"></i>&nbsp;&nbsp;Compartir URL
+            </button>
 
-          <!-- Enlace de Condolencias con icono -->
-          <a href="#condolencia" class="btn btn-secondary d-flex align-items-center" style="background-color: #6c757d; border-color: #6c757d;">
-            <i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Enviar Condolencias
-          </a>
+            <!-- Enlace de Condolencias con icono -->
+            <a href="#condolencia" class="btn btn-secondary d-flex align-items-center" style="background-color: #6c757d; border-color: #6c757d;">
+              <i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Enviar Condolencias
+            </a>
+          </div>
+
+          <!-- Mensaje de copiado -->
+          <div id="mensajeCopiado" class="alert alert-success" style="display:none; margin-top: 15px;">
+            ¡Enlace copiado con éxito!
+          </div>
         </div>
-
-        <!-- Mensaje de copiado -->
-        <div id="mensajeCopiado" class="alert alert-success" style="display:none; margin-top: 15px;">
-          ¡Enlace copiado con éxito!
-        </div>
-      </div>
-    </section>
+      </section>
 
 
 
@@ -500,15 +498,17 @@ $conn->close();
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
             <?php
             // Verificar si se encontraron fotos del difunto
-            if ($result_foto->num_rows > 0) {
-              while ($foto = $result_foto->fetch_assoc()) {
+            if (count($fotos) > 0) {
+              foreach ($fotos as $foto) {
                 // Mostrar cada foto en un ítem de la galería
             ?>
-                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                <div class="gallery-item col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                   <img src="../adm/<?php echo ($foto['ruta_foto']); ?>" class="img-fluid" alt="" />
                   <div class="portfolio-info">
                     <a href="../adm/<?php echo ($foto['ruta_foto']); ?>" title="" data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                      <i class="bi bi-zoom-in"></i>
+                      <div class="center-icon">
+                        <i class="fa fa-2x fa-plus text-white"></i>
+                      </div>
                     </a>
                   </div>
                 </div>
@@ -521,8 +521,18 @@ $conn->close();
           </div>
         </div>
       </div>
-    </section>
 
+      <style>
+        .center-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          /* o el valor que desees para el contenedor */
+        }
+      </style>
+
+    </section>
 
 
 
@@ -607,113 +617,121 @@ $conn->close();
 
     <!-- Comentarios Section -->
     <section id="testimonials" class="testimonials section accent-background">
-    <img src="assets/img/rosas.jpg" class="testimonials-bg" alt="" />
+      <img src="assets/img/rosas.jpg" class="testimonials-bg" alt="" />
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
         <!-- Botón para abrir el modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comentariosModal">
-            Ver todos los registros
+          Ver todos los registros
         </button>
 
         <div class="swiper init-swiper">
-            <script type="application/json" class="swiper-config">
-                {
-                    "loop": false,
-                    "speed": 600,
-                    "autoplay": {
-                        "delay": 5000
-                    },
-                    "slidesPerView": 1,
-                    "pagination": {
-                        "el": ".swiper-pagination",
-                        "type": "bullets",
-                        "clickable": true
-                    }
-                }
-            </script>
-            <div class="swiper-wrapper">
-                <?php if (!empty($comentarios)) : ?>
-                    <?php foreach ($comentarios as $comentario) : ?>
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <h3 style="text-align: center;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h3>
-                                <h4 style="text-align: center;"><?php echo htmlspecialchars($comentario['numero_celular']); ?></h4>
-                                <p style="text-align: center;">
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span><?php echo htmlspecialchars($comentario['mensaje']); ?></span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <?php
-                                $fechaComentario = new DateTime($comentario['fecha_comentario']);
-                                $mesNumero = $fechaComentario->format('m');
-                                $mesesEnEspañol = [
-                                    '01' => 'enero', '02' => 'febrero', '03' => 'marzo',
-                                    '04' => 'abril', '05' => 'mayo', '06' => 'junio',
-                                    '07' => 'julio', '08' => 'agosto', '09' => 'septiembre',
-                                    '10' => 'octubre', '11' => 'noviembre', '12' => 'diciembre'
-                                ];
-                                $mesEnEspañol = $mesesEnEspañol[$mesNumero];
-                                $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
-                                ?>
-                                <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
-                                    <strong>Fecha del comentario:</strong> <?php echo $fechaFormateada; ?>
-                                </p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3 style="text-align: center;">No hay comentarios</h3>
-                            <h4 style="text-align: center;">Descanza en Paz</h4>
-                            <p style="text-align: center;">
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>No hay comentarios para este difunto.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            </div>
-            <div class="swiper-pagination"></div>
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": false,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": 1,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            <?php if (!empty($comentarios)) : ?>
+              <?php foreach ($comentarios as $comentario) : ?>
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <h3 style="text-align: center;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h3>
+                    <h4 style="text-align: center;"><?php echo htmlspecialchars($comentario['numero_celular']); ?></h4>
+                    <p style="text-align: center;">
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span><?php echo htmlspecialchars($comentario['mensaje']); ?></span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                    <?php
+                    $fechaComentario = new DateTime($comentario['fecha_comentario']);
+                    $mesNumero = $fechaComentario->format('m');
+                    $mesesEnEspañol = [
+                      '01' => 'enero',
+                      '02' => 'febrero',
+                      '03' => 'marzo',
+                      '04' => 'abril',
+                      '05' => 'mayo',
+                      '06' => 'junio',
+                      '07' => 'julio',
+                      '08' => 'agosto',
+                      '09' => 'septiembre',
+                      '10' => 'octubre',
+                      '11' => 'noviembre',
+                      '12' => 'diciembre'
+                    ];
+                    $mesEnEspañol = $mesesEnEspañol[$mesNumero];
+                    $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
+                    ?>
+                    <p style="text-align: center; font-size: 0.9rem; margin-top: 10px;">
+                      <strong>Fecha del comentario:</strong> <?php echo $fechaFormateada; ?>
+                    </p>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php else : ?>
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <h3 style="text-align: center;">No hay comentarios</h3>
+                  <h4 style="text-align: center;">Descanza en Paz</h4>
+                  <p style="text-align: center;">
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    <span>No hay comentarios para este difunto.</span>
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            <?php endif; ?>
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Modal de comentarius -->
-<div class="modal fade" id="comentariosModal" tabindex="-1" aria-labelledby="comentariosModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <!-- Modal de comentarius -->
+    <div class="modal fade" id="comentariosModal" tabindex="-1" aria-labelledby="comentariosModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f7f7f7; color: #333; padding: 15px; border-bottom: 1px solid #ddd;">
-                <img src="assets/img/logo.png" alt="Logo" style="max-width: 40px; height: auto; margin-right: 10px;">
-                <h5 class="modal-title" id="comentariosModalLabel" style="font-size: 1.2rem; font-weight: bold; flex: 1;">Comentarios</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="max-height: 400px; overflow-y: auto; padding: 20px;">
-                <?php if (!empty($comentarios)) : ?>
-                    <?php foreach ($comentarios as $comentario) : ?>
-                        <div class="modal-item" style="margin-bottom: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); word-wrap: break-word; overflow-wrap: break-word;">
-                            <h5 style="font-size: 1rem; font-weight: bold;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h5>
-                            <p style="font-size: 0.9rem; color: #555;"><strong>Celular:</strong> <?php echo htmlspecialchars($comentario['numero_celular']); ?></p>
-                            <p style="font-size: 0.9rem; color: #555;">
-                                <i class="bi bi-quote quote-icon-left"></i> <?php echo htmlspecialchars($comentario['mensaje']); ?> <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                            <?php
-                            $fechaComentario = new DateTime($comentario['fecha_comentario']);
-                            $mesNumero = $fechaComentario->format('m');
-                            $mesEnEspañol = $mesesEnEspañol[$mesNumero];
-                            $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
-                            ?>
-                            <p style="font-size: 0.85rem; color: #888; margin-top: 10px;"><strong>Fecha:</strong> <?php echo $fechaFormateada; ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <p style="font-size: 1rem; color: #555;">No hay comentarios disponibles.</p>
-                <?php endif; ?>
-            </div>
+          <div class="modal-header" style="background-color: #f7f7f7; color: #333; padding: 15px; border-bottom: 1px solid #ddd;">
+            <img src="assets/img/logo/logo_circular.png" alt="Logo" style="max-width: 40px; height: auto; margin-right: 10px;">
+            <h5 class="modal-title" id="comentariosModalLabel" style="font-size: 1.2rem; font-weight: bold; flex: 1;">Listado de Comentarios</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="max-height: 400px; overflow-y: auto; padding: 20px;">
+            <?php if (!empty($comentarios)) : ?>
+              <?php foreach ($comentarios as $comentario) : ?>
+                <div class="modal-item" style="margin-bottom: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); word-wrap: break-word; overflow-wrap: break-word;">
+                  <h5 style="font-size: 1rem; font-weight: bold;"><?php echo htmlspecialchars($comentario['nombre_pariente']); ?></h5>
+                  <p style="font-size: 0.9rem; color: #555;"><strong>Celular:</strong> <?php echo htmlspecialchars($comentario['numero_celular']); ?></p>
+                  <p style="font-size: 0.9rem; color: #555;">
+                    <i class="bi bi-quote quote-icon-left"></i> <?php echo htmlspecialchars($comentario['mensaje']); ?> <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                  <?php
+                  $fechaComentario = new DateTime($comentario['fecha_comentario']);
+                  $mesNumero = $fechaComentario->format('m');
+                  $mesEnEspañol = $mesesEnEspañol[$mesNumero];
+                  $fechaFormateada = $fechaComentario->format('d') . ' de ' . $mesEnEspañol . ' de ' . $fechaComentario->format('Y');
+                  ?>
+                  <p style="font-size: 0.85rem; color: #888; margin-top: 10px;"><strong>Fecha:</strong> <?php echo $fechaFormateada; ?></p>
+                </div>
+              <?php endforeach; ?>
+            <?php else : ?>
+              <p style="font-size: 1rem; color: #555;">No hay comentarios disponibles.</p>
+            <?php endif; ?>
+          </div>
         </div>
-    </div>
-</div><br><br>
+      </div>
+    </div><br><br>
 
 
 
@@ -766,7 +784,7 @@ $conn->close();
     class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
-  <div id="preloader"></div>
+
 
 
 
